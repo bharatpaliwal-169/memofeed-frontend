@@ -2,7 +2,7 @@ import React from 'react';
 import {useSelector} from 'react-redux'
 import {Grid , CircularProgress} from '@material-ui/core'
 import useStyles from './styles'
-import Post from './Post/Post';
+import Post from './Post';
 const Posts = () => {
 
   const posts = useSelector((state) => state.posts); // here this state is the global object that we stored in redux

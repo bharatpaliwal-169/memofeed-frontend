@@ -17,6 +17,7 @@ const Form = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(createPost(postData));
+    console.log(postData);
   }
 
   const Clear = () => {}
@@ -26,7 +27,7 @@ const Form = () => {
       <Paper className={classes.paper}>
         <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
           {/* <Typography variant="h6">{currentId ? `Editing "${post.title}"` : 'Creating a Memory'}</Typography> */}
-          <Typography variant="h5">Create a new post</Typography>
+          <Typography variant="h5">Create new memory</Typography>
           
           <TextField name="creator" variant="outlined" label="Creator" fullWidth 
             value={postData.creator} onChange={(e) => setPostData({ ...postData, creator: e.target.value })} />
