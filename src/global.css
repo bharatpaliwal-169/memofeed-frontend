@@ -8,3 +8,20 @@ body {
   background-attachment: fixed;
   background-size: cover;
 }
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  background: darkgrey; 
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(114, 114, 114); 
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}

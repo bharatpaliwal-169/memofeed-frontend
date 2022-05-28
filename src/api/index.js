@@ -10,3 +10,15 @@ export const fetchPosts = () => {
 export const CreatePost = (newPost) => {
   return axios.post(URL,newPost)
 }
+
+export const UpdatePost = (id,updatedPost) => {
+  return axios.patch(`${URL}/${id}`,updatedPost) // this is how we will call an api with Dynamic ID.
+}
+
+export const DeletePost = (id) => {
+  return axios.delete(`${URL}/${id}`);
+}
+
+export const likePost = (id) => {
+  return axios.patch(`${URL}/${id}/likePost`)
+}
