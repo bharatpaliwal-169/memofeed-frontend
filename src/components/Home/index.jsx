@@ -19,11 +19,11 @@ function Home() {
 
   useEffect(() => {
     dispatch(getPosts());
-    
+    setTimeout( function() { send("MemoFeed", 
+    "Welcome! Please explore and add your stories, happy Exploring!")}, 8640000);
   }, [currentId,dispatch]);
 
-  setTimeout( function() { send("MemoFeed", 
-    "Welcome! Please explore and add your stories, happy Exploring!")}, 86400000);
+  
   // const handleClick = () => {
   //   send("MemoFeed", "Welcome! Please explore and add your stories, happy Exploring!");
   // }

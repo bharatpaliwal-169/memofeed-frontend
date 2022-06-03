@@ -21,7 +21,6 @@ const App = () => {
   // useEffect(() => {
   //   dispatch(getPosts());
   // }, [currentId,dispatch])
-  
   return (
     <>
       <Router>
