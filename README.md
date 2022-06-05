@@ -18,3 +18,11 @@ useEffect(() => {
   return () => clearInterval(interval);
 }, []);
 ```
+
+In react-router-dom v6 useHistory() is replaced by useNavigate().
+
+```
+import { useNavigate } from 'react-router-dom';
+const navigate = useNavigate();
+navigate('/');
+```
