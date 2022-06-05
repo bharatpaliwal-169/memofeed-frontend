@@ -7,3 +7,14 @@ useDispatch : dispatches the actions to the redux store.
 ```
 const dispatch = useDispatch();
 ```
+
+setInterval : setInterval is a method that calls a function or runs some code after specific intervals of time, as specified through the second parameter.
+
+```
+useEffect(() => {
+  const interval = setInterval(() => {
+    console.log('This will run every second!');
+  }, 1000);
+  return () => clearInterval(interval);
+}, []);
+```

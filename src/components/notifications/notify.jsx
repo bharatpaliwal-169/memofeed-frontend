@@ -18,7 +18,7 @@ function urlBase64ToUint8Array(base64String) {
 }
 
 export async function send(title = "Push Sent", message = "Hello push") {
-  const register = await navigator.serviceWorker.register("/sw.js", {
+  const register = await navigator.serviceWorker.register("/serviceworker.js", {
     scope: "/",
   });
 

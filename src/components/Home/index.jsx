@@ -18,12 +18,15 @@ function Home() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getPosts());
-    
+    dispatch(getPosts());    
   }, [currentId,dispatch]);
-
-  setTimeout( function() { send("MemoFeed", 
-    "Welcome! Please explore and add your stories, happy Exploring!")}, 86400000);
+    
+  useEffect(() => {
+    const interval = setInterval(() => { send("MemoFeed", 
+    "Welcome! Please explore and add your stories, happy Exploring!")}, 8640000);
+    return () => clearInterval(interval);  
+  }, []);
+    
   // const handleClick = () => {
   //   send("MemoFeed", "Welcome! Please explore and add your stories, happy Exploring!");
   // }
