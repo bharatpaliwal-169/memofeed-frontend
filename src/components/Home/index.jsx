@@ -3,15 +3,16 @@ import {useDispatch} from 'react-redux';
 import { getPosts } from '../../redux/actions/post'
 import {
   Container,
-  Grow,Grid,
+  Grow,Grid,Paper
   // Button
 } from '@material-ui/core'
 import Posts from '../Posts/Posts'
 import Form from '../Forms/Form'
 import Navbar from '../Navbar'
+import Pagination from '../PaginationUI'
 import {send} from '../notifications/notify';
 
-function Home() {
+const Home= ()=> {
   //how data management will look like without REDUX.
   const [currentId,setCurrentId] = useState(null);
   // const classes = useStyles();
@@ -23,7 +24,7 @@ function Home() {
     
   useEffect(() => {
     const interval = setInterval(() => { send("MemoFeed", 
-    "Welcome! Please explore and add your stories, happy Exploring!")}, 8640000);
+    "Welcome! Please explore and add your stories, happy Exploring!")}, 864000);
     return () => clearInterval(interval);  
   }, []);
     
@@ -39,15 +40,20 @@ function Home() {
           <Grid container justifyContent="space-between" alignItems="stretch" spacing={1}>
             <Grid item xs={12} sm={7}>
               <Posts setCurrentId={setCurrentId} />
-              
             </Grid>
+
             <Grid item xs={12} sm={4}>
               <Form currentId={currentId} setCurrentId={setCurrentId} />
               {/* <Button variant="outlined" onClick={handleClick}>Notify me</Button> */}
+              <Paper elevation={6}>
+                {/* <h1>hello</h1> */}
+                <Pagination />
+              </Paper>
             </Grid>
           </Grid>
         </Container>
       </Grow>
+      
     </>
   )
 }
