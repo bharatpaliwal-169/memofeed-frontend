@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import {useNavigate} from 'react-router-dom'
+import {useHistory} from 'react-router-dom'
 import {useDispatch} from 'react-redux'
 import {signup , login} from '../../redux/actions/auth'
 import {Container,Avatar,Paper,Grid,Typography,Button} from "@material-ui/core"
@@ -17,7 +17,7 @@ const Auth = () =>{
   const [formData,setformData] = useState(initialState);
   //support
   const classes = useStyles();
-  const history = useNavigate();
+  const history = useHistory();
   const dispatch = useDispatch();
   //function
   const handleSubmit = (e) => {

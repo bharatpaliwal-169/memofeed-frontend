@@ -1,54 +1,101 @@
 import React,{useState,useEffect} from 'react';
 import {useDispatch} from 'react-redux';
-import { getPosts } from '../../redux/actions/post'
+import {useHistory,useLocation} from 'react-router-dom';
+import { getPosts,getPostsBySearch } from '../../redux/actions/post'
 import {
-  Container,
-  Grow,Grid,Paper
-  // Button
+  Container,Button,
+  Grow,Grid,Paper, AppBar,TextField
 } from '@material-ui/core'
+import useStyles from './styles'
+import ChipInput from 'material-ui-chip-input';
 import Posts from '../Posts/Posts'
 import Form from '../Forms/Form'
-import Navbar from '../Navbar'
 import Pagination from '../PaginationUI'
-import {send} from '../notifications/notify';
+
+function useQuery(){
+  return new URLSearchParams(useLocation().search);
+}
 
 const Home= ()=> {
   //how data management will look like without REDUX.
-  const [currentId,setCurrentId] = useState(null);
-  // const classes = useStyles();
-  const dispatch = useDispatch();
+  const [search,setSearch] = useState('');
+  const [currentId,setCurrentId] = useState(0);
+  const [tags,setTags] = useState([]);
 
-  useEffect(() => {
-    dispatch(getPosts());    
-  }, [currentId,dispatch]);
-    
-  useEffect(() => {
-    const interval = setInterval(() => { send("MemoFeed", 
-    "Welcome! Please explore and add your stories, happy Exploring!")}, 864000);
-    return () => clearInterval(interval);  
-  }, []);
-    
-  // const handleClick = () => {
-  //   send("MemoFeed", "Welcome! Please explore and add your stories, happy Exploring!");
-  // }
+  const classes = useStyles();
+  const dispatch = useDispatch();
+  const query = useQuery(); //this is where we will get our page info
+  const history = useHistory();
+  const page = query.get('page')|| 1;
+  const searchQuery = query.get('searchQuery');
+
+
+  const handleKeyPress = (e) =>{
+    if(e.keyCode === 13){ // 13 === enter key
+      searchPost();
+    }
+  }
+
+  const handleAdd = (tag) =>{
+    setTags([...tags,tag])
+  }
+
+  const handleDelete = (tagToDelete) =>{
+    setTags(tags.filter((tag) => tag !== tagToDelete));
+  }
+
+
+  const searchPost = () => {
+    if(search.trim() || tags){
+      dispatch(getPostsBySearch({search , tags : tags.join(',')}));
+      history.push(`/posts/search?searchQuery=${search || 'none'}&tags=${tags.join(',')}`);
+    }
+    else{
+      history.push("/");
+    }
+  }
+
+  // useEffect(() => {
+  //   dispatch(getPosts());    
+  // }, [currentId,dispatch]);
 
   return (
     <>
-      <Navbar></Navbar>
       <Grow in>
-        <Container>
-          <Grid container justifyContent="space-between" alignItems="stretch" spacing={1}>
-            <Grid item xs={12} sm={7}>
+        <Container maxwidth="xl">
+          <Grid container justifyContent="space-between" alignItems="stretch" spacing={1} 
+          className={classes.gridContainer}>
+            <Grid item xs={12} sm={6} md={7}>
               <Posts setCurrentId={setCurrentId} />
             </Grid>
 
-            <Grid item xs={12} sm={4}>
+            <Grid item xs={12} sm={6} md={4}>
+              <AppBar className={classes.appBarSearch} position="static" color="inherit">
+                <TextField 
+                  onKeyDown={handleKeyPress} 
+                  name="search" 
+                  variant="outlined" 
+                  label="Search Memories" 
+                  fullWidth 
+                  value={search} 
+                  onChange={(e) => setSearch(e.target.value)} 
+                />
+                <ChipInput
+                  style={{ margin: '10px 0' }}
+                  value={tags}
+                  onAdd={(chip) => handleAdd(chip)}
+                  onDelete={(chip) => handleDelete(chip)}
+                  label="Search Tags"
+                  variant="outlined"
+                />
+                <Button onClick={searchPost} className={classes.searchButton} variant="contained" color="primary">Search</Button>
+              </AppBar>
               <Form currentId={currentId} setCurrentId={setCurrentId} />
-              {/* <Button variant="outlined" onClick={handleClick}>Notify me</Button> */}
-              <Paper elevation={6}>
-                {/* <h1>hello</h1> */}
-                <Pagination />
-              </Paper>
+              {(!searchQuery && !tags.length) && (
+                <Paper className={classes.pagination} elevation={6}>
+                  <Pagination page={page} />
+                </Paper>
+              )}
             </Grid>
           </Grid>
         </Container>

@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react';
 import decode from 'jwt-decode';
-import {Link,useNavigate,useLocation} from 'react-router-dom';
+import {Link,useHistory,useLocation} from 'react-router-dom';
 import {useDispatch} from 'react-redux'
 import * as actionType from '../../redux/types/actionTypes'
 //css
@@ -14,11 +14,11 @@ export default function NavBar() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
   const dispatch = useDispatch();
   const location = useLocation();
-  const history = useNavigate();
+  const history = useHistory();
 
   const logout = () => {
     dispatch({ type: actionType.LOGOUT });
-    history('/auth');
+    history.push('/auth');
     setUser(null);
   };
 
@@ -31,6 +31,7 @@ export default function NavBar() {
       }
     }
     setUser(JSON.parse(localStorage.getItem('profile')));
+
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location])
   
