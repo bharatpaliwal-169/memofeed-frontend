@@ -6,7 +6,7 @@ import * as actionType from '../../redux/types/actionTypes'
 //css
 import {AppBar , Avatar, Button, Typography} from '@material-ui/core';
 import useStyles from './styles';
-import { Toolbar } from '@mui/material';
+import { Toolbar } from '@material-ui/core'
 
 
 export default function NavBar() {

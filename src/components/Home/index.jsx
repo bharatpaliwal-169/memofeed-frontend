@@ -8,6 +8,7 @@ import {
 } from '@material-ui/core'
 import useStyles from './styles'
 import ChipInput from 'material-ui-chip-input';
+// import Autocomplete from '@material-ui/lab/Autocomplete';
 import Posts from '../Posts/Posts'
 import Form from '../Forms/Form'
 import Pagination from '../PaginationUI'
@@ -80,6 +81,7 @@ const Home= ()=> {
                   value={search} 
                   onChange={(e) => setSearch(e.target.value)} 
                 />
+                
                 <ChipInput
                   style={{ margin: '10px 0' }}
                   value={tags}
@@ -88,6 +90,22 @@ const Home= ()=> {
                   label="Search Tags"
                   variant="outlined"
                 />
+                {/* <Autocomplete
+                  multiple
+                  id="tags-filled"
+                  options={top100Films.map((option) => option.title)}
+                  defaultValue={[top100Films[13].title]}
+                  freeSolo
+                  renderTags={(value, getTagProps) =>
+                    value.map((option, index) => (
+                      <Chip variant="outlined" label={option} {...getTagProps({ index })} />
+                    ))
+                  }
+                  renderInput={(params) => (
+                    <TextField {...params} variant="filled" label="freeSolo" placeholder="Favorites" />
+                  )}
+                /> */}
+
                 <Button onClick={searchPost} className={classes.searchButton} variant="contained" 
                 color="primary">Search</Button>
               </AppBar>
