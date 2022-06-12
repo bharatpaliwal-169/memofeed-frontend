@@ -20,10 +20,6 @@ export default makeStyles({
     borderRadius: '15px',
     height: '100%',
     position: 'relative',
-    // backgroundColor: '#75E2FF'
-  },
-  contentBody :{
-    color: '#98DAD9'
   },
   overlay: {
     position: 'absolute',
@@ -47,14 +43,18 @@ export default makeStyles({
   },
   title: {
     padding: '0 16px',
-    fontWeight: '700',
-    textTransform : 'capitalize',
-    letterSpacing: '1px',
-    // color: '#EAEBED',
+    textTransform: 'capitalize',
   },
   cardActions: {
     padding: '0 16px 8px 16px',
     display: 'flex',
     justifyContent: 'space-between',
+  },
+  cardAction: {
+    display: 'block',
+    textAlign: 'initial',
+  },
+  Chipdetails :{
+    padding:'.5rem',
   },
 });

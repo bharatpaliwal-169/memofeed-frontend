@@ -3,7 +3,7 @@ import FileBase from 'react-file-base64'
 import {Paper,Typography,TextField,Button} from '@material-ui/core'
 import useStyles from './style'
 import {useDispatch,useSelector} from 'react-redux'
-
+import {useHistory} from 'react-router-dom'
 import {createPost,updatePost} from '../../redux/actions/post'
 
 const Form = ({currentId,setCurrentId}) => {
@@ -19,20 +19,24 @@ const Form = ({currentId,setCurrentId}) => {
 
   //redux
   const dispatch = useDispatch();
-  const post = useSelector((state) => currentId ? state.posts.find((p)=> p._id === currentId) : null);
-
+  const post = useSelector((state) => currentId ? state.posts.posts.find((p)=> p._id === currentId) : null);
+  const history = useHistory();
   //function handlers
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    if(currentId) {
+    const validData = checkFormData(postData);
+    if(!validData) {
+      alert("Hey! try keeping title bit small and your story somewhere around 20-25 words atleast.");
+    }
+    else if(currentId === 0 && validData) {
+      //create Post
+      dispatch(createPost({...postData,name: user?.result?.name},history));
+    }
+    else{
       //update post
       dispatch(updatePost(currentId,{...postData,name: user?.result?.name}));
     }
-    else{
-      //create Post
-      dispatch(createPost({...postData,name: user?.result?.name}));
-    }
-    // console.log(postData);
+    
     Clear();
   }
 
@@ -41,6 +45,13 @@ const Form = ({currentId,setCurrentId}) => {
     setPostData({
     // creator: '',
     title: '', message: '', tags : '' , selectedFile : ''});
+  }
+
+  const checkFormData = (data) => {
+    if(data.title.length <=30 && data.message.length >=50){
+      return true;
+    }
+    return false;
   }
 
 
@@ -68,16 +79,16 @@ const Form = ({currentId,setCurrentId}) => {
         <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
           {/* <Typography variant="h6">{currentId ? `Editing "${post.title}"` : 'Creating a Memory'}</Typography> */}
           <Typography variant="h5">
-            {currentId ? `Editing "${post.title}" ` : 'Creating a Memory'}
+            {currentId ? `Editing "${post.title}" ` : 'Add your memory'}
           </Typography>
           
           {/* <TextField name="creator" variant="outlined" label="Creator" fullWidth 
             value={postData.creator} onChange={(e) => setPostData({ ...postData, creator: e.target.value })} />
            */}
-          <TextField name="title" variant="outlined" label="Title" fullWidth 
+          <TextField name="title" variant="outlined" label="Title (keep it short)" fullWidth required
           value={postData.title} onChange={(e) => setPostData({ ...postData, title: e.target.value })} />
           
-          <TextField name="message" variant="outlined" label="Message" fullWidth multiline rows={4} 
+          <TextField name="message" variant="outlined" label="your story(atleast 2 lines)" fullWidth multiline required rows={4} 
             value={postData.message} onChange={(e) => setPostData({ ...postData, message: e.target.value })} />
           
           <TextField name="tags" variant="outlined" label="Tags (coma separated)" fullWidth 
