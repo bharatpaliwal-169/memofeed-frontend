@@ -8,8 +8,10 @@ import moment from 'moment';
 import useStyles from './styles'
 import Chip from '@material-ui/core/Chip';
 
+import CommentSection from './CommentSection';
+
 const PostDetails = () => {
-  const {post,posts,isLoading} = useSelector((state)=> state.posts);
+  const { post,posts,isLoading } = useSelector((state)=> state.posts);
   const dispatch = useDispatch();
   const history = useHistory();
   const classes = useStyles();
@@ -30,6 +32,7 @@ const PostDetails = () => {
   if (!post) return null;
 
   const openPost = (_id) => history.push(`/posts/${_id}`);
+  const recommendedPosts = posts.filter(({ _id }) => _id !== post._id);
 
   if (isLoading) {
     return (
@@ -38,9 +41,6 @@ const PostDetails = () => {
       </Paper>
     );
   }
-
-  const recommendedPosts = posts.filter(({ _id }) => _id !== post._id);
-  
   return (
     <>
     <Paper style={{ padding: '1.5rem', borderRadius: '1rem',marginBottom:'1rem' }} elevation={6}>
@@ -51,7 +51,7 @@ const PostDetails = () => {
             
               {post.tags.map((tag) => 
               <>
-                <Chip label={tag} spacing={1} style={{margin:'0.25rem'}} 
+                <Chip key={tag} label={tag} spacing={1} style={{margin:'0.25rem'}} 
                       clickable variant="outlined" color="primary" />
               </>
               )}
@@ -62,8 +62,9 @@ const PostDetails = () => {
           <Divider style={{ margin: '20px 0' }} />
           <Typography variant="body1"><strong>Realtime Chat - coming soon!</strong></Typography>
           <Divider style={{ margin: '20px 0' }} />
-          <Typography variant="body1"><strong>Comments - coming soon!</strong></Typography>
+          {/* <Typography variant="body1"><strong>Comments - coming soon!</strong></Typography> */}
           <Divider style={{ margin: '20px 0' }} />
+          <CommentSection post={post}></CommentSection>
         </div>
 
         <div className={classes.imageSection}>
