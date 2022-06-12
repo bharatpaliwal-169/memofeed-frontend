@@ -6,8 +6,7 @@ import {deletePost,likePost} from '../../../redux/actions/post'
 //css imports
 import useStyles from './style';
 import { Card, CardActions, CardContent, CardMedia,
-  Button,ButtonBase, Typography } 
-  from '@material-ui/core/';
+  Button,ButtonBase, Typography } from '@material-ui/core/';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import ThumbUpAltOutlined from '@material-ui/icons/ThumbUpAlt';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -56,6 +55,7 @@ const Post = ({ post, setCurrentId }) => {
           </Typography>
           <Typography variant="caption"> {moment(post.createdAt).fromNow()} </Typography>
         </div>
+      </ButtonBase>
         
         <div className={classes.overlay2}>
           { user?.result?._id === post?.creator && (
@@ -64,7 +64,6 @@ const Post = ({ post, setCurrentId }) => {
             </Button>
           )}
         </div>
-      </ButtonBase>
       
         <div className={classes.Chipdetails}>
             {post.tags.slice(0,3).map((tag) => 

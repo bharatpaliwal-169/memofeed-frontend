@@ -64,7 +64,7 @@ const Form = ({currentId,setCurrentId}) => {
   if(!user?.result?.name){
     return(
     <>
-      <Paper className={classes.paper}>
+      <Paper className={classes.paper} elevation={6}>
         <Typography variant="h4" align="center" >
           Hey! Login/Signup and add up your story...
         </Typography>

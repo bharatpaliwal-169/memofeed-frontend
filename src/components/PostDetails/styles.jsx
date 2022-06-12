@@ -46,11 +46,14 @@ export default makeStyles((theme) => ({
   },
   commentsOuterContainer: {
     display: 'flex',
+    flexDirection:'column',
     justifyContent: 'space-between',
+    // border: '1px solid red',
   },
   commentsInnerContainer: {
-    height: '20rem',
+    height: '10rem',
     overflowY: 'auto',
-    marginRight: '2rem',
+    // marginRight: '2rem',
+    // border: '1px solid black',
   },
 }));

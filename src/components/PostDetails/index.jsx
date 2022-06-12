@@ -9,7 +9,6 @@ import useStyles from './styles'
 import Chip from '@material-ui/core/Chip';
 
 import CommentSection from './CommentSection';
-
 const PostDetails = () => {
   const { post,posts,isLoading } = useSelector((state)=> state.posts);
   const dispatch = useDispatch();
@@ -55,27 +54,30 @@ const PostDetails = () => {
                       clickable variant="outlined" color="primary" />
               </>
               )}
-            
           </Typography>
+          <Typography variant="h6" component="h6">Liked by : {post.likes.length} people</Typography>
           
           
-          <Divider style={{ margin: '20px 0' }} />
+          {/* <Divider style={{ margin: '20px 0' }} />
           <Typography variant="body1"><strong>Realtime Chat - coming soon!</strong></Typography>
-          <Divider style={{ margin: '20px 0' }} />
+           */}
           {/* <Typography variant="body1"><strong>Comments - coming soon!</strong></Typography> */}
           <Divider style={{ margin: '20px 0' }} />
-          <CommentSection post={post}></CommentSection>
-        </div>
-
-        <div className={classes.imageSection}>
-          <img className={classes.media} src={post.selectedFile || 'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'} alt={post.title} />
           <Typography gutterBottom variant="body1" component="p">{post.message}</Typography>
           <Divider style={{ margin: '20px 0' }} />
           <Typography variant="body1">Created by: {post.name}</Typography>
           <Typography variant="body2">{moment(post.createdAt).fromNow()}</Typography>
+          <Divider style={{ margin: '20px 0' }} />
+          
         </div>
-      
+
+        <div className={classes.imageSection}>
+          <img className={classes.media} src={post.selectedFile || 'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'} alt={post.title} />
+          <CommentSection post={post}></CommentSection>
+        </div>
       </div>
+
+      
       {!!recommendedPosts.length && (
         <div className={classes.section} style={{ marginTop:'2.5rem' }}>
           <Typography gutterBottom variant="h5">You might also like:</Typography>
