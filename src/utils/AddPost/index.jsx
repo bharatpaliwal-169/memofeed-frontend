@@ -1,8 +1,9 @@
 import React,{ useState} from 'react'
 import {Fab,Modal} from "@material-ui/core"
 import {Add} from '@material-ui/icons'
-import useStyles from './style'
-import Form from '../Forms/Form';
+import useStyles from './styles'
+import Form from '../../components/Forms';
+
 export default function AddPost() {
   const [open,setOpen] = useState(false);
   const handleOpen = () => setOpen(true);

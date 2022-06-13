@@ -1,15 +1,24 @@
+//react
 import React,{useState} from 'react'
 import {useHistory} from 'react-router-dom'
+
+//redux
 import {useDispatch} from 'react-redux'
 import {signup , login} from '../../redux/actions/auth'
+
+//css
 import {Container,Avatar,Paper,Grid,Typography,Button} from "@material-ui/core"
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+
+//components
 import useStyles from './style'
 import Input from './input'
+
 
 const initialState = {
   firstName: '',lastName: '',email: '',password: '',confirmPassword: ''
 };
+
 const Auth = () =>{
   //state
   const [showPassword, setShowPassword] = useState(false);
@@ -22,7 +31,6 @@ const Auth = () =>{
   //function
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(formData);
     if(isSignup) {
       dispatch(signup(formData,history));
     } else{
@@ -31,13 +39,11 @@ const Auth = () =>{
   }
   const handleChange = (e) => setformData({ ...formData, [e.target.name]: e.target.value });
   
-  // const handleShowPassword = () => {
-  //   setShowPassword((prev) => !prev);
-  // }
   const switchMode = () => {
     setIsSignup((prevIsSignup) => !prevIsSignup);
     setShowPassword(false);
   };
+
   return (
     <>
       <Container component="main" maxwidth="xs">
@@ -59,7 +65,6 @@ const Auth = () =>{
               )}
               <Input name = "email" label="email Address" type="email" handleChange={handleChange} />
               <Input name = "password" label="password" type={showPassword ? "text" : "password"} handleChange={handleChange} 
-                // handleShowPassword={handleShowPassword}
               /> 
               
               {isSignup && (

@@ -1,6 +1,7 @@
+/* eslint-disable no-useless-escape */
+/* eslint-disable no-unused-vars */
 import axios from 'axios';
-const publicVapidKey =
-  "BCKGpVTdfnw71cxIX6Ou9P24MlP8lz9Ecb21Dgzq6e8GI0lzkQLBrWgP6h-4sJAPjYURg7qAWKDn-6uX3aSDVxA";
+const publicVapidKey = "BCKGpVTdfnw71cxIX6Ou9P24MlP8lz9Ecb21Dgzq6e8GI0lzkQLBrWgP6h-4sJAPjYURg7qAWKDn-6uX3aSDVxA";
 
 function urlBase64ToUint8Array(base64String) {
   const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
@@ -66,7 +67,8 @@ function sendSubscription(subscription, title, message) {
   //     "content-type": "application/json",
   //   },
   // });
-  const URL_NOTIFY = "http://localhost:5000/subscribe";
+  // const URL_NOTIFY = "http://localhost:5000/subscribe";
+  const PROD_URL_NOTIFY = "https://memofeedbackend.herokuapp.com/subscribe";
   const noti = {subscription:subscription, title:title, message:message};
-  return axios.post(URL_NOTIFY,noti);
+  return axios.post(PROD_URL_NOTIFY,noti);
 }

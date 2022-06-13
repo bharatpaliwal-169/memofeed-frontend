@@ -1,8 +1,11 @@
-//react - redux
+//react 
 import React from 'react';
+
+//redux
 import { useDispatch } from 'react-redux';
 import {useHistory} from 'react-router-dom'
 import {deletePost,likePost} from '../../../redux/actions/post'
+
 //css imports
 import useStyles from './style';
 import { Card, CardActions, CardContent, CardMedia,
@@ -14,14 +17,15 @@ import EditIcon from '@material-ui/icons/Edit';
 import Chip from '@material-ui/core/Chip';
 import moment from 'moment';
 
+
 const Post = ({ post, setCurrentId }) => {
-  //css
   const classes = useStyles();
-  const handleChipClick = () => console.log("You clicked the chip");
-  //redux
+  var count = 0;
+  const handleChipClick = () => count++;
   const dispatch = useDispatch();
   const history = useHistory();
   const user = JSON.parse(localStorage.getItem('profile'));
+
 
   const Likes = () => {
     if (post?.likes?.length > 0) {
@@ -32,7 +36,6 @@ const Post = ({ post, setCurrentId }) => {
           <><ThumbUpAltOutlined fontSize="small" />&nbsp;{post.likes.length} {post.likes.length === 1 ? 'Like' : 'Likes'}</>
         );
     }
-
     return <><ThumbUpAltOutlined fontSize="small" />&nbsp;Like</>;
   };
 

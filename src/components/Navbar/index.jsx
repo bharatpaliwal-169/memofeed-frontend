@@ -1,8 +1,12 @@
+//react
 import React,{useState,useEffect} from 'react';
-import decode from 'jwt-decode';
 import {Link,useHistory,useLocation} from 'react-router-dom';
+import decode from 'jwt-decode';
+
+//redux
 import {useDispatch} from 'react-redux'
 import * as actionType from '../../redux/types/actionTypes'
+
 //css
 import {AppBar , Avatar, Button, Typography} from '@material-ui/core';
 import useStyles from './styles';
@@ -10,8 +14,9 @@ import { Toolbar } from '@material-ui/core'
 
 
 export default function NavBar() {
-  const classes = useStyles();
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+
+  const classes = useStyles();
   const dispatch = useDispatch();
   const location = useLocation();
   const history = useHistory();
@@ -38,11 +43,13 @@ export default function NavBar() {
   return (
     <>
       <AppBar className={classes.appBar} position="static" color="inherit">
+
         <div className={classes.brandContainer}>
           <Typography component={Link} to="/" className={classes.heading} variant="h3" align="center">
             Memofeed
           </Typography>
         </div>
+
         <Toolbar className={classes.toolbar} >
           {user ? (
             <div className={classes.profile}>
@@ -60,6 +67,7 @@ export default function NavBar() {
             <Button component={Link} to="/auth" variant="contained" color="primary">Login/Sign in</Button>
           )}
         </Toolbar>
+
       </AppBar>
     </>
   )

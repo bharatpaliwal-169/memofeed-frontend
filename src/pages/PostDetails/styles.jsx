@@ -24,7 +24,6 @@ export default makeStyles((theme) => ({
   },
   imageSection: {
     flex : 2,
-    // marginLeft: '10rem',
     [theme.breakpoints.down('sm')]: {
       marginLeft: 0,
     },
@@ -34,7 +33,6 @@ export default makeStyles((theme) => ({
     [theme.breakpoints.down('sm')]: {
       flexDirection: 'column',
     },
-    // border: '1px solid black',
   },
   loadingPaper: {
     display: 'flex',
@@ -48,12 +46,9 @@ export default makeStyles((theme) => ({
     display: 'flex',
     flexDirection:'column',
     justifyContent: 'space-between',
-    // border: '1px solid red',
   },
   commentsInnerContainer: {
     height: '10rem',
     overflowY: 'auto',
-    // marginRight: '2rem',
-    // border: '1px solid black',
   },
 }));

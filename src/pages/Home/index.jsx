@@ -1,21 +1,21 @@
-import React,{useState,
-  // useEffect
-} from 'react';
-import {useDispatch} from 'react-redux';
+//react
+import React,{useState,} from 'react';
 import {useHistory,useLocation} from 'react-router-dom';
-import { 
-  // getPosts,
-  getPostsBySearch } from '../../redux/actions/post'
-import {
-  Container,Button,
-  Grow,Grid,Paper, AppBar,TextField
-} from '@material-ui/core'
+
+//redux
+import {useDispatch} from 'react-redux';
+import { getPostsBySearch } from '../../redux/actions/post'
+
+//css
+import { Container,Button,Grow,Grid,Paper, AppBar,TextField} from '@material-ui/core';
 import useStyles from './styles'
 import ChipInput from 'material-ui-chip-input';
 // import Autocomplete from '@material-ui/lab/Autocomplete';
-import Posts from '../Posts/Posts'
-import Form from '../Forms/Form'
-import Pagination from '../PaginationUI'
+
+//components
+import Posts from '../../components/Posts'
+import Form from '../../components/Forms'
+import Pagination from '../../components/PaginationUI'
 
 function useQuery(){
   return new URLSearchParams(useLocation().search);
@@ -29,14 +29,14 @@ const Home= ()=> {
 
   const classes = useStyles();
   const dispatch = useDispatch();
-  const query = useQuery(); //this is where we will get our page info
+  const query = useQuery(); 
   const history = useHistory();
   const page = query.get('page')|| 1;
   const searchQuery = query.get('searchQuery');
 
 
   const handleKeyPress = (e) =>{
-    if(e.keyCode === 13){ // 13 === enter key
+    if(e.keyCode === 13){ 
       searchPost();
     }
   }
@@ -59,10 +59,6 @@ const Home= ()=> {
       history.push("/");
     }
   }
-
-  // useEffect(() => {
-  //   dispatch(getPosts());    
-  // }, [currentId,dispatch]);
 
   return (
     <>
@@ -94,21 +90,6 @@ const Home= ()=> {
                   label="Search Tags"
                   variant="outlined"
                 />
-                {/* <Autocomplete
-                  multiple
-                  id="tags-filled"
-                  options={top100Films.map((option) => option.title)}
-                  defaultValue={[top100Films[13].title]}
-                  freeSolo
-                  renderTags={(value, getTagProps) =>
-                    value.map((option, index) => (
-                      <Chip variant="outlined" label={option} {...getTagProps({ index })} />
-                    ))
-                  }
-                  renderInput={(params) => (
-                    <TextField {...params} variant="filled" label="freeSolo" placeholder="Favorites" />
-                  )}
-                /> */}
 
                 <Button onClick={searchPost} className={classes.searchButton} variant="contained" 
                 color="primary">Search</Button>

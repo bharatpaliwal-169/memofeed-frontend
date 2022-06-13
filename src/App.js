@@ -1,34 +1,29 @@
-// import React,{useState,useEffect} from 'react';
+//react
 import React,{useEffect} from 'react';
 import { BrowserRouter as Router,Redirect,Route,Switch} from 'react-router-dom';
-import {
-  Container
-} from '@material-ui/core'
-// import {useDispatch} from 'react-redux';
-// import { getPosts } from './redux/actions/post'
-import Auth from './components/Auth'
-import Home from './components/Home'
+//css
+import {Container} from '@material-ui/core'
+//components
+import Auth from './pages/Auth'
+import Home from './pages/Home'
+import PostDetail from './pages/PostDetails'
 import Navbar from './components/Navbar'
-import PostDetail from './components/PostDetails'
-import BTP from './components/BTP'
-// import AddPost from './components/AddPost'
-import {send} from './components/notifications/notify';
+import BTP from './utils/BTP'
+//functions
+import {send} from './utils/notifications/notify';
 
+
+//__init__
 const App = () => {
-  // //how data management will look like without REDUX.
-  // const [currentId,setCurrentId] = useState(null);
-  // // const classes = useStyles();
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(getPosts());
-  // }, [currentId,dispatch])
+  
   useEffect(() => {
     const interval = setInterval(() => { send("MemoFeed", 
-    "Welcome! Please explore and add your stories, happy Exploring!")}, 864000);
+    "Welcome! Please explore and add your memories, happy Exploring!")}, 864000);
     return () => clearInterval(interval);  
   }, []);
+  
   const user = JSON.parse(localStorage.getItem('profile'));
+  
   return (
     <>
       <Router>
@@ -39,14 +34,12 @@ const App = () => {
               <Route path="/posts" exact component={Home}></Route>
               <Route path="/posts/search" exact component = {Home} ></Route>
               <Route path="/posts/:id" exact component = {PostDetail}></Route>
-              {/* How will I prevent a logged in user to access this page and redirect it to main landing page */}
               <Route path="/auth" exact component={() => (!user ? <Auth /> : <Redirect to="/posts" />)}></Route>
+              <Route path="*" component={() =><Redirect to="/posts" />} ></Route>
             </Switch>
           <BTP />
         </Container>
       </Router>
-      
-      {/* <AddPost></AddPost> */}
     </>
   );
 }

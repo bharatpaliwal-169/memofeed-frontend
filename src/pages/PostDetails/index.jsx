@@ -1,15 +1,23 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+//react
 import React,{useEffect} from 'react'
-import {Paper,Typography,CircularProgress,Divider} from '@material-ui/core'
-import {useDispatch,useSelector} from 'react-redux';
 import {useParams,useHistory} from 'react-router-dom';
+
+//redux
+import {useDispatch,useSelector} from 'react-redux';
 import {getPost,getPostsBySearch} from '../../redux/actions/post'
+
+//css
+import {Paper,Typography,CircularProgress,Divider} from '@material-ui/core'
 import moment from 'moment';
 import useStyles from './styles'
 import Chip from '@material-ui/core/Chip';
 
-import CommentSection from './CommentSection';
+//component
+import CommentSection from './Comment';
+
 const PostDetails = () => {
+
   const { post,posts,isLoading } = useSelector((state)=> state.posts);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -19,11 +27,10 @@ const PostDetails = () => {
 
   useEffect(() => {
     dispatch(getPost(id))
-    
   }, [id])
+
   useEffect(() => {
     if (post) {
-      //we are looking for tags so as to get some other posts with same tags.
       dispatch(getPostsBySearch({ search: 'none', tags: post?.tags.join(',') }));
     }
   }, [post]);
@@ -46,7 +53,8 @@ const PostDetails = () => {
       <div className={classes.card}>
         <div className={classes.section}>
           <Typography variant="h3" component="h3">{post.title}</Typography>
-          <Typography gutterBottom variant="body1"style={{marginTop:'0.5rem'}} color="textSecondary" component="h6">
+          <Typography gutterBottom variant="body1"style={{marginTop:'0.5rem'}} 
+                      color="textSecondary" component="h6">
             
               {post.tags.map((tag) => 
               <>
@@ -58,10 +66,6 @@ const PostDetails = () => {
           <Typography variant="h6" component="h6">Liked by : {post.likes.length} people</Typography>
           
           
-          {/* <Divider style={{ margin: '20px 0' }} />
-          <Typography variant="body1"><strong>Realtime Chat - coming soon!</strong></Typography>
-           */}
-          {/* <Typography variant="body1"><strong>Comments - coming soon!</strong></Typography> */}
           <Divider style={{ margin: '20px 0' }} />
           <Typography gutterBottom variant="body1" component="p">{post.message}</Typography>
           <Divider style={{ margin: '20px 0' }} />
@@ -76,7 +80,6 @@ const PostDetails = () => {
           <CommentSection post={post}></CommentSection>
         </div>
       </div>
-
       
       {!!recommendedPosts.length && (
         <div className={classes.section} style={{ marginTop:'2.5rem' }}>
