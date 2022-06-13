@@ -30,9 +30,12 @@ export default makeStyles((theme) => ({
   },
   recommendedPosts: {
     display: 'flex',
+    marginRight: '50rem',
+    color:'#488BBF',
     [theme.breakpoints.down('sm')]: {
       flexDirection: 'column',
     },
+    // border: '1px solid black'
   },
   loadingPaper: {
     display: 'flex',
@@ -50,5 +53,13 @@ export default makeStyles((theme) => ({
   commentsInnerContainer: {
     height: '10rem',
     overflowY: 'auto',
+  },
+  postTitle: {
+    textTransform : 'capitalize',
+    fontWeight : '600',
+    color : '#09779A',
+  },
+  commentName: {
+    color : '#488BBF',
   },
 }));

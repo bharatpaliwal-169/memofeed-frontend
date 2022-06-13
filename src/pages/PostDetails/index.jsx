@@ -52,7 +52,9 @@ const PostDetails = () => {
     <Paper style={{ padding: '1.5rem', borderRadius: '1rem',marginBottom:'1rem' }} elevation={6}>
       <div className={classes.card}>
         <div className={classes.section}>
-          <Typography variant="h3" component="h3">{post.title}</Typography>
+          <Typography variant="h4" component="h4" className={classes.postTitle}>
+            {post.title}
+          </Typography>
           <Typography gutterBottom variant="body1"style={{marginTop:'0.5rem'}} 
                       color="textSecondary" component="h6">
             
@@ -63,15 +65,23 @@ const PostDetails = () => {
               </>
               )}
           </Typography>
-          <Typography variant="h6" component="h6">Liked by : {post.likes.length} people</Typography>
+          <Typography variant="h6" component="h6" style={{marginLeft:'0.5rem'}}>Liked by : 
+            <span style={{color:'#488BBF',fontWeight:'bold'}}> {post.likes.length} people </span>
+          </Typography>
           
           
           <Divider style={{ margin: '20px 0' }} />
-          <Typography gutterBottom variant="body1" component="p">{post.message}</Typography>
+          <Typography gutterBottom variant="body1" component="p">
+            {post.message}
+          </Typography>
           <Divider style={{ margin: '20px 0' }} />
-          <Typography variant="body1">Created by: {post.name}</Typography>
+          
+          <Typography variant="h6">
+            Created by: <span style={{color:'#488BBF',fontWeight:'bold'}}>{post.name}</span>
+          </Typography>
           <Typography variant="body2">{moment(post.createdAt).fromNow()}</Typography>
-          <Divider style={{ margin: '20px 0' }} />
+          
+          {/* <Divider style={{ margin: '20px 0' }} /> */}
           
         </div>
 
@@ -87,12 +97,17 @@ const PostDetails = () => {
           <Divider />
           <div className={classes.recommendedPosts}>
             {recommendedPosts.map(({ title, name, likes, selectedFile, _id }) => (
-              <div style={{ margin: '20px', cursor: 'pointer' }} onClick={() => openPost(_id)} key={_id}>
-                <Typography gutterBottom variant="h6">{title}</Typography>
-                <Typography gutterBottom variant="subtitle2">{name}</Typography>
-                {/* <Typography gutterBottom variant="subtitle2">{message}</Typography> */}
+              <div style={{ margin: '1.5rem', cursor: 'pointer' }} onClick={() => openPost(_id)} key={_id}>
+                <Typography gutterBottom variant="h6">
+                <span style={{fontWeight:'bold'}}>{title}</span>
+                </Typography>
+                
+                <Typography gutterBottom variant="subtitle2">
+                  {name}
+                </Typography>
+                
                 <Typography gutterBottom variant="subtitle1">Likes: {likes.length}</Typography>
-                <img src={selectedFile} alt={title} width="5rem" />
+                <img src={selectedFile} alt={title} width="100rem" />
               </div>
             ))}
           </div>
