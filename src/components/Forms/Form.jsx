@@ -26,7 +26,7 @@ const Form = ({currentId,setCurrentId}) => {
     e.preventDefault();
     const validData = checkFormData(postData);
     if(!validData) {
-      alert("Hey! try keeping title bit small and your story somewhere around 20-25 words atleast.");
+      alert("Hey! try keeping title bit small and add your story (20-25 words atleast) and a tag.");
     }
     else if(currentId === 0 && validData) {
       //create Post
@@ -48,7 +48,7 @@ const Form = ({currentId,setCurrentId}) => {
   }
 
   const checkFormData = (data) => {
-    if(data.title.length <=30 && data.message.length >=50){
+    if(data.title.length <=30 && data.message.length >=50 && data.tags.length !== 0){
       return true;
     }
     return false;

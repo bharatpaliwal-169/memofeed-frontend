@@ -1,8 +1,6 @@
 import axios from 'axios';
-// const URL = 'http://localhost:5000/posts'; //backend route is here
-// const AUTH_URL = 'http://localhost:5000/auth'; //
+// const DEV_URL = 'http://localhost:5000/auth'; 
 const PROD_URL = "https://memofeedbackend.herokuapp.com/"
-// const API = axios.create({baseURL : 'http://localhost:5000/'});
 const API = axios.create({baseURL : PROD_URL});
 API.interceptors.request.use((req)=>{
   if(localStorage.getItem('profile')){
@@ -10,24 +8,6 @@ API.interceptors.request.use((req)=>{
   }
   return req;
 });
-
-// export const fetchPosts = () => {return axios.get(URL)}
-// export const CreatePost = (newPost) => {return axios.post(URL,newPost)}
-// export const UpdatePost = (id,updatedPost) => {
-//   return axios.patch(`${URL}/${id}`,updatedPost) // this is how we will call an api with Dynamic ID.
-// }
-// export const DeletePost = (id) => {return axios.delete(`${URL}/${id}`);}
-// export const likePost = (id) => {return axios.patch(`${URL}/${id}/likePost`)}
-
-
-// export const login = (formData) => {
-//   return axios.post(`${AUTH_URL}/login`,formData);
-// }
-// export const signup = (formData) => {
-//   return axios.post(`${AUTH_URL}/signup`,formData);
-// }
-
-// export const fetchPosts = () => API.get('/posts');
 
 //posts
 export const fetchPost = (id) => API.get(`/posts/${id}`);

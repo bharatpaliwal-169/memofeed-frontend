@@ -5,7 +5,7 @@ import {signup , login} from '../../redux/actions/auth'
 import {Container,Avatar,Paper,Grid,Typography,Button} from "@material-ui/core"
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import useStyles from './style'
-import Input from './Input'
+import Input from './input'
 
 const initialState = {
   firstName: '',lastName: '',email: '',password: '',confirmPassword: ''

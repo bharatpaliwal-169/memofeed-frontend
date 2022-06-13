@@ -1,6 +1,6 @@
 import React,{useState,useRef} from 'react'
 import {useDispatch} from 'react-redux'
-import {Typography,TextField,Button,Paper} from '@material-ui/core'
+import {Typography,TextField,Button} from '@material-ui/core'
 import useStyles from './styles'
 import {commentPost} from '../../redux/actions/post'
 
