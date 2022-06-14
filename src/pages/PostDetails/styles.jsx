@@ -6,7 +6,6 @@ export default makeStyles((theme) => ({
     objectFit: 'cover',
     width: '100%',
     maxHeight: '40rem',
-    
   },
   card: {
     display: 'flex',
@@ -18,7 +17,7 @@ export default makeStyles((theme) => ({
     marginBottom: '1rem',
   },
   section: {
-    margin: '1rem',
+    // margin: '1rem',
     flex: 1,
     width: '100%',
   },
@@ -26,23 +25,24 @@ export default makeStyles((theme) => ({
     flex : 2,
     [theme.breakpoints.down('sm')]: {
       marginLeft: 0,
+      paddingLeft: 0,
     },
   },
   recommendedPosts: {
     display: 'flex',
-    marginRight: '50rem',
+    marginTop: '4rem',
     color:'#488BBF',
     [theme.breakpoints.down('sm')]: {
       flexDirection: 'column',
     },
-    // border: '1px solid black'
+    border: '1px solid black'
   },
   loadingPaper: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    padding: '20px',
-    borderRadius: '15px',
+    padding: '2rem',
+    borderRadius: '1rem',
     height: '39vh',
   },
   commentsOuterContainer: {
