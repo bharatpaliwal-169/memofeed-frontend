@@ -35,7 +35,7 @@ export default makeStyles((theme) => ({
     [theme.breakpoints.down('sm')]: {
       flexDirection: 'column',
     },
-    border: '1px solid black'
+    // border: '1px solid black'
   },
   loadingPaper: {
     display: 'flex',

@@ -11,7 +11,6 @@ import Navbar from './components/NavbarUI'
 import BTP from './utils/BTP'
 //functions
 import {send} from './utils/notifications/notify';
-import NavbarUI from './components/NavbarUI';
 
 
 //__init__
@@ -36,7 +35,7 @@ const App = () => {
               <Route path="/posts/search" exact component = {Home} ></Route>
               <Route path="/posts/:id" exact component = {PostDetail}></Route>
               <Route path="/auth" exact component={() => (!user ? <Auth /> : <Redirect to="/posts" />)}></Route>
-              <Route path="/ui" exact component = {NavbarUI}></Route>
+              {/* <Route path="/ui" exact component = {NavbarUI}></Route> */}
               <Route path="*" component={() =><Redirect to="/posts" />} ></Route>
             </Switch>
           <BTP />
