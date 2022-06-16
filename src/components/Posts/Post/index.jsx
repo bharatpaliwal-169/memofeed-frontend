@@ -82,12 +82,12 @@ const Post = ({ post, setCurrentId }) => {
       
         <div className={classes.Chipdetails}>
             {post.tags.slice(0,3).map((tag) => 
-              <Chip label={tag} onClick={handleChipClick} spacing={1} style={{margin:'0.1rem'}} />
+              <Chip label={tag} onClick={handleChipClick} spacing={1} style={{margin:'0.1rem'}} color="primary" variant="outlined" />
             )}
         </div>
 
       <ButtonBase className={classes.cardAction} onClick={openPost}>
-        <Typography className={classes.title} gutterBottom variant="h5" component="h3">
+        <Typography className={classes.title} gutterBottom variant="h5" component="h5">
           {post.title}
         </Typography>
         

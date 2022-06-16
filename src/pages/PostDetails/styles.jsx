@@ -30,7 +30,7 @@ export default makeStyles((theme) => ({
   },
   recommendedPosts: {
     display: 'flex',
-    marginTop: '4rem',
+    marginTop: '2rem',
     color:'#488BBF',
     [theme.breakpoints.down('sm')]: {
       flexDirection: 'column',

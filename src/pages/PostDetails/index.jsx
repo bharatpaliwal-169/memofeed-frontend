@@ -8,7 +8,7 @@ import {useDispatch,useSelector} from 'react-redux';
 import {getPost,getPostsBySearch} from '../../redux/actions/post'
 
 //css
-import {Paper,Typography,CircularProgress,Divider} from '@material-ui/core'
+import {Card,Paper,Typography,CircularProgress,Divider} from '@material-ui/core'
 import moment from 'moment';
 import useStyles from './styles'
 import Chip from '@material-ui/core/Chip';
@@ -97,18 +97,23 @@ const PostDetails = () => {
           <Divider />
           <div className={classes.recommendedPosts}>
             {recommendedPosts.map(({ title, name, likes, selectedFile, _id }) => (
-              <div style={{ margin: '1.5rem', cursor: 'pointer' }} onClick={() => openPost(_id)} key={_id}>
-                <Typography gutterBottom variant="h6">
-                <span style={{fontWeight:'bold'}}>{title}</span>
-                </Typography>
-                
-                <Typography gutterBottom variant="subtitle2">
-                  {name}
-                </Typography>
-                
-                <Typography gutterBottom variant="subtitle1">Likes: {likes.length}</Typography>
-                <img src={selectedFile} alt={title} width="100rem" />
-              </div>
+              <>
+                <Card elevation={5} style={{margin:'1rem'}}>
+                  <div style={{ margin: '1.5rem', cursor: 'pointer' }} onClick={() => openPost(_id)} key={_id}>
+                    <Typography gutterBottom variant="h6" style={{ color: '#09779A',textTransform: 'capitalize'}}>
+                      <span style={{fontWeight:'bold'}}>{title}</span>
+                    </Typography>
+                    
+                    <Typography gutterBottom variant="subtitle2" >
+                      Creator : <span style={{fontWeight:'bold'}}>{name}</span>
+                    </Typography>
+                    
+                    <Typography gutterBottom variant="subtitle1">Likes: {likes.length}</Typography>
+                    <img src={selectedFile ? selectedFile : "https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png"} alt={title} width="100rem" />
+                  </div>
+                </Card>
+              </>
+              
             ))}
           </div>
         </div>
