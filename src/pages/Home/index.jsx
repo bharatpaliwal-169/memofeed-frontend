@@ -10,7 +10,6 @@ import { getPostsBySearch } from '../../redux/actions/post'
 import { Container,Button,Grow,Grid,Paper, AppBar,TextField} from '@material-ui/core';
 import useStyles from './styles'
 import ChipInput from 'material-ui-chip-input';
-// import Autocomplete from '@material-ui/lab/Autocomplete';
 
 //components
 import Posts from '../../components/Posts'
@@ -31,8 +30,10 @@ const Home= ()=> {
   const dispatch = useDispatch();
   const query = useQuery(); 
   const history = useHistory();
-  const page = query.get('page')|| 1;
+  const page = query.get('page') || 1;
   const searchQuery = query.get('searchQuery');
+
+  // console.log(query.get('page'));
 
 
   const handleKeyPress = (e) =>{
@@ -49,14 +50,13 @@ const Home= ()=> {
     setTags(tags.filter((tag) => tag !== tagToDelete));
   }
 
-
   const searchPost = () => {
-    if(search.trim() || tags){
+    if(!search){
+      history.push("/");
+    }
+    else if(search.trim() || tags){
       dispatch(getPostsBySearch({search , tags : tags.join(',')}));
       history.push(`/posts/search?searchQuery=${search || 'none'}&tags=${tags.join(',')}`);
-    }
-    else{
-      history.push("/");
     }
   }
 

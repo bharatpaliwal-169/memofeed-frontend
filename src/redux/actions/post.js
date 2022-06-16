@@ -16,9 +16,9 @@ export const getPost = (id) => async (dispatch) => {
 export const getPosts = (page) => async (dispatch) => {
   try {
     dispatch({type:START_LOADING});
-    const { data } = await api.fetchPosts(page); // get res from api and destructure the data object
+    const { data : {data,currentPage , NumberOfPages} } = await api.fetchPosts(page); // get res from api and destructure the data object
     // console.log(data);
-    dispatch({type : FETCH_ALL , payload : data}); // action = {type: '', payload: [object] }
+    dispatch({type : FETCH_ALL , payload : {data,currentPage , NumberOfPages}}); // action = {type: '', payload: [object] }
     dispatch({type : END_LOADING});
   } catch (error) {
     console.log(error.message);
