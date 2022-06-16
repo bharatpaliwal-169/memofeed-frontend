@@ -8,13 +8,14 @@ import {useDispatch,useSelector} from 'react-redux';
 import {getPost,getPostsBySearch} from '../../redux/actions/post'
 
 //css
-import {Card,Paper,Typography,CircularProgress,Divider} from '@material-ui/core'
+import {Card,Paper,Typography,Divider} from '@material-ui/core'
 import moment from 'moment';
 import useStyles from './styles'
 import Chip from '@material-ui/core/Chip';
 
 //component
 import CommentSection from './Comment';
+import Loading from '../../components/Loading/Page'
 
 const PostDetails = () => {
 
@@ -42,9 +43,7 @@ const PostDetails = () => {
 
   if (isLoading) {
     return (
-      <Paper elevation={6} className={classes.loadingPaper}>
-        <CircularProgress size="7em" />
-      </Paper>
+      <Loading />
     );
   }
   return (

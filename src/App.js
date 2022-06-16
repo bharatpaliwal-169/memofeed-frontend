@@ -12,7 +12,7 @@ import BTP from './utils/BTP'
 import {Footer} from './components/Footer'
 //functions
 import {send} from './utils/notifications/notify';
-
+// import Loading from './components/Loading'
 
 //__init__
 const App = () => {
@@ -36,6 +36,7 @@ const App = () => {
               <Route path="/posts/search" exact component = {Home} ></Route>
               <Route path="/posts/:id" exact component = {PostDetail}></Route>
               <Route path="/auth" exact component={() => (!user ? <Auth /> : <Redirect to="/posts" />)}></Route>
+              {/* <Route path="/test" exact component = {Loading}></Route> */}
               <Route path="*" component={() =><Redirect to="/posts" />} ></Route>
             </Switch>
           <BTP />
