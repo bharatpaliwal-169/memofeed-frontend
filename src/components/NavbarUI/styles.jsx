@@ -37,6 +37,7 @@ export default makeStyles((theme) => ({
     alignItems: 'center',
     fontWeight : 'bold',
     textTransform : 'capitalize',
+    color : '#0C64AC',
   },
   link: {
     textDecoration: "none",
@@ -59,7 +60,8 @@ export default makeStyles((theme) => ({
   },
   purple: {
     color: theme.palette.getContrastText(deepPurple[500]),
-    backgroundColor: deepPurple[500],
+    backgroundColor: "#0461AE",
+    textTransform: "uppercase",
   },
   List: {
     alignItems: "center",

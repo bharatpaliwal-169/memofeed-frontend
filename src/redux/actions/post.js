@@ -52,12 +52,12 @@ export const createPost = (post,history)=>  async (dispatch) => {
 }
 
 //update
-export const updatePost = (id,post)=> async (dispatch) => {
+export const updatePost = (id,post) => async (dispatch) => {
   try {
     const {data} = await api.UpdatePost(id,post);
     dispatch({type: UPDATE,payload: data});
   } catch (error) {
-    console.log(error.message);
+    console.log(error);
   }
 }
 

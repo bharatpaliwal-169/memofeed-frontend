@@ -84,7 +84,7 @@ const Form = ({currentId,setCurrentId}) => {
       <Paper className={classes.paper} elevation={6}>
         <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
           
-          <Typography variant="h5">
+          <Typography variant="h4" component="h4" style={{color : "#09779A",fontWeight : "600" }}>
             {currentId ? `Editing "${post.title}" ` : 'Add your memory'}
           </Typography>
           

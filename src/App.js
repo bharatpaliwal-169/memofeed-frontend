@@ -12,7 +12,7 @@ import BTP from './utils/BTP'
 import {Footer} from './components/Footer'
 //functions
 import {send} from './utils/notifications/notify';
-// import Loading from './components/Loading'
+// import Loading from './utils/WelcomeUI'
 
 //__init__
 const App = () => {

@@ -8,7 +8,10 @@ import {deletePost,likePost} from '../../../redux/actions/post'
 
 //css imports
 import useStyles from './style';
-import { Card, CardActions, CardContent, CardMedia,Button,ButtonBase, Typography } from '@material-ui/core/';
+import { Card, CardActions, CardContent, 
+  CardMedia,Button,ButtonBase, Typography,
+  Dialog,DialogActions,DialogContent,
+  DialogContentText,DialogTitle } from '@material-ui/core/';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import ThumbUpAltOutlined from '@material-ui/icons/ThumbUpAlt';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -25,12 +28,13 @@ const Post = ({ post, setCurrentId }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const user = JSON.parse(localStorage.getItem('profile'));
-  const [likes, setLikes] = useState(post?.likes);
   const userId = user?.result?._id;
-  const hasLikedPost = post.likes.find((like) => like === userId);
+  const [likes, setLikes] = useState(post?.likes);
+
+  // const hasLikedPost = post.likes.find((like) => like === userId); //bug
+  const hasLikedPost = likes.find((like) => like === userId); //solution to bug
   const handleLike = async () => {
     dispatch(likePost(post._id));
-
     if (hasLikedPost) {
       setLikes(post.likes.filter((id) => id !== userId));
     } else {
@@ -39,7 +43,7 @@ const Post = ({ post, setCurrentId }) => {
   };
 
   const Likes = () => {
-    if (likes.length > 0) {
+    if (likes.length >= 0) {
       return likes.find((like) => like === userId)
         ? (
           <><ThumbUpAltIcon fontSize="small" />&nbsp;{likes.length > 2 ? `You and ${likes.length - 1} others` : `${likes.length} like${likes.length > 1 ? 's' : ''}` }</>
@@ -51,8 +55,34 @@ const Post = ({ post, setCurrentId }) => {
     return <><ThumbUpAltOutlined fontSize="small" />&nbsp;Like</>;
   };
 
+  // const Likes = () => {
+  //   if (post?.likes?.length > 0) {
+  //     return post.likes.find((like) => like === userId)
+  //       ? (
+  //         <><ThumbUpAltIcon fontSize="small" />&nbsp;{post.likes.length > 2 ? `You and ${post.likes.length - 1} others` : `${post.likes.length} like${post.likes.length > 1 ? 's' : ''}` }</>
+  //       ) : (
+  //         <><ThumbUpAltOutlined fontSize="small" />&nbsp;{post.likes.length} {post.likes.length === 1 ? 'Like' : 'Likes'}</>
+  //       );
+  //   }
+
+  //   return <><ThumbUpAltOutlined fontSize="small" />&nbsp;Like</>;
+  // };
+
   const openPost = () => {
     history.push(`/posts/${post._id}`);
+  }
+
+  //confirm dialog box
+  const [open, setOpen] = useState(false);
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleDelete = () => {
+    dispatch(deletePost(post._id));
+    setOpen(false);
   }
 
   return (
@@ -81,14 +111,14 @@ const Post = ({ post, setCurrentId }) => {
         </div>
       
         <div className={classes.Chipdetails}>
-            {post.tags.slice(0,3).map((tag) => 
-              <Chip label={tag} onClick={handleChipClick} spacing={1} style={{margin:'0.1rem'}} color="primary" variant="outlined" />
+            {post.tags.slice(0,3).map((tag,index) => 
+              <Chip key={index} label={tag} onClick={handleChipClick} spacing={1} style={{margin:'0.1rem'}} color="primary" variant="outlined" />
             )}
         </div>
 
       <ButtonBase className={classes.cardAction} onClick={openPost}>
         <Typography className={classes.title} gutterBottom variant="h5" component="h5">
-          {post.title}
+          {post.title.length > 20 ? post.title.substring(0, 15)+"..." : post.title}
         </Typography>
         
         <CardContent className={classes.contentBody}>
@@ -99,14 +129,43 @@ const Post = ({ post, setCurrentId }) => {
       </ButtonBase>      
     
       <CardActions className={classes.cardActions}>
-        <Button size="small" color="primary" disabled={!user?.result} onClick={handleLike} >
+        <Button size="small" color="primary" disabled={!user?.result} 
+        // onClick={()=> dispatch(likePost(post._id))}
+        onClick={handleLike}
+        >
           <Likes></Likes>
         </Button>
         {(user?.result?._id === post?.creator) && (
-          <Button size="small" color="secondary" onClick={() => dispatch(deletePost(post._id))}>
+          <Button size="small" color="secondary" 
+          onClick={handleClickOpen}
+            // onClick={() => dispatch(deletePost(post._id))}
+          >
             <DeleteIcon fontSize="medium" />
           </Button>
         )}
+
+        <Dialog
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="confirmDelete"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="confirmDelete">{"Are you sure you want to delete post?"}</DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              You cannot undo this action; Kindly be very sure about it.
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose} color="primary" variant="default">
+              cancel
+            </Button>
+            <Button onClick={handleDelete} color="secondary" autoFocus variant="contained">
+              Delete
+            </Button>
+          </DialogActions>
+        </Dialog>
+
       </CardActions>
     </Card>
     </>

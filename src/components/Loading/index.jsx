@@ -9,8 +9,8 @@ const LoadingUI = () => {
   return (
     <>
       <Grid className={classes.mainContainer} container alignItems="stretch" spacing={3}>
-        {Array(6).fill().map((item) => (
-          <Grid item xs={12} sm={12} md={6}>
+        {Array(6).fill().map((item,index) => (
+          <Grid key={index} item xs={12} sm={12} md={6}>
             <Card>
               <Typography variant="h1" component="h1">
                 <Skeleton />

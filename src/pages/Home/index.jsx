@@ -1,10 +1,10 @@
 //react
-import React,{useState,} from 'react';
+import React,{useState,useEffect} from 'react';
 import {useHistory,useLocation} from 'react-router-dom';
 
 //redux
 import {useDispatch} from 'react-redux';
-import { getPostsBySearch } from '../../redux/actions/post'
+import { getPosts,getPostsBySearch } from '../../redux/actions/post'
 
 //css
 import { Container,Button,Grow,Grid,Paper, AppBar,TextField} from '@material-ui/core';
@@ -51,7 +51,7 @@ const Home= ()=> {
   }
 
   const searchPost = () => {
-    if(!search){
+    if(!search && !tags){
       history.push("/");
     }
     else if(search.trim() || tags){
@@ -59,7 +59,10 @@ const Home= ()=> {
       history.push(`/posts/search?searchQuery=${search || 'none'}&tags=${tags.join(',')}`);
     }
   }
-
+  useEffect(() => {
+  dispatch(getPosts());
+  }, [currentId,dispatch]);
+  
   return (
     <>
       <Grow in>
