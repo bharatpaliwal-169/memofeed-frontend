@@ -21,4 +21,14 @@ export default makeStyles((theme) => ({
   buttonSubmit: {
     marginBottom: 10,
   },
+  fab : {
+    position: 'fixed',
+    top: '90%',
+    left : '70%',
+    height: '5rem',
+    width : '5rem',
+    alignItems: 'center',
+    fontSize : '3rem',
+    backgroundColor : '#09779A'
+  }
 }));

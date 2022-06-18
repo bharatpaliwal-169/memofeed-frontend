@@ -57,9 +57,9 @@ const PostDetails = () => {
           <Typography gutterBottom variant="body1"style={{marginTop:'0.5rem'}} 
                       color="textSecondary" component="h6">
             
-              {post.tags.map((tag) => 
+              {post.tags.map((tag,index) => 
               <>
-                <Chip key={tag} label={tag} spacing={1} style={{margin:'0.25rem'}} 
+                <Chip key={index} label={tag} spacing={1} style={{margin:'0.25rem'}} 
                       clickable variant="outlined" color="primary" />
               </>
               )}
@@ -95,9 +95,9 @@ const PostDetails = () => {
           <Typography gutterBottom variant="h5">You might also like:</Typography>
           <Divider />
           <div className={classes.recommendedPosts}>
-            {recommendedPosts.map(({ title, name, likes, selectedFile, _id }) => (
+            {recommendedPosts.map(({ title, name, likes, selectedFile, _id,index }) => (
               <>
-                <Card elevation={5} style={{margin:'1rem'}}>
+                <Card elevation={5} style={{margin:'1rem'}} key={index}>
                   <div style={{ margin: '1.5rem', cursor: 'pointer' }} onClick={() => openPost(_id)} key={_id}>
                     <Typography gutterBottom variant="h6" style={{ color: '#09779A',textTransform: 'capitalize'}}>
                       <span style={{fontWeight:'bold'}}>{title}</span>

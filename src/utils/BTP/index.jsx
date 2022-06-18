@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import {useTheme,useMediaQuery} from '@material-ui/core'
+
 import styled from 'styled-components';
 const ButtonContainer = styled.span`
   position: fixed;
@@ -24,9 +26,11 @@ const ButtonContainer = styled.span`
 
 
 const BTP = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [showButton, setShowButton] = useState(false);
   useEffect(() => {
-    if(window.innerWidth > 700){
+    if(!isMobile){
       const checkScrollHeight = () => {
         if ( !showButton && window.pageYOffset > 400) {
           setShowButton(true);
@@ -39,12 +43,11 @@ const BTP = () => {
         window.removeEventListener('scroll', checkScrollHeight);
       };
     }
-  }, [showButton]);
+  }, [showButton,isMobile]);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
-
 
   return (
 

@@ -15,13 +15,13 @@ import useStyles from './style'
 import Input from './input'
 
 
-const initialState = {
-  firstName: '',lastName: '',email: '',password: '',confirmPassword: ''
-};
 
 const Auth = () =>{
+  const initialState = {
+    firstName: '',lastName: '',email: '',password: '',confirmPassword: ''
+  };
   //state
-  const [showPassword, setShowPassword] = useState(false);
+  // const [success, setSuccess] = useState(false);
   const [isSignup,setIsSignup] = useState(false);
   const [formData,setformData] = useState(initialState);
   //support
@@ -37,11 +37,13 @@ const Auth = () =>{
       dispatch(login(formData,history));
     }
   }
-  const handleChange = (e) => setformData({ ...formData, [e.target.name]: e.target.value });
+
+  const handleChange = (e) => {
+    setformData({ ...formData, [e.target.name]: e.target.value });
+  }
   
   const switchMode = () => {
     setIsSignup((prevIsSignup) => !prevIsSignup);
-    setShowPassword(false);
   };
 
   return (
@@ -58,14 +60,12 @@ const Auth = () =>{
             <Grid container spacing={2}>
               {isSignup && (
                 <>
-                  <Input name = "firstName" label="firstName" handleChange={handleChange} autoFocus half />
-                  <Input name = "lastName" label="lastName" handleChange={handleChange}  half />
-                  
+                  <Input name = "firstName" label="firstName" handleChange={handleChange} autoFocus half required/>
+                  <Input name = "lastName" label="lastName" handleChange={handleChange}  half required />
                 </>
               )}
-              <Input name = "email" label="email Address" type="email" handleChange={handleChange} />
-              <Input name = "password" label="password" type={showPassword ? "text" : "password"} handleChange={handleChange} 
-              /> 
+              <Input name = "email" label="email Address" type="email" handleChange={handleChange} required/>
+              <Input name = "password" label="password" type="password" handleChange={handleChange} required/> 
               
               {isSignup && (
                 <>
@@ -91,4 +91,4 @@ const Auth = () =>{
   )
 }
 
-export default Auth
+export default Auth;

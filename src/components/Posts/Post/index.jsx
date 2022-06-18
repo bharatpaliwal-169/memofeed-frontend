@@ -8,8 +8,8 @@ import {deletePost,likePost} from '../../../redux/actions/post'
 
 //css imports
 import useStyles from './style';
-import { Card, CardActions, CardContent, 
-  CardMedia,Button,ButtonBase, Typography,
+import { Card, CardActions, CardContent,useMediaQuery,useTheme,
+  CardMedia,Button,ButtonBase, Typography,Tooltip,
   Dialog,DialogActions,DialogContent,
   DialogContentText,DialogTitle } from '@material-ui/core/';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
@@ -22,6 +22,8 @@ import moment from 'moment';
 
 const Post = ({ post, setCurrentId }) => {
   const classes = useStyles();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   var count = 0;
   const handleChipClick = () => count++;
   
@@ -101,11 +103,18 @@ const Post = ({ post, setCurrentId }) => {
           <Typography variant="caption"> {moment(post.createdAt).fromNow()} </Typography>
         </div>
       </ButtonBase>
-        
         <div className={classes.overlay2}>
           { user?.result?._id === post?.creator && (
-            <Button style={{ color: 'white' }} size="small" onClick={() => setCurrentId(post._id)}>
+            <Button style={{ color: 'white' }} size="small" onClick={() =>{
+              setCurrentId(post._id);
+            }}>
+              {isMobile ? (
+                <Tooltip title="Open Add post button" aria-label="add">
+                  <EditIcon fontSize="small" />
+                </Tooltip>
+              ) : 
               <EditIcon fontSize="small" />
+              }
             </Button>
           )}
         </div>
