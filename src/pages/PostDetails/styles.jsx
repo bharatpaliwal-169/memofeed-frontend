@@ -21,11 +21,19 @@ export default makeStyles((theme) => ({
     flex: 1,
     width: '100%',
   },
+  content : {
+    textAlign: 'justify',
+    lineHeight: '1.25em',
+    fontSize: '1.25rem',
+  },
   imageSection: {
     flex : 2,
+    marginLeft: '2rem',
     [theme.breakpoints.down('sm')]: {
       marginLeft: 0,
       paddingLeft: 0,
+      marginTop: '1rem',
+      marginBottom : '1rem',
     },
   },
   recommendedPosts: {
@@ -49,6 +57,7 @@ export default makeStyles((theme) => ({
     display: 'flex',
     flexDirection:'column',
     justifyContent: 'space-between',
+    marginTop: '1rem',
   },
   commentsInnerContainer: {
     height: '10rem',

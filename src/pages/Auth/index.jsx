@@ -13,7 +13,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 //components
 import useStyles from './style'
 import Input from './input'
-
+// const Input = React.lazy(()=> import('./input'));
 
 
 const Auth = () =>{

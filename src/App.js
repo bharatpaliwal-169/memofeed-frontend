@@ -8,13 +8,13 @@ import Auth from './pages/Auth'
 import Home from './pages/Home'
 import PostDetail from './pages/PostDetails'
 import Navbar from './components/NavbarUI'
+import Footer from './components/Footer'
 import BTP from './utils/BTP'
-import {Footer} from './components/Footer'
 import Loading from './utils/FlashUI'
+// import AddPost from './utils/AddPost'
 //functions
 import {send} from './utils/notifications/notify';
 
-import AddPost from './utils/AddPost'
 
 //__init__
 const App = () => {
@@ -44,11 +44,13 @@ const App = () => {
               <Route path="/posts/search" exact component = {Home} ></Route>
               <Route path="/posts/:id" exact component = {PostDetail}></Route>
               <Route path="/auth" exact component={() => (!user ? <Auth /> : <Redirect to="/posts" />)}></Route>
-              <Route path="/test" exact component = {AddPost}></Route>
+              {/* <Route path="/test" exact component = {AddPost}></Route> */}
               <Route path="*" component={() =><Redirect to="/posts" />} ></Route>
             </Switch>
-          <BTP />
-          <Footer/>
+          <React.Suspense fallback={<div> ...... </div>}>
+            <BTP />
+            <Footer/>
+          </React.Suspense>  
         </Container>
       </Router>
     </>

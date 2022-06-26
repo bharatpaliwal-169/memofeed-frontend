@@ -28,3 +28,8 @@ navigate('/');
 ```
 
 React router dom migrated to v5 from v6. v6 have a lot of complexity and is not really going with the requirements of project.
+
+
+# Code splitting
+Code splitting allows you to strategically omit certain dependencies from bundles, then insert them only where they are needed. This means they are also not loaded until they are needed — loading JavaScript only when it is needed speeds up the page’s load time.
+

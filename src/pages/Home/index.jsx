@@ -12,9 +12,11 @@ import useStyles from './styles'
 import ChipInput from 'material-ui-chip-input';
 
 //components
-import Posts from '../../components/Posts'
+// import Posts from '../../components/Posts'
 import Form from '../../components/Forms'
 import Pagination from '../../components/PaginationUI'
+import Loading from '../../components/Loading'
+const Posts = React.lazy(()=> import('../../components/Posts'));
 
 function useQuery(){
   return new URLSearchParams(useLocation().search);
@@ -43,6 +45,7 @@ const Home= ()=> {
   }
 
   const handleAdd = (tag) =>{
+    tag.toLowerCase();
     setTags([...tags,tag])
   }
 
@@ -70,7 +73,9 @@ const Home= ()=> {
           <Grid container justifyContent="space-between" alignItems="stretch" spacing={1} 
           className={classes.gridContainer}>
             <Grid item xs={12} sm={6} md={7}>
-              <Posts setCurrentId={setCurrentId} />
+              <React.Suspense fallback={<Loading />} >
+                <Posts setCurrentId={setCurrentId} />
+              </React.Suspense>
             </Grid>
 
             <Grid item xs={12} sm={6} md={4}>

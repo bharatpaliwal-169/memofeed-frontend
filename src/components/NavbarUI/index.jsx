@@ -10,8 +10,9 @@ import { AppBar,Toolbar,CssBaseline,
   Typography,useMediaQuery,useTheme,
   Button,Avatar
 } from "@material-ui/core";
-import DrawerUI from "./DrawerUI";
+// import DrawerUI from "./DrawerUI";
 import useStyles from "./styles"
+const DrawerUI = React.lazy(()=> import('./DrawerUI'));
 
 const NavbarUI = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
@@ -51,7 +52,9 @@ const NavbarUI = () => {
             Memofeed
           </Typography>
           {isMobile ? (
-            <DrawerUI />
+            <React.Suspense fallback={<div>Loading....</div>}>
+              <DrawerUI />
+            </React.Suspense>
           ) : (
             <div className={classes.toolbar}>
 
@@ -68,7 +71,7 @@ const NavbarUI = () => {
                   </Button>
                 </div>
               ) : (
-                <Button component={Link} to="/auth" variant="contained" color="primary">Login/Sign in</Button>
+                <Button component={Link} to="/auth" variant="contained" color="primary">Login/Sign-up</Button>
               )}
             </div>
           )}

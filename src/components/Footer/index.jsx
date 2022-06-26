@@ -1,7 +1,7 @@
 import React from 'react'
 import {Typography} from '@material-ui/core'
 
-export const Footer = () => {
+const Footer = () => {
   return (
     <>
       <Typography variant="body1" style={{textAlign: 'center',marginTop: '2rem'}}>
@@ -10,3 +10,5 @@ export const Footer = () => {
     </>
   )
 }
+
+export default Footer;

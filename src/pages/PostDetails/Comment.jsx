@@ -16,11 +16,11 @@ const  CommentSection = ({post}) => {
 
   const handleComment = async () => {
     // console.log(post);
-    const newComments = await dispatch(commentPost(`${user?.result?.name}: ${comment}`, post._id));
-
+    const TheComment = comment;
     setComment('');
+    const newComments = await dispatch(commentPost(`${user?.result?.name}: ${TheComment}`, post._id));
     setComments(newComments);
-
+    
     commentsRef.current.scrollIntoView({ behavior: 'smooth' });
   };
 

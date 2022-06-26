@@ -1,7 +1,7 @@
 //react
 import React,{useState,useEffect} from 'react';
 import FileBase from 'react-file-base64'
-import {useHistory} from 'react-router-dom'
+import {useHistory,Link} from 'react-router-dom'
 
 //redux
 import {useDispatch,useSelector} from 'react-redux'
@@ -82,7 +82,12 @@ const Form = ({currentId,setCurrentId}) => {
     <>
       <Paper className={classes.paper} elevation={6}>
         <Typography variant="h4" align="center" >
-          Hey! Login/Signup and add your memories...
+          Hey! 
+          <Typography component={Link} to="/auth" variant="h4" color="primary" 
+            style={{marginLeft:'0.5rem',marginRight:'0.5rem'}}>
+            Login/Sign up
+          </Typography> 
+          and add your memories...
         </Typography>
       </Paper>
     </>
@@ -113,7 +118,7 @@ const Form = ({currentId,setCurrentId}) => {
                 <TextField name="message" variant="outlined" label="your story(atleast 2 lines)" fullWidth multiline required rows={4} 
                   value={postData.message} onChange={(e) => setPostData({ ...postData, message: e.target.value })} />
                 
-                <TextField name="tags" variant="outlined" label="Tags (coma separated)" fullWidth 
+                <TextField name="tags" variant="outlined" label="Tags (coma separated)" fullWidth style={{textTransform : 'lowercase'}}
                   value={postData.tags} onChange={(e) => setPostData({ ...postData, tags: e.target.value.split(',') })} />
                 
                 <div className={classes.fileInput}>
