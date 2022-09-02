@@ -1,0 +1,25 @@
+body {
+  margin: 0;padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Roboto',sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f7f8fc;
+  font-size: 1.2rem;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 0.75rem;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  background: darkgrey; 
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(114, 114, 114); 
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
