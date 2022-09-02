@@ -7,7 +7,7 @@ import {useDispatch} from 'react-redux';
 import { getPosts,getPostsBySearch } from '../../redux/actions/post'
 
 //css
-import { Container,Button,Grow,Grid,Paper, AppBar,TextField} from '@material-ui/core';
+import { Container,Button,Grow,Grid,Paper, AppBar,TextField,useMediaQuery,useTheme} from '@material-ui/core';
 import useStyles from './styles'
 import ChipInput from 'material-ui-chip-input';
 
@@ -34,7 +34,8 @@ const Home= ()=> {
   const history = useHistory();
   const page = query.get('page') || 1;
   const searchQuery = query.get('searchQuery');
-
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   // console.log(query.get('page'));
 
 
@@ -103,13 +104,20 @@ const Home= ()=> {
                 color="primary">Search</Button>
               </AppBar>
               <Form currentId={currentId} setCurrentId={setCurrentId} />
-              {(!searchQuery && !tags.length) && (
+              {(!searchQuery && !tags.length && !isMobile) && (
                 <Paper className={classes.pagination} elevation={6}>
                   <Pagination page={page} />
                 </Paper>
               )}
             </Grid>
           </Grid>
+          {isMobile && (
+            <>
+              <Paper className={classes.pagination} elevation={6}>
+                <Pagination page={page} />
+              </Paper>
+            </>
+          )}
         </Container>
       </Grow>
       

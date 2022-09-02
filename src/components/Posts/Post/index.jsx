@@ -19,7 +19,6 @@ import EditIcon from '@material-ui/icons/Edit';
 import Chip from '@material-ui/core/Chip';
 import moment from 'moment';
 
-
 const Post = ({ post, setCurrentId }) => {
   const classes = useStyles();
   const theme = useTheme();

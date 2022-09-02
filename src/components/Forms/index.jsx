@@ -65,7 +65,9 @@ const Form = ({currentId,setCurrentId}) => {
 
   
   const [open,setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
+  const handleOpen = () =>{
+    setOpen(true);
+  }
   const handleClose = () =>{
     Clear();
     setOpen(false);
@@ -81,13 +83,13 @@ const Form = ({currentId,setCurrentId}) => {
     return(
     <>
       <Paper className={classes.paper} elevation={6}>
-        <Typography variant="h4" align="center" >
-          Hey! 
-          <Typography component={Link} to="/auth" variant="h4" color="primary" 
+        <Typography variant="h5" align="left" >
+          Hi there!  
+          <Typography component={Link} to="/auth" variant="h5" color="primary" 
             style={{marginLeft:'0.5rem',marginRight:'0.5rem'}}>
-            Login/Sign up
+            check in
           </Typography> 
-          and add your memories...
+          and you can like,comment and make new posts.
         </Typography>
       </Paper>
     </>

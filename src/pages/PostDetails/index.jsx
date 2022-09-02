@@ -40,7 +40,7 @@ const PostDetails = () => {
   if (!post) return null;
 
   const openPost = (_id) => history.push(`/posts/${_id}`);
-  const recommendedPosts = posts.filter(({ _id }) => _id !== post._id);
+  const recommendedPosts = posts.filter(({ _id,likes }) => _id !== post._id && likes.length > 5);
 
   return (
     <>
