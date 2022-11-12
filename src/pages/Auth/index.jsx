@@ -7,9 +7,9 @@ import {useDispatch} from 'react-redux'
 import {signup , login} from '../../redux/actions/auth'
 
 //css
-import {Container,Avatar,Paper,Grid,Typography,Button} from "@material-ui/core"
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-
+import {Container,Avatar,Paper,Grid,TextField,Typography,
+  CircularProgress,Button,InputAdornment, IconButton} from "@material-ui/core"
+import {LockOutlined,Visibility,VisibilityOff} from '@material-ui/icons';
 //components
 import useStyles from './style'
 import Input from './input'
@@ -18,19 +18,24 @@ import Input from './input'
 
 const Auth = () =>{
   const initialState = {
-    firstName: '',lastName: '',email: '',password: '',confirmPassword: ''
+    firstName: '',lastName: '',email: '',password: ''
   };
   //state
   // const [success, setSuccess] = useState(false);
   const [isSignup,setIsSignup] = useState(false);
   const [formData,setformData] = useState(initialState);
+  const [showPassword, setShowPassword] = useState(false);
+  const [loading,setLoading] = useState(false);
   //support
   const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();
+  const handleClickShowPassword = () => setShowPassword(!showPassword);
+  const handleMouseDownPassword = () => setShowPassword(!showPassword);
   //function
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
     if(isSignup) {
       dispatch(signup(formData,history));
     } else{
@@ -39,6 +44,9 @@ const Auth = () =>{
   }
 
   const handleChange = (e) => {
+    if(e.target.name === 'password' && e.target.value.length < 6 && isSignup){
+      alert('Password must be at least 6 characters long');
+    }
     setformData({ ...formData, [e.target.name]: e.target.value });
   }
   
@@ -51,7 +59,7 @@ const Auth = () =>{
       <Container component="main" maxwidth="xs">
         <Paper className={classes.paper} elevation={3}>
           <Avatar className={classes.avatar} >
-            <LockOutlinedIcon />
+            <LockOutlined />
           </Avatar>
           <Typography variant="h5">
             {isSignup ? "Sign Up" : "Login"}
@@ -65,19 +73,40 @@ const Auth = () =>{
                 </>
               )}
               <Input name = "email" label="email Address" type="email" handleChange={handleChange} required/>
-              <Input name = "password" label="password" type="password" handleChange={handleChange} required/> 
               
-              {isSignup && (
-                <>
-                  <Input  name = "confirmPassword" label="repeat Password" type="password" handleChange={handleChange} />
-                </>
-              )}
+              <TextField name = "password" placeholder='password' variant="outlined" type={showPassword ? "text" : "password"} 
+                onChange={handleChange} fullWidth required  style={{padding:'0.5rem'}}
+                InputProps={{ // <-- This is where the toggle button is added.
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                      >
+                        {showPassword ? <Visibility /> : <VisibilityOff />}
+                      </IconButton>
+                    </InputAdornment>
+                  )
+                }}
+              />
+              
+              {isSignup ? (
+                <Typography variant='caption' style={{padding:'0.75rem'}}>
+                  * Keep your password at least 6 characters long.
+                </Typography>
+              ) : null}
+              
             </Grid>
-
+            
             <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
-              {isSignup ? "Sign Up" : "Login"}
+              {isSignup && !loading ? "Sign Up " : "Login "}
+              {loading ? (
+                <CircularProgress size={20} style={{color:'#fff'}} />
+              ) : null}
             </Button>
-            <Grid container justifyContent="flex-end">
+
+            <Grid container justifyContent="flex-start">
               <Grid item>
                 <Button onClick={switchMode}>
                   { isSignup ? 'Already have an account? Login in' : "Don't have an account? Sign Up" }

@@ -5,6 +5,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: #f7f8fc;
   font-size: 1.2rem;
+  user-select: none;
 }
 
 /* width */

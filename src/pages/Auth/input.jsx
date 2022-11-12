@@ -15,7 +15,6 @@ function Input({half,name,handleChange,label,type,autoFocus}) {
           autoFocus={autoFocus}
           label={label}
           type={type}
-
         />
       </Grid>
     </>

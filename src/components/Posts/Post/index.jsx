@@ -137,12 +137,18 @@ const Post = ({ post, setCurrentId }) => {
       </ButtonBase>      
     
       <CardActions className={classes.cardActions}>
-        <Button size="small" color="primary" disabled={!user?.result} 
-        // onClick={()=> dispatch(likePost(post._id))}
-        onClick={handleLike}
-        >
-          <Likes></Likes>
-        </Button>
+        
+        <Tooltip title= 'Hey! login to like this post' aria-label='Login' disableHoverListener={user ? true : false}>
+          <span>
+          <Button size="small" color="primary" disabled={!user?.result} 
+            // onClick={()=> dispatch(likePost(post._id))}
+            onClick={handleLike}
+            >
+              <Likes></Likes>
+          </Button>
+          </span>
+        </Tooltip>
+
         {(user?.result?._id === post?.creator) && (
           <Button size="small" color="secondary" 
           onClick={handleClickOpen}

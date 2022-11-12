@@ -104,20 +104,15 @@ const Home= ()=> {
                 color="primary">Search</Button>
               </AppBar>
               <Form currentId={currentId} setCurrentId={setCurrentId} />
-              {(!searchQuery && !tags.length && !isMobile) && (
-                <Paper className={classes.pagination} elevation={6}>
-                  <Pagination page={page} />
-                </Paper>
-              )}
             </Grid>
           </Grid>
-          {isMobile && (
-            <>
-              <Paper className={classes.pagination} elevation={6}>
-                <Pagination page={page} />
-              </Paper>
-            </>
+
+          {(!searchQuery && !tags.length) && (
+            <Paper className={classes.pagination} elevation={0}>
+              <Pagination page={page} />
+            </Paper>
           )}
+
         </Container>
       </Grow>
       

@@ -7,8 +7,8 @@ export default makeStyles((theme) => ({
     display: "flex",
   },
   appBar: {
-    borderRadius: 15,
-    margin: '30px 0',
+    borderRadius: 10,
+    margin: '1.75rem 0',
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',

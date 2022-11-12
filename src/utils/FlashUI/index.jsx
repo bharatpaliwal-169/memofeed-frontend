@@ -17,9 +17,9 @@ const FlashUI = () => {
   })
   return (
     <React.Fragment>
-      <Paper style={{textAlign: 'center',display: 'flex',flexDirection: 'column',
+      <Paper style={{textAlign: 'center',display: 'flex',flexDirection: 'column',background:'transparent',
       justifyContent: 'center',padding:'5rem',verticalAlign: 'middle',marginTop: '6rem'}}
-      elevation={1}
+      elevation={0}
       >
         <Typography variant={isMobile ? "h4" : "h1"}  style={{color: '#09779A',
         fontWeight: 'bold',textAlign: 'center'}}>

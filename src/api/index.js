@@ -1,8 +1,11 @@
 import axios from 'axios';
-// const DEV_URL = 'http://localhost:5000/auth'; 
+const DEV_URL = 'http://localhost:5000/'; 
 // const PROD_URL = "https://memofeedbackend.herokuapp.com/"
-const PROD_URL = "https://memofeed-backend.onrender.com/";
-const API = axios.create({baseURL : PROD_URL});
+// const PROD_URL = "https://memofeed-backend.onrender.com/";
+const API = axios.create({
+  // baseURL : PROD_URL
+  baseURL : DEV_URL
+});
 API.interceptors.request.use((req)=>{
   if(localStorage.getItem('profile')){
     req.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem('profile')).token}`;
