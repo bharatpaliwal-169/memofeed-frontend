@@ -35,6 +35,10 @@ const Auth = () =>{
   //function
   const handleSubmit = (e) => {
     e.preventDefault();
+    if(formData.password.length < 6 && isSignup){
+      alert('password must be at least 6 characters');
+      return;
+    }
     setLoading(true);
     if(isSignup) {
       dispatch(signup(formData,history));
@@ -44,9 +48,6 @@ const Auth = () =>{
   }
 
   const handleChange = (e) => {
-    if(e.target.name === 'password' && e.target.value.length < 6 && isSignup){
-      alert('Password must be at least 6 characters long');
-    }
     setformData({ ...formData, [e.target.name]: e.target.value });
   }
   
@@ -100,7 +101,7 @@ const Auth = () =>{
             </Grid>
             
             <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
-              {isSignup && !loading ? "Sign Up " : "Login "}
+              {isSignup ? "Sign Up " : "Login "}
               {loading ? (
                 <CircularProgress size={20} style={{color:'#fff'}} />
               ) : null}

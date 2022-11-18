@@ -6,13 +6,12 @@ import {Container} from '@material-ui/core'
 //components
 import Auth from './pages/Auth'
 import Home from './pages/Home'
+import Profile from './pages/Profile'
 import PostDetail from './pages/PostDetails'
 import Navbar from './components/NavbarUI'
 import Footer from './components/Footer'
 import BTP from './utils/BTP'
 import Loading from './utils/FlashUI'
-//functions
-import {send} from './utils/notifications/notify';
 
 
 //__init__
@@ -20,10 +19,7 @@ const App = () => {
   const [load,setLoad] = React.useState(true);
   useEffect(() => {
     const timer = setTimeout(() => {setLoad(false)},4000);
-    const interval = setInterval(() => { send("MemoFeed", 
-    "Welcome! Please explore and add your memories, happy Exploring!")}, 864000);
     return () => {
-      clearInterval(interval);
       clearInterval(timer);
     }  
   }, []);
@@ -43,6 +39,7 @@ const App = () => {
               <Route path="/posts/search" exact component = {Home} ></Route>
               <Route path="/posts/:id" exact component = {PostDetail}></Route>
               <Route path="/auth" exact component={() => (!user ? <Auth /> : <Redirect to="/posts" />)}></Route>
+              <Route path="/profile" exact component = {() => (!user ? <Profile /> : <Redirect to="/posts" />)} ></Route>
               <Route path="*" component={() =><Redirect to="/posts" />} ></Route>
             </Switch>
           <React.Suspense fallback={<div> ...... </div>}>

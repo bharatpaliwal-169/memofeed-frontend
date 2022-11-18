@@ -38,6 +38,7 @@ export default makeStyles((theme) => ({
     fontWeight : 'bold',
     textTransform : 'capitalize',
     color : '#0C64AC',
+    textDecoration : 'none',
   },
   link: {
     textDecoration: "none",

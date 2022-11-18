@@ -24,3 +24,15 @@ export const signup = (formData, history) =>async(dispatch) => {
     console.log(error);
   }
 }
+
+export const deleteAccount = (id,history) => async(dispatch) => {
+  try {
+    await api.deleteAccount(id);
+    localStorage.removeItem('profile');
+    localStorage.removeItem('stats');
+    history.push("/");
+    window.location.reload();
+  } catch (error) {
+    console.log(error);
+  }
+}

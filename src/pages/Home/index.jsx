@@ -4,7 +4,7 @@ import {useHistory,useLocation} from 'react-router-dom';
 
 //redux
 import {useDispatch} from 'react-redux';
-import { getPosts,getPostsBySearch } from '../../redux/actions/post'
+import { getPosts,getPostsBySearch,getStatsForUser } from '../../redux/actions/post'
 
 //css
 import { Container,Button,Grow,Grid,Paper, AppBar,TextField,useMediaQuery,useTheme} from '@material-ui/core';
@@ -66,6 +66,11 @@ const Home= ()=> {
   useEffect(() => {
   dispatch(getPosts());
   }, [currentId,dispatch]);
+  
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('profile'));
+    dispatch(getStatsForUser(user?.result._id));
+  }, [])
   
   return (
     <>

@@ -24,6 +24,10 @@ const NavbarUI = () => {
   const location = useLocation();
   const history = useHistory();
 
+  const handleAuth = () => {
+    console.log('handleAuth');
+    history.push('/auth');
+  }
   const logout = () => {
     dispatch({ type: actionType.LOGOUT });
     history.push('/auth');
@@ -63,7 +67,7 @@ const NavbarUI = () => {
                   <Avatar className={classes.purple} alt={user.result.name} src = {user.result.imageUrl}>
                     {user.result.name.charAt(0)}
                   </Avatar>
-                  <Typography className={classes.userName} variant="h6">
+                  <Typography className={classes.userName} variant="h5" component={Link} to="/profile">
                     {user.result.name}
                   </Typography>
                   <Button className={classes.logout} variant="contained" color="secondary" onClick={logout}>
@@ -71,7 +75,7 @@ const NavbarUI = () => {
                   </Button>
                 </div>
               ) : (
-                <Button component={Link} to="/auth" variant="contained" color="primary">Login/Sign-up</Button>
+                <Button onClick={handleAuth} variant="contained" color="primary">Login/Sign-up</Button>
               )}
             </div>
           )}
