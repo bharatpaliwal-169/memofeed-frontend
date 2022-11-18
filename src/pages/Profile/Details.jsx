@@ -5,7 +5,7 @@ import useStyle from './styles';
 const Details = ({stats}) => {
   const user = JSON.parse(localStorage.getItem('profile'));
   const classes = useStyle();
-  console.log(stats);
+  // console.log(stats);
   return (
     <>
       <Grid container alignItems="stretch" spacing={3} style={{display:'flex',alignItems:'center'}}>

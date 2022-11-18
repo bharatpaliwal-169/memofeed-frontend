@@ -1,3 +1,4 @@
+//react
 import React,{useState,useEffect} from 'react'
 import {Link,useHistory,useLocation} from 'react-router-dom';
 import decode from 'jwt-decode';
@@ -6,6 +7,7 @@ import decode from 'jwt-decode';
 import {useDispatch} from 'react-redux'
 import * as actionType from '../../redux/types/actionTypes'
 
+//css
 import { AppBar,Toolbar,CssBaseline,
   Typography,useMediaQuery,useTheme,
   Button,Avatar
@@ -46,6 +48,7 @@ const NavbarUI = () => {
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location])
+
   return (
     <>
       <AppBar className={classes.appBar} position="static" color="inherit">

@@ -1,24 +1,26 @@
 //react
 import React from 'react';
-import {Link} from 'react-router-dom';
-import {useSelector} from 'react-redux'
+// import {Link} from 'react-router-dom';
+
+//redux
+import {useSelector} from 'react-redux';
 //css
-import {Paper,Grid,Typography,Button} from '@material-ui/core'
+import {Grid,
+  // Paper,Typography,Button
+} from '@material-ui/core'
 import useStyles from './styles'
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+// import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import Post from './Post';
 import Loading from '../Loading'
 
 const Posts = ({setCurrentId}) => {
-
   const {posts,isLoading} = useSelector((state) => state.posts);
   const classes = useStyles()
-  // console.log(posts);
 
   if(!posts.length && !isLoading) {
     return (
       <>
-        <Paper className={classes.mainPaper}>
+        {/* <Paper className={classes.mainPaper}>
           <Typography variant="h3" style={{fontWeight: 'bold',color: 'red'}} component="h3">
             No Such posts found!!
           </Typography>
@@ -32,7 +34,8 @@ const Posts = ({setCurrentId}) => {
               Go Back
             </Typography>
           </Button>
-        </Paper>
+        </Paper> */}
+        <Loading></Loading>
       </>
     )
   }

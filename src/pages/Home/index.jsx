@@ -69,8 +69,10 @@ const Home= ()=> {
   
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('profile'));
-    dispatch(getStatsForUser(user?.result._id));
-  }, [])
+    if(user){
+      dispatch(getStatsForUser(user?.result._id));
+    }
+  }, []);
   
   return (
     <>

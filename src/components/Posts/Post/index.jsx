@@ -3,7 +3,7 @@ import React,{useState} from 'react';
 
 //redux
 import { useDispatch } from 'react-redux';
-import {useHistory} from 'react-router-dom'
+import {useHistory , useLocation} from 'react-router-dom'
 import {deletePost,likePost} from '../../../redux/actions/post'
 
 //css imports
@@ -23,9 +23,10 @@ const Post = ({ post, setCurrentId }) => {
   const classes = useStyles();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  var count = 0;
-  const handleChipClick = () => count++;
-  
+  const location = useLocation();
+  const handleChipClick = (tag) => {
+    history.push(`/tags/${tag}`);
+  }
   const dispatch = useDispatch();
   const history = useHistory();
   const user = JSON.parse(localStorage.getItem('profile'));
@@ -117,12 +118,18 @@ const Post = ({ post, setCurrentId }) => {
             </Button>
           )}
         </div>
-      
+        
+        {location.pathname.startsWith('/tags') ? (
+          <></>
+        ) : (
         <div className={classes.Chipdetails}>
-            {post.tags.slice(0,3).map((tag,index) => 
-              <Chip key={index} label={tag} onClick={handleChipClick} spacing={1} style={{margin:'0.1rem'}} color="primary" variant="outlined" />
-            )}
+          {post.tags.slice(0,3).map((tag,index) =>
+
+            <Chip key={index} label={tag} onClick={(e) => handleChipClick(tag)} 
+            spacing={1} style={{margin:'0.1rem'}} color="primary" variant="outlined" />
+          )}
         </div>
+        )}
 
       <ButtonBase className={classes.cardAction} onClick={openPost}>
         <Typography className={classes.title} gutterBottom variant="h5" component="h5">

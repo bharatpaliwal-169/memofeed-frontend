@@ -1,7 +1,6 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom';
 import { Card, Grid, CardContent,CardMedia,ButtonBase, Typography } from '@material-ui/core'
-import Chip from '@material-ui/core/Chip';
 import moment from 'moment';
 import useStyle from './styles';
 const UserPosts = (props) => {
@@ -12,14 +11,11 @@ const UserPosts = (props) => {
     history.push(`/posts/${id}`);
     console.log(id);
   }
-  const handleChipClick = () => {
-    console.log("clicked");
-  }
   return (
     <>
       <Grid container alignItems="stretch" spacing={3}>
         {props.posts.map( (post,index) => (
-          <Grid item key={index} xs={12} sm={12} md={4}>
+          <Grid item key={index} xs={12} sm={12} md={3}>
                 <Card className={classes.card} raised elevation={6}>
                   <ButtonBase className={classes.cardAction} onClick={(e) => openPost(post._id)}>
                     <CardMedia className={classes.media} 
@@ -35,11 +31,6 @@ const UserPosts = (props) => {
                     </div>
                   </ButtonBase>
                     
-                    <div className={classes.Chipdetails}>
-                        {post.tags.slice(0,3).map((tag,index) => 
-                          <Chip key={index} label={tag} onClick={handleChipClick} spacing={1} style={{margin:'0.1rem'}} color="primary" variant="outlined" />
-                        )}
-                    </div>
                   <ButtonBase className={classes.cardAction} onClick={(e) => openPost(post._id)}>
                     <Typography className={classes.title} gutterBottom variant="h5" component="h5">
                       {post.title.length > 20 ? post.title.substring(0, 15)+"..." : post.title}

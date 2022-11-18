@@ -8,6 +8,7 @@ import Auth from './pages/Auth'
 import Home from './pages/Home'
 import Profile from './pages/Profile'
 import PostDetail from './pages/PostDetails'
+import Tags from './pages/Tags'
 import Navbar from './components/NavbarUI'
 import Footer from './components/Footer'
 import BTP from './utils/BTP'
@@ -39,7 +40,8 @@ const App = () => {
               <Route path="/posts/search" exact component = {Home} ></Route>
               <Route path="/posts/:id" exact component = {PostDetail}></Route>
               <Route path="/auth" exact component={() => (!user ? <Auth /> : <Redirect to="/posts" />)}></Route>
-              <Route path="/profile" exact component = {() => (!user ? <Profile /> : <Redirect to="/posts" />)} ></Route>
+              <Route path="/profile" exact component = {Profile} ></Route>
+              <Route path="/tags/:name" exact component = {Tags} ></Route>
               <Route path="*" component={() =><Redirect to="/posts" />} ></Route>
             </Switch>
           <React.Suspense fallback={<div> ...... </div>}>

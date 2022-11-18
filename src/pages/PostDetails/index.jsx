@@ -8,7 +8,7 @@ import {useDispatch,useSelector} from 'react-redux';
 import {getPost,getPostsBySearch} from '../../redux/actions/post'
 
 //css
-import {Card,Paper,Typography,Divider} from '@material-ui/core'
+import {Card,Paper,Typography,Divider,Grid, CardMedia} from '@material-ui/core'
 import moment from 'moment';
 import useStyles from './styles'
 import Chip from '@material-ui/core/Chip';
@@ -39,6 +39,9 @@ const PostDetails = () => {
 
   if (!post) return null;
 
+  const handleChipClick = (tag) => {
+    history.push(`/tags/${tag}`);
+  }
   const openPost = (_id) => history.push(`/posts/${_id}`);
   const recommendedPosts = posts.filter(({ _id,likes }) => _id !== post._id && likes.length > 5);
 
@@ -51,12 +54,11 @@ const PostDetails = () => {
             <Typography variant="h4" component="h4" className={classes.postTitle}>
               {post.title}
             </Typography>
-            <Typography gutterBottom variant="body1"style={{marginTop:'0.5rem'}} 
-                        color="textSecondary" component="h6">
-              
+            
+            <Typography gutterBottom variant="body1"style={{marginTop:'0.5rem'}} color="textSecondary" component="h6">
                 {post.tags.map((tag,index) => 
                 <>
-                  <Chip key={index} label={tag} spacing={1} style={{margin:'0.25rem'}} 
+                  <Chip key={index} label={tag} spacing={1} style={{margin:'0.25rem'}} onClick={(e) => handleChipClick(tag)} 
                         clickable variant="outlined" color="primary" />
                 </>
                 )}
@@ -87,35 +89,44 @@ const PostDetails = () => {
           </div>
         </div>
         
+
+        
         {!!recommendedPosts.length && (
           <div style={{ marginTop:'4rem' }}>
-            <Typography gutterBottom variant="h5">You might also like:</Typography>
-            <Divider />
+            <Typography variant="h4" style={{fontWeight: 'bold', color : '#09779A'}}>
+              You might also like:
+            </Typography>
+            <Divider style={{margin : '1rem'}} />
             <div className={classes.recommendedPosts}>
-              {recommendedPosts.map(({ title, name, likes, selectedFile, _id,index }) => (
-                <>
-                  <Card elevation={3} style={{margin:'1rem',borderRadius:'1rem'}} key={index}>
-                    <div style={{ margin: '1.5rem', cursor: 'pointer' }} onClick={() => openPost(_id)} key={_id}>
-                      
-                      <Typography gutterBottom variant="h6" style={{ color: '#09779A',textTransform: 'capitalize'}}>
-                        <span style={{fontWeight:'bold'}}>{title.length > 20 ? title.substring(0, 20)+'....' : title}</span>
-                      </Typography>
-                      
-                      <img src={selectedFile ? 
-                        selectedFile : "https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png"}
-                          alt={title} width="200rem" />
-                      
-                      <Typography gutterBottom variant="subtitle2" >
-                        Creator : <span style={{fontWeight:'bold'}}>{name}</span>
-                      </Typography>
-                      
-                      <Typography gutterBottom variant="subtitle1">Likes: {likes.length}</Typography>
-                      
-                    </div>
-                  </Card>
-                </>
-                
-              ))}
+              <Grid container spacing={1} alignItems="stretch">
+                {recommendedPosts.map(({ title, name, likes, message, _id}) => (
+                  <Grid item xs={12} sm={12} md={3}>
+                    <Card elevation={3} style={{margin:'1rem',borderRadius:'1rem'}} key={_id}>
+                      <div style={{ margin: '1.5rem', cursor: 'pointer' }} onClick={() => openPost(_id)} key={_id}>
+                        
+                        <Typography gutterBottom variant="h5" style={{ color: '#09779A',textTransform: 'capitalize'}}>
+                          <span style={{fontWeight:'bold'}}>{title.length > 10 ? title.substring(0, 10)+'....' : title}</span>
+                        </Typography>
+                        
+                        <Typography gutterBottom variant="body1" style={{marginTop: '0.5rem', marginBottom:'0.5rem'}}>
+                          <span>{message.length > 60 ? message.substring(0, 60)+'....' : message}</span>
+                        </Typography>
+                        
+                        <Typography gutterBottom variant="subtitle2" >
+                        <span style={{fontWeight:'bold'}}> Creator</span> : 
+                        <span style={{ color: '#09779A',textTransform: 'capitalize'}}>
+                          {name}
+                        </span>
+                        </Typography>
+                        
+                        <Typography gutterBottom variant="subtitle1">
+                          Likes: {likes.length} </Typography>
+                      </div>
+                    </Card>
+                  </Grid>
+                  
+                ))}
+              </Grid>
             </div>
           </div>
         )}

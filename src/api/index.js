@@ -1,6 +1,5 @@
 import axios from 'axios';
 const DEV_URL = 'http://localhost:5000/'; 
-// const PROD_URL = "https://memofeedbackend.herokuapp.com/"
 // const PROD_URL = "https://memofeed-backend.onrender.com/";
 const API = axios.create({
   // baseURL : PROD_URL
