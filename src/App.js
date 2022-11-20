@@ -14,7 +14,6 @@ import Footer from './components/Footer'
 import BTP from './utils/BTP'
 import Loading from './utils/FlashUI'
 
-
 //__init__
 const App = () => {
   const [load,setLoad] = React.useState(true);

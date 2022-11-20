@@ -16,26 +16,14 @@ export default makeStyles((theme) => ({
     },
     marginBottom: '1rem',
   },
-  section: {
-    // margin: '1rem',
-    flex: 1,
-    width: '100%',
-  },
   content : {
     textAlign: 'justify',
     lineHeight: '1.25em',
     fontSize: '1.25rem',
+    padding:'1.5rem',
+    margin : '1rem',
   },
-  imageSection: {
-    flex : 2,
-    marginLeft: '2rem',
-    [theme.breakpoints.down('sm')]: {
-      marginLeft: 0,
-      paddingLeft: 0,
-      marginTop: '1rem',
-      marginBottom : '1rem',
-    },
-  },
+  
   recommendedPosts: {
     display: 'flex',
     marginTop: '2rem',
@@ -71,4 +59,26 @@ export default makeStyles((theme) => ({
   commentName: {
     color : '#488BBF',
   },
+
+
+  mainPaper :{
+    marginTop: '1.5rem',
+    marginBottom: '1.5rem',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    padding: '1rem',
+    borderRadius:'0.5rem',
+  },
+  title:{
+    textTransform : 'capitalize',
+    fontWeight : 'bold',
+    color : '#09779A',
+    marginTop:'1.5rem'
+  },
+  cardIcon:{
+    margin:'-0.5rem 0 0 0.5rem',
+    height : '1.25rem',
+    width:'1.25rem'
+  }
 }));

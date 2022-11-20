@@ -1,6 +1,7 @@
 import React,{useState,useRef} from 'react'
+import {Link} from 'react-router-dom'
 import {useDispatch} from 'react-redux'
-import {Typography,TextField,Button} from '@material-ui/core'
+import {Typography,TextField,Button,Paper} from '@material-ui/core'
 import useStyles from './styles'
 import {commentPost} from '../../redux/actions/post'
 
@@ -38,8 +39,8 @@ const  CommentSection = ({post}) => {
           ))}
           <div ref={commentsRef} />
         </div>
-        
-        <div style={{ width: '100%' }}>
+        {user ? (
+          <div style={{ width: '100%' }}>
             <Typography gutterBottom variant="h5"  style={{ marginTop: '1.5rem' }}>
               Write a comment
             </Typography>
@@ -61,6 +62,18 @@ const  CommentSection = ({post}) => {
               Comment
             </Button>
           </div>
+        ) : (
+          <Paper elevation={6} style={{padding: '1.5rem'}}>
+            <Typography variant="h5" align="left" >
+              Hi there!  
+              <Typography component={Link} to="/auth" variant="h5" color="primary" 
+                style={{marginLeft:'0.5rem',marginRight:'0.5rem'}}>
+                check in
+              </Typography> 
+              and you can like,comment and make new posts.
+            </Typography>
+          </Paper>
+        )}
       </div>
     </>
   )
