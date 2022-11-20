@@ -9,7 +9,6 @@ const authReducer = (state = {authData: null}, action) => {
     case LOGOUT:
       localStorage.removeItem('profile');
       localStorage.removeItem('stats');
-      window.location.reload();
       return {...state,authData: null};
     default:
     return state;

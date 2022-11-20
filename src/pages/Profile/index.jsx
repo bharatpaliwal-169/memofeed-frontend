@@ -39,7 +39,10 @@ const Profile = () => {
   
   const stats = JSON.parse(localStorage.getItem('stats'));
 
-
+  if(!stats){
+    history.push("/");
+  }
+  
   return (
     <>
       <Paper className={classes.profilePage} elevation={5}>
