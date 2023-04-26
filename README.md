@@ -3,14 +3,43 @@
 MemoFeed is a pwa that provides users with a plateform where they can share their favourite memories,stories, short case and much more. Login to find amazing content and a peaceful community.
 
 ## Demo 
-```
- https://youtu.be/CZQcyejfk1Q
-```
+#### https://youtu.be/CZQcyejfk1Q
+
 
 <details>
 <summary>Site Pictures</summary>
-<img align="center" src="https://drive.google.com/file/d/1CHb1GT_OeohfRr6t0S7n_OxMOCYie5nj/view?usp=sharing" alt="homeScreen" />
-<label>Home Page</label>
+<label>
+<h1> Landing Page </h1>
+</label>
+<img src="https://user-images.githubusercontent.com/56474196/234491230-d9c1b420-cbd4-4d17-b1ee-2ee0ccbd4d54.png" alt="homeScreen" />
+
+<label>
+<h1> Home Page </h1>
+</label>
+<img src="https://user-images.githubusercontent.com/56474196/234493469-3ed88905-7a19-4142-9266-80efbabbbe2f.png" alt="homeScreen" />
+
+<label>
+<h1> Detailed Post Page </h1>
+</label>
+<img src="https://user-images.githubusercontent.com/56474196/234494526-2966b0ed-d6cf-4055-ab3c-8b77b22aa8de.png" alt="postScreen" />
+
+
+<label>
+<h1> Login Page </h1> 
+</label>
+<img src="https://user-images.githubusercontent.com/56474196/234491900-689e46dc-0e22-4ee0-882f-22a30dc822ca.png" alt="loginScreen" />
+
+
+<label>
+<h1> Splash Screen </h1> 
+</label>
+<img src="https://user-images.githubusercontent.com/56474196/234492122-1af52d5b-2d78-4cc2-8c2e-63bd17a6465e.png" alt="splashScreen" />
+
+<label>
+<h1> skleton Screen </h1> 
+</label>
+<img src="https://user-images.githubusercontent.com/56474196/234492347-a470cdcc-3e0c-47ea-90ac-12687bb00111.png" alt="sklScreen" />
+
 </details>
 
 <details>
