@@ -2,8 +2,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
   appBar: {
-    borderRadius: 15,
-    margin: '30px 0',
+    borderRadius: '1rem',
+    margin: '2rem 0',
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',
@@ -13,12 +13,14 @@ export default makeStyles((theme) => ({
     color: 'rgba(0,183,255, 1)',
   },
   image: {
-    marginLeft: '15px',
+    marginLeft: '1rem',
   },
   [theme.breakpoints.down('sm')]: {
     mainContainer: {
       flexDirection: 'column-reverse',
     },
   },
-  
 }));
+
+
+// flex-start","center","flex-end","stretch","baseline"].

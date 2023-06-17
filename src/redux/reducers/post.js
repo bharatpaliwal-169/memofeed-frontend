@@ -1,5 +1,5 @@
 /* eslint-disable import/no-anonymous-default-export */
-import {FETCH_ALL,CREATE,UPDATE,DELETE,LIKE,FETCH_BY_SEARCH,FETCH_POST,COMMENT} from '../types/actionTypes';
+import {FETCH_ALL,CREATE,UPDATE,DELETE,LIKE,FETCH_BY_SEARCH,FETCH_POST,COMMENT, FETCH_STATS} from '../types/actionTypes';
 //we now use reducer as a object
 export default (state = { isLoading: true, posts: [] }, action) => {
   switch (action.type) {
@@ -12,10 +12,13 @@ export default (state = { isLoading: true, posts: [] }, action) => {
         ...state,
         posts: action.payload.data,
         currentPage: action.payload.currentPage,
-        numberOfPages: action.payload.numberOfPages,
+        NumberOfPages: action.payload.NumberOfPages,
       };
     case FETCH_BY_SEARCH:
       return { ...state, posts: action.payload.data };
+    case FETCH_STATS:
+      localStorage.setItem('stats', JSON.stringify(action.payload.data));
+      return { ...state, stats: action.payload.data };
     case FETCH_POST:
       return { ...state, post: action.payload.post };
     case CREATE:

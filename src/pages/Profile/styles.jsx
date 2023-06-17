@@ -1,6 +1,41 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-export default makeStyles({
+export default makeStyles(() => ({
+  profilePage: {
+    marginTop: '2rem',
+    marginBottom: '2rem',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    padding: '1rem',
+  },
+  // deskContainer: {
+  //   display: 'flex',
+  //   alignItems: 'row',
+  //   flexDirection: 'row',
+  //   justifyContent: 'space-around',
+  // },
+  // phoneContainer: {
+  //   display: 'flex',
+  //   alignItems: 'center',
+  // },
+  profileHeading:{
+    color: '#09779A',
+    textDecoration: 'none',
+    fontWeight: 'bold',
+  },
+  profileCard:{
+    display: 'flex',
+    justifyContent: 'space-between',
+    borderRadius: '0.75rem',
+    padding: '2rem',
+    marginTop: '1rem',
+    marginBottom: '1rem',
+  },
+  cardHeading:{
+    fontWeight: 'bold',
+    color: '#09779C',
+  },
   media: {
     height: 0,
     paddingTop: '56.25%',
@@ -58,5 +93,5 @@ export default makeStyles({
   },
   Chipdetails :{
     padding:'.5rem',
-  },
-});
+  }
+}));
