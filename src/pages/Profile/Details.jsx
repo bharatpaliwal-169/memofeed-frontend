@@ -25,7 +25,7 @@ const Details = ({stats}) => {
                 <b>Email :</b> {user?.result?.email}
               </Typography>
               <br />
-              <Button variant='contained' color="primary" className={classes.changePswd}> Change Password </Button>
+              <Button variant='contained' disabled color="primary" className={classes.changePswd}> Change Password : coming soon... </Button>
               {/* dialog or modal */}
             </CardContent>
           </Card>

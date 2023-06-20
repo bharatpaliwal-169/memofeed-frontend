@@ -63,16 +63,20 @@ const Home= ()=> {
       history.push(`/posts/search?searchQuery=${search || 'none'}&tags=${tags.join(',')}`);
     }
   }
+
+  // useEffects
+  // GEt all posts 
   useEffect(() => {
   dispatch(getPosts());
   }, [currentId,dispatch]);
   
+  // GET STATS for the user
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('profile'));
     if(user){
       dispatch(getStatsForUser(user?.result._id));
     }
-  }, []);
+  }, [dispatch]);
   
   return (
     <>
