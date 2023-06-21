@@ -13,10 +13,12 @@ import ChipInput from 'material-ui-chip-input';
 
 //components
 // import Posts from '../../components/Posts'
-import Form from '../../components/Forms'
+// import Form from '../../components/Forms'
 import Pagination from '../../components/PaginationUI'
 import Loading from '../../components/Loading'
 const Posts = React.lazy(()=> import('../../components/Posts'));
+const Form = React.lazy(() => import('../../components/Forms'));
+
 
 function useQuery(){
   return new URLSearchParams(useLocation().search);
@@ -34,8 +36,8 @@ const Home= ()=> {
   const history = useHistory();
   const page = query.get('page') || 1;
   const searchQuery = query.get('searchQuery');
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  // const theme = useTheme();
+  // const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   // console.log(query.get('page'));
 
 
@@ -67,12 +69,14 @@ const Home= ()=> {
   // useEffects
   // GEt all posts 
   useEffect(() => {
-  dispatch(getPosts());
+    console.log("Home.js : getAllPosts is called.")
+    dispatch(getPosts());
   }, [currentId,dispatch]);
   
   // GET STATS for the user
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('profile'));
+    console.log("Home.js : getStats is called.")
     if(user){
       dispatch(getStatsForUser(user?.result._id));
     }
@@ -114,7 +118,9 @@ const Home= ()=> {
                 <Button onClick={searchPost} className={classes.searchButton} variant="contained" 
                 color="primary">Search</Button>
               </AppBar>
-              <Form currentId={currentId} setCurrentId={setCurrentId} />
+              <React.Suspense fallback={<Loading/>}>
+                <Form currentId={currentId} setCurrentId={setCurrentId} />
+              </React.Suspense>
             </Grid>
           </Grid>
 

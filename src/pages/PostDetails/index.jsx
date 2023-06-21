@@ -145,7 +145,7 @@ const PostDetails = () => {
           <Grid container spacing={4}>
             <Grid item md={1}></Grid>
             <Grid item xs={12} md={7}>
-              <React.Suspense fallback={<div>Loading Comments..... </div>}>
+              <React.Suspense fallback={<Loading />}>
                 <CommentSection post={post}></CommentSection>
               </React.Suspense>
             </Grid>
@@ -153,13 +153,13 @@ const PostDetails = () => {
 
           {!!recommendedPosts.length && (
             <>
-              <Typography variant="h4" style={{fontWeight: 'bold', color : '#09779A'}}>
+              <Typography variant="h4" style={{fontWeight: 'bold', color : '#09779A',marginTop:'2.5rem'}}>
                 You might also like:
               </Typography>
               <Divider style={{margin : '1rem'}} />
                 <Grid container spacing={3} alignItems="stretch">
                   {recommendedPosts.map(({ title, name, likes, message, _id}) => (
-                    <Grid item xs={12} sm={12} md={3}>
+                    <Grid item xs={12} sm={12} md={3} key={_id}>
                       <Card elevation={3} style={{margin:'1rem',borderRadius:'1rem',cursor: 'pointer',padding:'1rem' }} 
                       key={_id} onClick={() => openPost(_id)}>
                           

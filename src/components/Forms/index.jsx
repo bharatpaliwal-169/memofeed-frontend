@@ -14,6 +14,7 @@ import {Paper,Typography,TextField,Button,useMediaQuery,useTheme,
 import {Add} from '@material-ui/icons'
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import useStyles from './styles'
+import Promp from '../LoginPromp';
 
 const Form = ({currentId,setCurrentId}) => {
   //css
@@ -108,15 +109,16 @@ const Form = ({currentId,setCurrentId}) => {
 
   //useEffects
   useEffect(() => {
+    console.log("Form.js: setPostData is called.")
     if(post) setPostData(post);
   }, [post])
   
   // to upload image
   useEffect(() => {
+    console.log("Form.js : uploadingImg is called.")
     if(img) setPostData({...postData,selectedFile:img});
     setUploading(false);
-    console.log(img);
-
+    // console.log(img);
     // imp to add img as dep and not postData as it will lead to inf render of useeffect.
   },[img]);
   
@@ -124,7 +126,7 @@ const Form = ({currentId,setCurrentId}) => {
   if(!user?.result?.name){
     return(
     <>
-      <Paper className={classes.paper} elevation={6}>
+      {/* <Paper className={classes.paper} elevation={6}>
         <Typography variant="h5" align="left" >
           Hi there!  
           <Typography component={Link} to="/auth" variant="h5" color="primary" 
@@ -133,7 +135,8 @@ const Form = ({currentId,setCurrentId}) => {
           </Typography> 
           and you can like,comment and make new posts.
         </Typography>
-      </Paper>
+      </Paper> */}
+      <Promp />
     </>
     );
   }

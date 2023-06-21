@@ -28,4 +28,10 @@ export default makeStyles((theme) => ({
   googleButton: {
     marginBottom: theme.spacing(2),
   },
+  media:{
+    width:'100%',
+    maxHeight:"15rem",
+    objectPosition:'center',
+    objectFit:"contain"
+  }
 }));

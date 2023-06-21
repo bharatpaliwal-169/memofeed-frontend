@@ -52,3 +52,12 @@ Features :
   e) User : blocking, verification, online activity, more data colletivity.
 7) Can think of max possible optimization and enhanced web security.
 8) Rate Limiters needed to be implemented.
+
+Brand Color : #09779A
+
+
+Done : 
+
+1) useEffects : added loggers.
+2) improved login card and auth page.
+3) 

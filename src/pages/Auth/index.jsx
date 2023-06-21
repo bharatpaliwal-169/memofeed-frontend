@@ -10,29 +10,33 @@ import {signup , login} from '../../redux/actions/auth'
 import {Container,Avatar,Paper,Grid,TextField,Typography,
   CircularProgress,Button,InputAdornment, IconButton} from "@material-ui/core"
 import {LockOutlined,Visibility,VisibilityOff} from '@material-ui/icons';
-//components
 import useStyles from './style'
+//components
 import Input from './input'
-// const Input = React.lazy(()=> import('./input'));
 
+import authLogo from '../../assets/Auth.svg';
 
 const Auth = () =>{
+  
+  //state
   const initialState = {
     firstName: '',lastName: '',email: '',password: ''
   };
-  //state
+  
   // const [success, setSuccess] = useState(false);
   const [isSignup,setIsSignup] = useState(false);
   const [formData,setformData] = useState(initialState);
   const [showPassword, setShowPassword] = useState(false);
   const [loading,setLoading] = useState(false);
+  
   //support
   const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();
   const handleClickShowPassword = () => setShowPassword(!showPassword);
   const handleMouseDownPassword = () => setShowPassword(!showPassword);
-  //function
+  
+  //functions
   const handleSubmit = (e) => {
     e.preventDefault();
     if(formData.password.length < 6 && isSignup){
@@ -55,16 +59,22 @@ const Auth = () =>{
     setIsSignup((prevIsSignup) => !prevIsSignup);
   };
 
+
   return (
     <>
       <Container component="main" maxwidth="xs">
         <Paper className={classes.paper} elevation={3}>
-          <Avatar className={classes.avatar} >
+          
+          {/* <Avatar className={classes.avatar} >
             <LockOutlined />
-          </Avatar>
-          <Typography variant="h5">
+          </Avatar> */}
+
+          <img src={authLogo} alt="Authentication" className={classes.media} />
+
+          <Typography variant="h3" style={{fontWeight:'bolder',color:'#09779A'}}>
             {isSignup ? "Sign Up" : "Login"}
           </Typography>
+
           <form onSubmit={handleSubmit} className={classes.form}>
             <Grid container spacing={2}>
               {isSignup && (
