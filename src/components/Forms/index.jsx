@@ -1,7 +1,9 @@
 //react
 import React,{useState,useEffect} from 'react';
 // import FileBase from 'react-file-base64'
-import {useHistory,Link} from 'react-router-dom'
+import {useHistory,
+  // Link
+} from 'react-router-dom'
 import axios from 'axios';
 //redux
 import {useDispatch,useSelector} from 'react-redux'
@@ -59,7 +61,10 @@ const Form = ({currentId,setCurrentId}) => {
   }
 
   const checkFormData = (data) => {
-    if(data.title.length <=30 && data.message.length >=50 && data.tags.length !== 0){
+
+    // form data validations
+    if(data.title.length <=30 && data.message.length >=50 && 
+      data.tags.length !== 0 && data.tags.length <= 10 && data.message.length <= 5000){
       return true;
     }
     return false;

@@ -7,9 +7,9 @@ import {useDispatch} from 'react-redux'
 import {signup , login} from '../../redux/actions/auth'
 
 //css
-import {Container,Avatar,Paper,Grid,TextField,Typography,
+import {Container,Paper,Grid,TextField,Typography,
   CircularProgress,Button,InputAdornment, IconButton} from "@material-ui/core"
-import {LockOutlined,Visibility,VisibilityOff} from '@material-ui/icons';
+import {Visibility,VisibilityOff} from '@material-ui/icons';
 import useStyles from './style'
 //components
 import Input from './input'
