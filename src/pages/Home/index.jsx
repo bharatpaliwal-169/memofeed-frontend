@@ -7,7 +7,9 @@ import {useDispatch} from 'react-redux';
 import { getPosts,getPostsBySearch,getStatsForUser } from '../../redux/actions/post'
 
 //css
-import { Container,Button,Grow,Grid,Paper, AppBar,TextField,useMediaQuery,useTheme} from '@material-ui/core';
+import { Container,Button,Grow,Grid,Paper, AppBar,TextField,
+  // useMediaQuery,useTheme
+} from '@material-ui/core';
 import useStyles from './styles'
 import ChipInput from 'material-ui-chip-input';
 

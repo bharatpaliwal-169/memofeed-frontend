@@ -1,9 +1,9 @@
 import axios from 'axios';
-// const DEV_URL = 'http://localhost:5000/'; 
-const PROD_URL = "https://memofeed-backend.onrender.com/";
+const DEV_URL = 'http://localhost:5000/'; 
+// const PROD_URL = "https://memofeed-backend.onrender.com/";
 const API = axios.create({
-  baseURL : PROD_URL
-  // baseURL : DEV_URL
+  // baseURL : PROD_URL
+  baseURL : DEV_URL
 });
 API.interceptors.request.use((req)=>{
   if(localStorage.getItem('profile')){
@@ -26,3 +26,7 @@ export const getStatsForUser = (id) => API.get(`/posts/stats/${id}`);
 export const login = (formData) => API.post('/auth/login', formData);
 export const signup = (formData) => API.post('/auth/signup', formData);
 export const deleteAccount = (id) => API.delete(`/auth/deleteAccount/${id}`);
+export const changePasswordRequest = (formData) => API.post('/auth/changepswd/request',formData);
+export const forgotPasswordRequest = (formData) => API.post('auth/forgotpswd/request',formData);
+export const changePassword = (formData,token) => API.post(`/auth/changepassword/?token=${token}`,formData);
+// export const forgotPassword = () => API.get('/auth/forgotpassword');

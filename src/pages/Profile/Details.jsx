@@ -1,11 +1,67 @@
-import React from 'react'
-import { Grid,Typography, Card,CardContent,Button,Divider,Tooltip} from '@material-ui/core';
+import React,{useEffect, useState} from 'react'
+import {useHistory} from 'react-router-dom'
+
+//redux
+import {useDispatch,useSelector} from 'react-redux'
+import { changePasswordRequest } from '../../redux/actions/auth';
+//css
+import { Grid,Typography, Card,CardContent,Button,Divider,Tooltip
+,Dialog,DialogActions,DialogContent,DialogContentText,DialogTitle
+} from '@material-ui/core'; 
 import useStyle from './styles';
 
+import Notification from '../../components/Notification';
+
 const Details = ({stats}) => {
+  
   const user = JSON.parse(localStorage.getItem('profile'));
   const classes = useStyle();
-  // console.log(stats);
+
+
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const EMAIL_STATUS = useSelector((state) => state.auth)
+
+  // confirmation box
+  const [open,setOpen] = useState(false);
+  // send change password request
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleChangePassword = () => {
+    const formData = {
+      email : user?.result?.email
+    }
+    dispatch(changePasswordRequest(formData,history));
+    handleClose();
+  }
+
+  //snackbar
+  const [snackType,setSnackType] = useState()
+  const [showSnack,setShowSnack] = useState(false)
+  
+  
+  // check status of email
+  useEffect(() => {
+    console.info(EMAIL_STATUS);
+    setSnackType(EMAIL_STATUS?.authData?.SNACK_TYPE)
+    setShowSnack(true)
+  }, [EMAIL_STATUS,snackType])
+  
+
+  if(showSnack){
+    if(snackType){
+      const snackMessage = snackType === "SUCCESS" ? "We have sent you an email, Please Check your inbox." : "Oh uoh! Something went wrong, Please try again later.";
+      return (
+        <Notification snackType={snackType} snackOpen={true} snackMessage={snackMessage}/>
+      )
+    }
+  }
+  
+  //UI
   return (
     <>
       <Grid container alignItems="stretch" spacing={3} style={{display:'flex',alignItems:'center'}}>
@@ -25,11 +81,46 @@ const Details = ({stats}) => {
                 <b>Email :</b> {user?.result?.email}
               </Typography>
               <br />
-              <Button variant='contained' disabled color="primary" className={classes.changePswd}> Change Password : coming soon... </Button>
+              <Button variant='contained' onClick={handleClickOpen} color="primary" 
+                className={classes.changePswd}>
+                Change Password 
+              </Button>
+              
               {/* dialog or modal */}
+              <Dialog
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="confirmCP"
+                aria-describedby="alert-dialog-description"
+              >
+                <DialogTitle id="confirmCP">
+                  {"Change Password"}
+                </DialogTitle>
+                <DialogContent>
+                  <DialogContentText id="alert-dialog-description">
+                    Kindly confirm your email address: 
+                    <span style={{fontWeight:'600',paddingLeft:'0.25rem',color:"ActiveCaption"}}>
+                      {user?.result?.email}
+                    </span>
+                  </DialogContentText>
+
+                  <DialogContentText>
+                  </DialogContentText>
+                </DialogContent>
+                
+                <DialogActions>
+                  <Button onClick={handleClose} >
+                    cancel
+                  </Button>
+                  <Button onClick={handleChangePassword} color="primary" autoFocus variant="outlined">
+                    Confirm
+                  </Button>
+                </DialogActions>
+              </Dialog>
             </CardContent>
           </Card>
         </Grid>
+
         <Grid item xs={12} sm={12} md={6}>
           <Card className={classes.profileCard} elevation={5}>
             <CardContent>

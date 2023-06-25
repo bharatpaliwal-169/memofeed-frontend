@@ -1,8 +1,10 @@
 //react
 import React,{useEffect} from 'react';
 import { BrowserRouter as Router,Redirect,Route,Switch} from 'react-router-dom';
+
 //css
 import {Container} from '@material-ui/core'
+
 //components
 import Auth from './pages/Auth'
 import Home from './pages/Home'
@@ -11,6 +13,9 @@ import PostDetail from './pages/PostDetails'
 import Tags from './pages/Tags'
 import Navbar from './components/NavbarUI'
 import Footer from './components/Footer'
+// import Email from './components/EmailVerify'
+import ChangePassword from './pages/ChangePassword';
+
 import BTP from './utils/BTP'
 import Loading from './utils/FlashUI'
 
@@ -41,9 +46,10 @@ const App = () => {
               <Route path="/auth" exact component={() => (!user ? <Auth /> : <Redirect to="/posts" />)}></Route>
               <Route path="/profile" exact component = {Profile} ></Route>
               <Route path="/tags/:name" exact component = {Tags} ></Route>
+              <Route path="/auth/changepassword" exact component ={ChangePassword}></Route>
               <Route path="*" component={() =><Redirect to="/posts" />} ></Route>
             </Switch>
-          <React.Suspense fallback={<div> ...... </div>}>
+          <React.Suspense fallback={<Loading/>}>
             <BTP />
             <Footer/>
           </React.Suspense>  
