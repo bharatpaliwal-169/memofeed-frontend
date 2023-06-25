@@ -1,6 +1,6 @@
 import * as api from '../../api'
 import {AUTH, CHANGE_PASSWORD_REQUEST,CHANGE_PASSWORD_REQUEST_FAILURE,
-  LOGOUT,CHANGE_PASSWORD_SUCCESS,CHANGE_PASSWORD_FAILURE
+  LOGOUT,CHANGE_PASSWORD_SUCCESS,CHANGE_PASSWORD_FAILURE, FORGOT_PASSWORD_REQUEST, FORGOT_PASSWORD_REQUEST_FAILURE
 } from '../types/actionTypes';
 
 export const login = (formData, history) =>async(dispatch) => {
@@ -70,4 +70,20 @@ export const changePassword = (formData,history) => async(dispatch) => {
     console.error("changePassword : " + error.message);
   }
   console.log("done")
+}
+
+export const forgotPasswordRequest = (formData) => async(dispatch) => {
+  try {
+    console.info("forgot password")
+    const response = await api.forgotPasswordRequest(formData);
+    // const response = 2000;
+    if(response.status === 200){
+      dispatch({type : FORGOT_PASSWORD_REQUEST,SNACK_TYPE:"SUCCESS"});
+    }else{
+      dispatch({type:FORGOT_PASSWORD_REQUEST_FAILURE,SNACK_TYPE:"ERROR"});
+    }
+  } catch (error) {
+    dispatch({type:FORGOT_PASSWORD_REQUEST_FAILURE,SNACK_TYPE:"ERROR"});
+    console.error("Error in forgot password " + error.message);
+  }
 }

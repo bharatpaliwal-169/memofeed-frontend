@@ -59,6 +59,9 @@ const Auth = () =>{
     setIsSignup((prevIsSignup) => !prevIsSignup);
   };
 
+  const handleForgotPassword = () => {
+    history.push("/auth/forgotpassword");
+  }
 
   return (
     <>
@@ -108,6 +111,15 @@ const Auth = () =>{
                 </Typography>
               ) : null}
               
+              {isSignup ? null :
+                (
+                  <Grid item>
+                    <Button variant='outlined' color='primary' onClick={handleForgotPassword}>
+                      Forgot Password ?
+                    </Button>
+                  </Grid>
+                )
+              }
             </Grid>
             
             <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
@@ -123,6 +135,7 @@ const Auth = () =>{
                   { isSignup ? 'Already have an account? Login in' : "Don't have an account? Sign Up" }
                 </Button>
               </Grid>
+              
             </Grid>
           </form>
         </Paper>

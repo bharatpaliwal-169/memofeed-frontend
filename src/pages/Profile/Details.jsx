@@ -5,7 +5,7 @@ import {useHistory} from 'react-router-dom'
 import {useDispatch,useSelector} from 'react-redux'
 import { changePasswordRequest } from '../../redux/actions/auth';
 //css
-import { Grid,Typography, Card,CardContent,Button,Divider,Tooltip
+import { Grid,Typography,Paper,Card,CardContent,Button,Divider,Tooltip
 ,Dialog,DialogActions,DialogContent,DialogContentText,DialogTitle
 } from '@material-ui/core'; 
 import useStyle from './styles';
@@ -56,7 +56,14 @@ const Details = ({stats}) => {
     if(snackType){
       const snackMessage = snackType === "SUCCESS" ? "We have sent you an email, Please Check your inbox." : "Oh uoh! Something went wrong, Please try again later.";
       return (
-        <Notification snackType={snackType} snackOpen={true} snackMessage={snackMessage}/>
+        <>
+          <Notification snackType={snackType} snackOpen={true} snackMessage={snackMessage}/>
+          <Paper className={classes.mainPaper}>
+            <Typography variant='body1' className={classes.bodyData}>
+              {snackType==="SUCCESS"? "Check your inbox." : "Please try again."}
+            </Typography>
+          </Paper>
+        </>
       )
     }
   }

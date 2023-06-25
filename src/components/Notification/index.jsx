@@ -12,10 +12,10 @@ const Notification = ({snackType,snackMessage,snackOpen}) => {
   }
   return (
     <>
-      <Snackbar open={open} autoHideDuration={5000} onClose={handleClose}
+      <Snackbar open={open? open:false} autoHideDuration={5000} onClose={handleClose}
         anchorOrigin={{ vertical:'top', horizontal:'center'}}
         >
-        <Alert onClose={handleClose} severity={snackType.toString().toLowerCase()}>
+        <Alert onClose={handleClose} severity={snackType?.toString()?.toLowerCase()}>
           {snackMessage}
         </Alert>
       </Snackbar>

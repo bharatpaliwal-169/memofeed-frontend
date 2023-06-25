@@ -1,5 +1,5 @@
 import {AUTH,CHANGE_PASSWORD_REQUEST,CHANGE_PASSWORD_REQUEST_FAILURE,
-  LOGOUT,CHANGE_PASSWORD_FAILURE,CHANGE_PASSWORD_SUCCESS
+  LOGOUT,CHANGE_PASSWORD_FAILURE,CHANGE_PASSWORD_SUCCESS, FORGOT_PASSWORD_REQUEST, FORGOT_PASSWORD_REQUEST_FAILURE
 } from '../types/actionTypes';
 
 const authReducer = (state = {authData: null}, action) => {
@@ -23,8 +23,13 @@ const authReducer = (state = {authData: null}, action) => {
       return {...state,authData:{SNACK_TYPE: action?.SNACK_TYPE}}
     case CHANGE_PASSWORD_FAILURE:
       return {...state,authData :{SNACK_TYPE:action?.SNACK_TYPE}}
+    case FORGOT_PASSWORD_REQUEST:
+      console.log("cp reducer :" + action.SNACK_TYPE);
+      return {...state,authData:{SNACK_TYPE: action?.SNACK_TYPE}}
+    case FORGOT_PASSWORD_REQUEST_FAILURE:
+      return {...state,authData:{SNACK_TYPE: action?.SNACK_TYPE}}
     default:
-      return state;
+      return state; 
   }
 }
 export default authReducer;

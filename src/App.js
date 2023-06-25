@@ -15,7 +15,7 @@ import Navbar from './components/NavbarUI'
 import Footer from './components/Footer'
 // import Email from './components/EmailVerify'
 import ChangePassword from './pages/ChangePassword';
-
+import ForgotPassword from './pages/ForgotPassword';
 import BTP from './utils/BTP'
 import Loading from './utils/FlashUI'
 
@@ -47,6 +47,7 @@ const App = () => {
               <Route path="/profile" exact component = {Profile} ></Route>
               <Route path="/tags/:name" exact component = {Tags} ></Route>
               <Route path="/auth/changepassword" exact component ={ChangePassword}></Route>
+              <Route path="/auth/forgotpassword" exact component={ForgotPassword}></Route>
               <Route path="*" component={() =><Redirect to="/posts" />} ></Route>
             </Switch>
           <React.Suspense fallback={<Loading/>}>
