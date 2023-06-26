@@ -1,6 +1,7 @@
 import * as api from '../../api'
 import {AUTH, CHANGE_PASSWORD_REQUEST,CHANGE_PASSWORD_REQUEST_FAILURE,
-  LOGOUT,CHANGE_PASSWORD_SUCCESS,CHANGE_PASSWORD_FAILURE, FORGOT_PASSWORD_REQUEST, FORGOT_PASSWORD_REQUEST_FAILURE
+  LOGOUT,CHANGE_PASSWORD_SUCCESS,CHANGE_PASSWORD_FAILURE, FORGOT_PASSWORD_REQUEST,
+  FORGOT_PASSWORD_REQUEST_FAILURE, EMAIL_VERIFICATION_REQUEST,EMAIL_VERIFICATION_REQUEST_FAILURE, EMAIL_VERIFICATION_SUCCESS, EMAIL_VERIFICATION_FAILURE
 } from '../types/actionTypes';
 
 export const login = (formData, history) =>async(dispatch) => {
@@ -19,7 +20,7 @@ export const signup = (formData, history) =>async(dispatch) => {
   try {
     const {data} = await api.signup(formData);
     dispatch({type: AUTH,data})
-    history.push("/");
+    history.push("/auth/emailverification");
   } catch (error) {
     alert(error.message);
     window.location.reload();
@@ -85,5 +86,38 @@ export const forgotPasswordRequest = (formData) => async(dispatch) => {
   } catch (error) {
     dispatch({type:FORGOT_PASSWORD_REQUEST_FAILURE,SNACK_TYPE:"ERROR"});
     console.error("Error in forgot password " + error.message);
+  }
+}
+
+export const emailVerificationRequest = (formData) => async(dispatch) => {
+  try{
+    console.info("email verification")
+    const response = await api.emailVerificationRequest(formData);
+    // const response = 2000
+    if(response.status === 200){
+      dispatch({type : EMAIL_VERIFICATION_REQUEST,SNACK_TYPE:"SUCCESS"});
+    }else{
+      dispatch({type:EMAIL_VERIFICATION_REQUEST_FAILURE,SNACK_TYPE:"ERROR"});
+    }
+  } catch(error) {
+    dispatch({type:EMAIL_VERIFICATION_REQUEST_FAILURE,SNACK_TYPE:"ERROR"});
+    console.error("Error in email verification request " + error.message);
+  }
+}
+
+export const emailverification = (token) => async(dispatch) => {
+  try {
+    console.info("email verification")
+    console.log(token);
+    const response = await api.emailVerification(token);
+    console.log(response);
+    if(response.status === 202){
+      dispatch({type : EMAIL_VERIFICATION_SUCCESS,SNACK_TYPE:"SUCCESS"});
+    }else{
+      dispatch({type:EMAIL_VERIFICATION_FAILURE,SNACK_TYPE:"ERROR"});
+    }
+  } catch (error) {
+    dispatch({type:EMAIL_VERIFICATION_FAILURE,SNACK_TYPE:"ERROR"});
+    console.error("Error in verification " + error.message);
   }
 }

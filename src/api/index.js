@@ -30,3 +30,5 @@ export const changePasswordRequest = (formData) => API.post('/auth/changepswd/re
 export const forgotPasswordRequest = (formData) => API.post('auth/forgotpswd/request',formData);
 export const changePassword = (formData,token) => API.post(`/auth/changepassword/?token=${token}`,formData);
 // export const forgotPassword = () => API.get('/auth/forgotpassword');
+export const emailVerificationRequest = (formData) => API.post('/auth/verifyEmail',formData);
+export const emailVerification = (token) => API.get(`/auth/verification/?token=${token}`);

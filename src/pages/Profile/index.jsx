@@ -35,7 +35,9 @@ const Profile = () => {
   const handleDelete = () => {
     dispatch(deleteAccount(id,history));
   }
-  
+  const handleEmailVerify = () => {
+    history.push("/auth/emailverification");
+  }
   
   const stats = JSON.parse(localStorage.getItem('stats'));
 
@@ -66,10 +68,25 @@ const Profile = () => {
           <Grid item xs={12} sm={12} md={6}>
             <Typography variant='body1'>
               <li>
+                <b><i>Verify your Email :</i></b>
+              </li>
+            </Typography>
+          </Grid>
+
+          <Grid item xs={12} sm={12} md={6}>
+            <Button color='primary' variant='outlined' fullWidth onClick={handleEmailVerify}>
+              Verify my email ID
+            </Button>
+          </Grid>
+
+          <Grid item xs={12} sm={12} md={6}>
+            <Typography variant='body1'>
+              <li>
                 <b><i>All your data would be lost forever</i></b>
               </li>
             </Typography>
           </Grid>
+          
           <Grid item xs={12}  sm={12} md={6}>
             <Button color='secondary' variant='outlined' fullWidth onClick={handleClickOpen}>
               Delete My Account
