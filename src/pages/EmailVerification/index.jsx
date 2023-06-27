@@ -79,9 +79,9 @@ const EmailVerification = () => {
           <Typography variant='body1' className={classes.bodyData}>
             Please click "Confirm" and check your inbox.
           </Typography>
-          {/* <Typography variant='body1' className={classes.bodyData}>
+          <Typography variant='body1' className={classes.bodyData}>
             *You will be given a "verified" badge.
-          </Typography> */}
+          </Typography>
           <Button width="50%" variant="default" className={classes.submit} onClick={handleSkip}>
             Skip for now
           </Button>

@@ -26,7 +26,7 @@ import Loading from './utils/FlashUI'
 const App = () => {
   const [load,setLoad] = React.useState(true);
   useEffect(() => {
-    const timer = setTimeout(() => {setLoad(false)},4000);
+    const timer = setTimeout(() => {setLoad(false)},3600);
     return () => {
       clearInterval(timer);
     }  
@@ -51,7 +51,8 @@ const App = () => {
               <Route path="/tags/:name" exact component = {Tags} ></Route>
               <Route path="/auth/changepassword" exact component ={ChangePassword}></Route>
               <Route path="/auth/forgotpassword" exact component={ForgotPassword}></Route>
-              <Route path="/auth/emailverification" exact component={() => (user ? <EmailVerification /> : <Redirect to="/posts" />)}></Route>
+              {/* <Route path="/auth/emailverification" exact component={() => (user ? <EmailVerification /> : <Redirect to="/posts" />)}></Route> */}
+              <Route path="/auth/emailverification" exact component={EmailVerification}></Route>
               <Route path="/auth/verification" exact component={() => (user ? <Verification /> : <Redirect to="/posts" />)} ></Route>
               <Route path="*" component={() =><Redirect to="/posts" />} ></Route>
             </Switch>

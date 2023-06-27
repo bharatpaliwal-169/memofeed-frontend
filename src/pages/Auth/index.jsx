@@ -67,10 +67,6 @@ const Auth = () =>{
     <>
       <Container component="main" maxwidth="xs">
         <Paper className={classes.paper} elevation={3}>
-          
-          {/* <Avatar className={classes.avatar} >
-            <LockOutlined />
-          </Avatar> */}
 
           <img src={authLogo} alt="Authentication" className={classes.media} />
 

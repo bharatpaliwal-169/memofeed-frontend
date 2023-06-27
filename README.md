@@ -38,26 +38,3 @@ Code splitting allows you to strategically omit certain dependencies from bundle
 https://stackoverflow.com/questions/72497522/after-uploading-image-in-cloudinary-through-react-js-unable-to-get-response
 
 
-Features :
-1) verified badge / email verification
-2) Google Signup
-3) multiple images upload / carosuel
-4) Add limits to no of tags, length of content in message.
-5) Data re-entries as API content length is now reduced significantly.
-6) Admin portal and Mod portal. {MICROSERVICE} 
-  a) Admin could edit and delete any posts and content.
-  b) User Management. (No of online and offline)
-  c) Mock users (Enhanced testing)
-  d) MODs : can only delete some content (if required)
-  e) User : blocking, verification, online activity, more data colletivity.
-7) Can think of max possible optimization and enhanced web security.
-8) Rate Limiters needed to be implemented.
-
-Brand Color : #09779A
-
-
-Done : 
-
-1) useEffects : added loggers.
-2) improved login card and auth page.
-3) 

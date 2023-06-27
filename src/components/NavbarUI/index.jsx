@@ -70,6 +70,10 @@ const NavbarUI = () => {
 
               {user ? (
                 <div className={classes.profile}>
+                  <Typography variant='body1' component="div" style={{fontSize:'0.5rem',padding:'0.5rem'}}>
+                    {(user?.result?.verified ===true || user?.verified === true ) ? <Chip label="Verified &#x2714;" color="primary" /> :null}
+                  </Typography>
+                  
                   <Avatar className={classes.purple} alt={user?.result?.name} src = {user?.result?.imageUrl}>
                     {user?.result?.name?.charAt(0)}
                   </Avatar>
@@ -80,11 +84,8 @@ const NavbarUI = () => {
                     </Typography>
                   </Tooltip>
 
-                  <Typography variant='body1' component="div" style={{fontSize:'0.5rem',padding:'0.5rem'}}>
-                    {user?.result?.verified ===true ? <Chip label="Verified &#x2714;" color="primary" /> :null}
-                  </Typography>
                   
-                  <Button className={classes.logout} fullWidth variant="contained" color="secondary" onClick={logout}>
+                  <Button className={classes.logout} variant="contained" color="secondary" onClick={logout}>
                     Logout
                   </Button>
                 </div>

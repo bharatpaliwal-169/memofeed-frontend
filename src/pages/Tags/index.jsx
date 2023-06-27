@@ -1,15 +1,20 @@
+//react
 import React, { useEffect } from 'react';
 import { useParams,Link } from 'react-router-dom';
 
+//redux
 import { useDispatch, useSelector } from 'react-redux';
 import { getPostsBySearch } from '../../redux/actions/post';
 
+//components
 import Post from '../../components/Posts/Post';
 import Loading from '../../components/Loading'
 
+//css
 import { Paper,Typography, Grid, Button } from '@material-ui/core';
 import useStyle from './styles';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+
 
 const Tags = () => {
   const { name } = useParams();

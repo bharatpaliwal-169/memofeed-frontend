@@ -120,4 +120,5 @@ export const emailverification = (token) => async(dispatch) => {
     dispatch({type:EMAIL_VERIFICATION_FAILURE,SNACK_TYPE:"ERROR"});
     console.error("Error in verification " + error.message);
   }
+  window.location.reload();
 }

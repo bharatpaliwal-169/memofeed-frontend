@@ -1,6 +1,6 @@
+//react
 import React,{useEffect, useState} from 'react'
 import {useHistory} from 'react-router-dom'
-
 //redux
 import {useDispatch,useSelector} from 'react-redux'
 import { changePasswordRequest } from '../../redux/actions/auth';
@@ -9,7 +9,7 @@ import { Grid,Typography,Paper,Card,CardContent,Button,Divider,Tooltip
 ,Dialog,DialogActions,DialogContent,DialogContentText,DialogTitle
 } from '@material-ui/core'; 
 import useStyle from './styles';
-
+//components
 import Notification from '../../components/Notification';
 
 const Details = ({stats}) => {

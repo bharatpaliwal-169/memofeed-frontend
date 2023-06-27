@@ -42,6 +42,7 @@ export default makeStyles((theme) => ({
     "&:hover": {
       color: "#0C64EE",
     },
+    marginRight:'0.5rem'
   },
   link: {
     textDecoration: "none",
@@ -72,6 +73,6 @@ export default makeStyles((theme) => ({
     justifyContent: "center",
   },
   logout:{
-    marginTop:'0.25rem'
+    marginTop:'0.25rem',
   }
 }));

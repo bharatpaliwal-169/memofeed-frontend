@@ -8,14 +8,12 @@ import { getPosts,getPostsBySearch,getStatsForUser } from '../../redux/actions/p
 
 //css
 import { Container,Button,Grow,Grid,Paper, AppBar,TextField,
-  // useMediaQuery,useTheme
 } from '@material-ui/core';
 import useStyles from './styles'
 import ChipInput from 'material-ui-chip-input';
 
 //components
-// import Posts from '../../components/Posts'
-// import Form from '../../components/Forms'
+
 import Pagination from '../../components/PaginationUI'
 import Loading from '../../components/Loading'
 const Posts = React.lazy(()=> import('../../components/Posts'));
@@ -38,9 +36,6 @@ const Home= ()=> {
   const history = useHistory();
   const page = query.get('page') || 1;
   const searchQuery = query.get('searchQuery');
-  // const theme = useTheme();
-  // const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  // console.log(query.get('page'));
 
 
   const handleKeyPress = (e) =>{

@@ -33,6 +33,7 @@ const Verified = () => {
   }
   
   const setNewData = () => {
+    user.verified = true;
     const newUser = {...user,verified:true}
     localStorage.setItem('profile',JSON.stringify(newUser));
   }

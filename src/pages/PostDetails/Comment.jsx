@@ -1,12 +1,12 @@
 // react
 import React,{useState,useRef} from 'react'
-import {Link} from 'react-router-dom'
+// import {Link} from 'react-router-dom'
 import {useDispatch} from 'react-redux'
 import {commentPost} from '../../redux/actions/post'
 
 
 //css
-import {Typography,TextField,Button,Paper} from '@material-ui/core'
+import {Typography,TextField,Button} from '@material-ui/core'
 import useStyles from './styles'
 
 //components
@@ -69,16 +69,6 @@ const  CommentSection = ({post}) => {
             </Button>
           </div>
         ) : (
-          // <Paper elevation={6} style={{padding: '1.5rem'}}>
-          //   <Typography variant="h5" align="left" >
-          //     Hi there!  
-          //     <Typography component={Link} to="/auth" variant="h5" color="primary" 
-          //       style={{marginLeft:'0.5rem',marginRight:'0.5rem'}}>
-          //       check in
-          //     </Typography> 
-          //     and you can like,comment and make new posts.
-          //   </Typography>
-          // </Paper>
           <React.Suspense>
               <Promp msg=", You can make comment on this post."/>
           </React.Suspense>
