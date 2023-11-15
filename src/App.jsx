@@ -13,7 +13,7 @@ import Navbar from './components/NavbarUI'
 import Footer from './components/Footer'
 import BTP from './utils/BTP'
 import Loading from './utils/FlashUI'
-
+import Test from './utils/Test'
 //__init__
 const App = () => {
   const [load,setLoad] = React.useState(true);
@@ -41,6 +41,7 @@ const App = () => {
               <Route path="/auth" exact component={() => (!user ? <Auth /> : <Redirect to="/posts" />)}></Route>
               <Route path="/profile" exact component = {Profile} ></Route>
               <Route path="/tags/:name" exact component = {Tags} ></Route>
+              <Route path="/test" exact component = {Test} ></Route>
               <Route path="*" component={() =><Redirect to="/posts" />} ></Route>
             </Switch>
           <React.Suspense fallback={<div> ...... </div>}>
