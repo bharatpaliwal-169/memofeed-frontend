@@ -38,3 +38,4 @@ Code splitting allows you to strategically omit certain dependencies from bundle
 https://stackoverflow.com/questions/72497522/after-uploading-image-in-cloudinary-through-react-js-unable-to-get-response
 
 
+V2 is LIVE
