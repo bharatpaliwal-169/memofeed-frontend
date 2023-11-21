@@ -35,10 +35,14 @@ export default makeStyles((theme) => ({
   userName: {
     display: 'flex',
     alignItems: 'center',
-    fontWeight : 'bold',
+    fontWeight : '700',
     textTransform : 'capitalize',
     color : '#0C64AC',
     textDecoration : 'none',
+    "&:hover": {
+      color: "#0C64EE",
+    },
+    marginRight:'0.5rem'
   },
   link: {
     textDecoration: "none",
@@ -68,4 +72,7 @@ export default makeStyles((theme) => ({
     alignItems: "center",
     justifyContent: "center",
   },
+  logout:{
+    marginTop:'0.25rem',
+  }
 }));

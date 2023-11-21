@@ -77,7 +77,7 @@ export default makeStyles(() => ({
     margin: '20px',
   },
   title: {
-    padding: '0 16px',
+    padding: '1rem',
     textTransform: 'capitalize',
     color : '#09779A',
     fontWeight : '600',

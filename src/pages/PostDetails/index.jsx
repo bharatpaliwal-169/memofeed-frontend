@@ -19,41 +19,50 @@ import CreateTwoToneIcon from '@material-ui/icons/CreateTwoTone';
 
 //component
 import Loading from '../../components/Loading/Page'
-
-// import CommentSection from './Comment';
 const CommentSection = React.lazy(()=> import('./Comment'));
 
 const PostDetails = () => {
-
+  // get data from redux state.
   const { post,posts,isLoading } = useSelector((state)=> state.posts);
   const dispatch = useDispatch();
   const history = useHistory();
   const classes = useStyles();
+  // to use value from url params eg : http/ ... / {..} <- these are params
   const {id} = useParams();
 
 
+  //to get individual post
   useEffect(() => {
     dispatch(getPost(id))
   }, [id])
 
+  //search functionality
   useEffect(() => {
     if (post) {
       dispatch(getPostsBySearch({ search: 'none', tags: post?.tags.join(',') }));
     }
   }, [post]);
 
+
   if (!post) return null;
 
+  // tags page
   const handleChipClick = (tag) => {
     history.push(`/tags/${tag}`);
   }
+  
+  // details page
   const openPost = (_id) => history.push(`/posts/${_id}`);
+  
+  // recommedations
   const recommendedPosts = posts.filter(({ _id,likes }) => _id !== post._id && likes.length > 5);
 
+  //UI
   return (
     <>
       {isLoading ? <Loading /> : (
         <Paper className={classes.mainPaper} elevation={4}>
+          
           <Typography variant="h3" className={classes.title}>
             {post.title}
           </Typography>
@@ -71,6 +80,7 @@ const PostDetails = () => {
 
           <Grid container spacing={3} alignItems="flex-end" style={{marginTop:'2rem',marginBottom:'2rem'}}>
             <Grid item md={2}></Grid>
+            
             <Grid item xs={12} md={3}>
               <Card elevation={0} style={{alignItems:'center'}}>
                 <CardContent>
@@ -145,7 +155,7 @@ const PostDetails = () => {
           <Grid container spacing={4}>
             <Grid item md={1}></Grid>
             <Grid item xs={12} md={7}>
-              <React.Suspense fallback={<div>Loading Comments..... </div>}>
+              <React.Suspense fallback={<Loading />}>
                 <CommentSection post={post}></CommentSection>
               </React.Suspense>
             </Grid>
@@ -153,13 +163,13 @@ const PostDetails = () => {
 
           {!!recommendedPosts.length && (
             <>
-              <Typography variant="h4" style={{fontWeight: 'bold', color : '#09779A'}}>
+              <Typography variant="h4" style={{fontWeight: 'bold', color : '#09779A',marginTop:'2.5rem'}}>
                 You might also like:
               </Typography>
               <Divider style={{margin : '1rem'}} />
                 <Grid container spacing={3} alignItems="stretch">
                   {recommendedPosts.map(({ title, name, likes, message, _id}) => (
-                    <Grid item xs={12} sm={12} md={3}>
+                    <Grid item xs={12} sm={12} md={3} key={_id}>
                       <Card elevation={3} style={{margin:'1rem',borderRadius:'1rem',cursor: 'pointer',padding:'1rem' }} 
                       key={_id} onClick={() => openPost(_id)}>
                           

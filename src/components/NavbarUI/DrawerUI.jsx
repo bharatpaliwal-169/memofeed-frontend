@@ -1,3 +1,4 @@
+//react
 import React,{useState,useEffect} from 'react'
 import {Link,useHistory,useLocation} from 'react-router-dom';
 import decode from 'jwt-decode';
@@ -6,8 +7,8 @@ import decode from 'jwt-decode';
 import {useDispatch} from 'react-redux'
 import * as actionType from '../../redux/types/actionTypes'
 
-
-import { Divider,Drawer,IconButton,Avatar,Button,Typography,
+//css
+import { Divider,Drawer,IconButton,Avatar,Button,Typography,Chip,
   List,ListItem,ListItemText} from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import useStyles from "./styles"
@@ -26,6 +27,9 @@ const DrawerUI = () => {
     history.push('/auth');
     setUser(null);
   };
+  const handleProfile = () => {
+    history.push("/profile")
+  }
 
   useEffect(() => {
     const token = user?.token;
@@ -58,16 +62,33 @@ const DrawerUI = () => {
               <ListItem onClick={() => setOpenDrawer(false)}>
                 <ListItemText>
                   <Avatar className={classes.purple} alt={user.result.name} src = {user.result.imageUrl}>
-                    {user.result.name.charAt(0)}
+                    {user?.result?.name.charAt(0)}
                   </Avatar>
+
                   <Typography className={classes.userName} variant="h6">
-                    {user.result.name}
+                    {user?.result?.name}
+                  </Typography>
+
+                  <Typography variant='body1' component="div" style={{fontSize:'0.5rem',padding:'0.5rem'}}>
+                    {user?.result?.verified ===true ? <Chip label="Verified &#x2714;" color="primary" /> :null}
+                  </Typography>
+
+                </ListItemText>
+              </ListItem>
+              <Divider />
+              
+              <ListItem onClick={handleProfile}>
+                <ListItemText>
+                  <Typography variant="h6" style={{marginBottom:'0.25rem',marginTop:'0.25rem'}}>
+                    My Profile
                   </Typography>
                 </ListItemText>
               </ListItem>
-              <Divider/>
+
+              <Divider />
+
               <Button className={classes.logout} variant="contained" 
-              color="secondary" onClick={logout}>
+                color="secondary" onClick={logout}>
                 Logout
               </Button>
             </>

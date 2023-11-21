@@ -35,7 +35,9 @@ const Profile = () => {
   const handleDelete = () => {
     dispatch(deleteAccount(id,history));
   }
-  
+  const handleEmailVerify = () => {
+    history.push("/auth/emailverification");
+  }
   
   const stats = JSON.parse(localStorage.getItem('stats'));
 
@@ -59,10 +61,26 @@ const Profile = () => {
         <UserPosts posts={stats.myPosts} />
 
         <Divider style={{margin:'1rem'}} />
-        <Typography variant='h4' color="secondary" style={{marginTop: '3rem'}}>
-          <b>Delete Account</b>
+
+        <Typography variant='h4' color="primary" style={{marginTop: '3rem'}}>
+          <b> Account Actions </b>
         </Typography>
+        
         <Grid container spacing={4} style={{display:'flex',alignItems:'center',margin:'0.5rem'}}>
+          <Grid item xs={12} sm={12} md={6}>
+            <Typography variant='body1'>
+              <li>
+                <b><i>Verify your Email :</i></b>
+              </li>
+            </Typography>
+          </Grid>
+
+          <Grid item xs={12} sm={12} md={6}>
+            <Button color='primary' variant='outlined' fullWidth onClick={handleEmailVerify} disabled={(user.result.verified || user?.verified)? true:false} >
+              {(!user?.result?.verified) ? "Verify my email ID": "Your account is verified"}
+            </Button>
+          </Grid>
+
           <Grid item xs={12} sm={12} md={6}>
             <Typography variant='body1'>
               <li>
@@ -70,6 +88,7 @@ const Profile = () => {
               </li>
             </Typography>
           </Grid>
+          
           <Grid item xs={12}  sm={12} md={6}>
             <Button color='secondary' variant='outlined' fullWidth onClick={handleClickOpen}>
               Delete My Account

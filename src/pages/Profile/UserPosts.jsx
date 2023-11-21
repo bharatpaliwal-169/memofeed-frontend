@@ -1,8 +1,10 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom';
+
 import { Card, Grid, CardContent,CardMedia,ButtonBase, Typography } from '@material-ui/core'
 import moment from 'moment';
 import useStyle from './styles';
+
 const UserPosts = (props) => {
   const history = useHistory();
   const classes = useStyle();
