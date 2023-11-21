@@ -50,7 +50,7 @@ const NavbarUI = () => {
   }, [location])
 
   return (
-    <>
+    <header className='dBorder' >
       <AppBar className={classes.appBar} position="static" color="inherit">
         <CssBaseline />
         <Toolbar>
@@ -84,7 +84,7 @@ const NavbarUI = () => {
           )}
         </Toolbar>
       </AppBar>
-    </>
+    </header>
   )
 }
 

@@ -3,12 +3,15 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "proxy": ["https://memofeed-backend.onrender.com/","http://localhost:5000"],
+  "proxy": [
+    "https://memofeed-backend.onrender.com/",
+    "http://localhost:5000"
+  ],
   "dependencies": {
     "@material-ui/core": "^4.9.10",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.61",
-    "axios": "^0.26.1",
+    "axios": "^1.6.2",
     "dotenv": "^16.0.1",
     "jwt-decode": "^3.1.2",
     "material-ui-chip-input": "^1.1.0",
@@ -20,7 +23,7 @@
     "react-loading-skeleton": "^3.1.0",
     "react-redux": "^7.1.3",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^4.0.3",
+    "react-scripts": "^5.0.1",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "save": "^2.5.0",

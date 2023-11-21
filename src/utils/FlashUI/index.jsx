@@ -17,7 +17,7 @@ const FlashUI = () => {
   })
   return (
     <React.Fragment>
-      <Paper style={{textAlign: 'center',display: 'flex',flexDirection: 'column',background:'transparent',
+      <Paper className='dBorder' style={{textAlign: 'center',display: 'flex',flexDirection: 'column',background:'transparent',
       justifyContent: 'center',padding:'5rem',verticalAlign: 'middle',marginTop: '6rem'}}
       elevation={0}
       >

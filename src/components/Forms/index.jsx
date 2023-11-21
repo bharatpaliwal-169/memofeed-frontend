@@ -117,7 +117,7 @@ const Form = ({currentId,setCurrentId}) => {
                 <TextField name="title" variant="outlined" label="Title (keep it short)" fullWidth required
                 value={postData.title} onChange={(e) => setPostData({ ...postData, title: e.target.value })} />
                 
-                <TextField name="message" variant="outlined" label="your story(atleast 2 lines)" fullWidth multiline required rows={4} 
+                <TextField name="message" variant="outlined" label="your story(atleast 2 lines)" fullWidth multiline required minRows={4} 
                   value={postData.message} onChange={(e) => setPostData({ ...postData, message: e.target.value })} />
                 
                 <TextField name="tags" variant="outlined" label="Tags (coma separated)" fullWidth style={{textTransform : 'lowercase'}}
@@ -154,7 +154,7 @@ const Form = ({currentId,setCurrentId}) => {
               <TextField name="title" variant="outlined" label="Title (keep it short)" fullWidth required
               value={postData.title} onChange={(e) => setPostData({ ...postData, title: e.target.value })} />
               
-              <TextField name="message" variant="outlined" label="your story(atleast 2 lines)" fullWidth multiline required rows={4} 
+              <TextField name="message" variant="outlined" label="your story(atleast 2 lines)" fullWidth multiline required minRows={4} 
                 value={postData.message} onChange={(e) => setPostData({ ...postData, message: e.target.value })} />
               
               <TextField name="tags" variant="outlined" label="Tags (coma separated)" fullWidth 
