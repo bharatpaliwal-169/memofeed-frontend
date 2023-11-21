@@ -11,4 +11,11 @@ export default makeStyles((theme) => ({
   actionDiv: {
     textAlign: 'center',
   },
+  mainPaper: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    padding: '2rem',
+    borderRadius: '1rem',
+  },
 }));
