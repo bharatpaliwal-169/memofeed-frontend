@@ -28,7 +28,7 @@ const BTP = React.lazy(()=> import("./utils/BTP"));
 const App = () => {
   const [load,setLoad] = React.useState(true);
   useEffect(() => {
-    const timer = setTimeout(() => {setLoad(false)},3600);
+    const timer = setTimeout(() => setLoad(false),3600);
     return () => {
       clearInterval(timer);
     }  
