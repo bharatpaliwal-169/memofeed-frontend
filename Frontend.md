@@ -22,7 +22,7 @@ useEffect(() => {
 }, []);
 ```
 
-In react-router-dom v6 useHistory() is replaced by useHistory().
+In react-router-dom v6 useHistory() is replaced by useNavigate().
 
 ```
 import { useHistory } from 'react-router-dom';
@@ -31,3 +31,4 @@ navigate('/');
 ```
 
 React router dom migrated to v5 from v6. v6 have a lot of complexity and is not really going with the requirements of project.
+
