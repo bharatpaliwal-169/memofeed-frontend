@@ -52,7 +52,8 @@ const App = () => {
               <Route path="/posts" exact component={props => <Home {...props} />}></Route>
               <Route path="/posts/search" exact component = {props => <Home {...props} />} ></Route>
               <Route path="/posts/:id" exact component = {props => <PostDetail {...props} />}></Route>
-              <Route path="/auth" exact component={() => (!user ? (props=> <Auth {...props} />) : <Redirect to="/posts" />)}></Route>
+              {/* <Route path="/auth" exact component={() => (!user ? (props=> <Auth {...props} />) : <Redirect to="/posts" />)}></Route> */}
+              <Route path="/auth" exact component={(props) =>  !user ? <Auth {...props} /> : <Redirect to="/posts" {...props} />}></Route>
               <Route path="/profile" exact component = {props => <Profile {...props} />} ></Route>
               <Route path="/tags/:name" exact component = {props => <Tags {...props}/>} ></Route>
               <Route path="/auth/changepassword" exact component ={props=> <ChangePassword {...props} />}></Route>

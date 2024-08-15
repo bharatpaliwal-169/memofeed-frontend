@@ -85,7 +85,7 @@ const Auth = () =>{
               <Input name = "email" label="email Address" type="email" handleChange={handleChange} required/>
               
               <TextField name = "password" placeholder='password' variant="outlined" type={showPassword ? "text" : "password"} 
-                onChange={handleChange} fullWidth required  style={{padding:'0.5rem'}}
+                onChange={handleChange} fullWidth required  style={{padding:'0.5rem'}} autoComplete='false'
                 InputProps={{ // <-- This is where the toggle button is added.
                   endAdornment: (
                     <InputAdornment position="end">
