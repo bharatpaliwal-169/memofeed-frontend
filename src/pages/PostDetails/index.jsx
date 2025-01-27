@@ -8,17 +8,19 @@ import {useDispatch,useSelector} from 'react-redux';
 import {getPost,getPostsBySearch} from '../../redux/actions/post'
 
 //css
-import {Card,Paper,Typography,Divider,Grid, CardContent,Tooltip} from '@mui/material'
+import {Card,Paper,Typography,Divider,Grid2, CardContent,Tooltip} from '@mui/material'
 import moment from 'moment';
-import useStyles from './styles'
 import Chip from '@mui/material/Chip';
-import ThumbUpAltSharpIcon from '@material-ui/icons/ThumbUpAltSharp';
-import PeopleAltSharpIcon from '@material-ui/icons/PeopleAltSharp';
-import CreateTwoToneIcon from '@material-ui/icons/CreateTwoTone';
+
+import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
+import PeopleIcon from '@mui/icons-material/People';
+import CreateIcon from '@mui/icons-material/Create';
+import useStyles from './styles'
 
 
 //component
 import Loading from '../../components/Loading/Page'
+import { GlobalConstants } from '../../constants';
 const CommentSection = React.lazy(()=> import('./Comment'));
 
 const PostDetails = () => {
@@ -48,11 +50,11 @@ const PostDetails = () => {
 
   // tags page
   const handleChipClick = (tag) => {
-    history.push(`/tags/${tag}`);
+    history(`/tags/${tag}`);
   }
   
   // details page
-  const openPost = (_id) => history.push(`/posts/${_id}`);
+  const openPost = (_id) => history(`/posts/${_id}`);
   
   // recommedations
   const recommendedPosts = posts.filter(({ _id,likes }) => _id !== post._id && likes.length > 5);
@@ -78,15 +80,15 @@ const PostDetails = () => {
               )}
           </Typography>
 
-          <Grid container spacing={3} alignItems="flex-end" style={{marginTop:'2rem',marginBottom:'2rem'}}>
-            <Grid item md={2}></Grid>
+          <Grid2 container spacing={3} alignItems="flex-end" style={{marginTop:'2rem',marginBottom:'2rem'}}>
+            <Grid2 item md={2}></Grid2>
             
-            <Grid item xs={12} md={3}>
+            <Grid2 item xs={12} md={3}>
               <Card elevation={0} style={{alignItems:'center'}}>
                 <CardContent>
                   <Tooltip title="Author">
                     <Typography variant='h5'>
-                        <CreateTwoToneIcon size='md' className={classes.cardIcon} /> 
+                        <CreateIcon size='md' className={classes.cardIcon} /> 
                         <span style={{paddingLeft:'0.25rem'}}>
                           <i>
                             {post.name}
@@ -96,16 +98,16 @@ const PostDetails = () => {
                   </Tooltip>
                 </CardContent>
               </Card>
-            </Grid>
+            </Grid2>
             
             <Divider orientation="vertical" flexItem />
             
-            <Grid item xs={12} md={3}>
+            <Grid2 item xs={12} md={3}>
               <Card elevation={0} style={{alignItems:'center'}}>
                 <CardContent>
                   <Tooltip title='Likes'>
                     <Typography variant='h5'>
-                      <ThumbUpAltSharpIcon size='md'className={classes.cardIcon} /> 
+                      <ThumbUpAltIcon size='md'className={classes.cardIcon} /> 
                         <span style={{paddingLeft:'0.25rem'}}>
                             {post.likes.length}
                         </span>
@@ -113,16 +115,16 @@ const PostDetails = () => {
                   </Tooltip>
                 </CardContent>
               </Card>
-            </Grid>
+            </Grid2>
 
             <Divider orientation="vertical" flexItem />
             
-            <Grid item xs={12} md={3}>
+            <Grid2 item xs={12} md={3}>
               <Card elevation={0} style={{alignItems:'center'}}>
                 <CardContent>
                   <Tooltip title='views'>
                     <Typography variant='h5'>
-                      <PeopleAltSharpIcon size='md'className={classes.cardIcon} /> 
+                      <PeopleIcon size='md'className={classes.cardIcon} /> 
                         <span style={{paddingLeft:'0.25rem'}}>
                           {post.viewCount}
                         </span>
@@ -130,19 +132,19 @@ const PostDetails = () => {
                   </Tooltip>
                 </CardContent>
               </Card>
-            </Grid>
-          </Grid>
+            </Grid2>
+          </Grid2>
         
-          <Grid container spacing={3} alignItems="stretch">
-            <Grid item md={3}></Grid>
-            <Grid item xs={12} sm={12} md={6}>
+          <Grid2 container spacing={3} alignItems="stretch">
+            <Grid2 item md={3}></Grid2>
+            <Grid2 item xs={12} sm={12} md={6}>
               <img className={classes.media} src={post.selectedFile || 'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'} alt={post.title} />
-            </Grid>
-            <Grid item md={3}></Grid>
-          </Grid>
+            </Grid2>
+            <Grid2 item md={3}></Grid2>
+          </Grid2>
 
           <Typography variant="body2">
-            Created by: <span style={{color:'#488BBF',fontWeight:'bold'}}> {post.name} </span>
+            {GlobalConstants.creator} <span style={{color:'#488BBF',fontWeight:'bold'}}> {post.name} </span>
           </Typography>
           <Typography variant="subtitle1">{moment(post.createdAt).fromNow()}</Typography>
           
@@ -152,14 +154,14 @@ const PostDetails = () => {
 
           <Divider />
 
-          <Grid container spacing={4}>
-            <Grid item md={1}></Grid>
-            <Grid item xs={12} md={7}>
+          <Grid2 container spacing={4}>
+            <Grid2 item md={1}></Grid2>
+            <Grid2 item xs={12} md={7}>
               <React.Suspense fallback={<Loading />}>
                 <CommentSection post={post}></CommentSection>
               </React.Suspense>
-            </Grid>
-          </Grid>
+            </Grid2>
+          </Grid2>
 
           {!!recommendedPosts.length && (
             <>
@@ -167,9 +169,9 @@ const PostDetails = () => {
                 You might also like:
               </Typography>
               <Divider style={{margin : '1rem'}} />
-                <Grid container spacing={3} alignItems="stretch">
+                <Grid2 container spacing={3} alignItems="stretch">
                   {recommendedPosts.map(({ title, name, likes, message, _id}) => (
-                    <Grid item xs={12} sm={12} md={3} key={_id}>
+                    <Grid2 item xs={12} sm={12} md={3} key={_id}>
                       <Card elevation={3} style={{margin:'1rem',borderRadius:'1rem',cursor: 'pointer',padding:'1rem' }} 
                       key={_id} onClick={() => openPost(_id)}>
                           
@@ -192,16 +194,16 @@ const PostDetails = () => {
                             Likes: {likes.length} 
                           </Typography>
                       </Card>
-                    </Grid>
+                    </Grid2>
                     
                   ))}
-                </Grid>
+                </Grid2>
             </>
           )}
 
 
           <Typography variant="body2">
-            Created by: <span style={{color:'#488BBF',fontWeight:'bold'}}> {post.name} </span>
+            {GlobalConstants.creator} <span style={{color:'#488BBF',fontWeight:'bold'}}> {post.name} </span>
           </Typography>
           <Typography variant="subtitle1">{moment(post.createdAt).fromNow()}</Typography>
         </Paper>

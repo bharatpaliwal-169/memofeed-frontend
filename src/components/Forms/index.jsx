@@ -13,8 +13,8 @@ import {createPost,updatePost} from '../../redux/actions/post'
 import {Paper,Typography,TextField,Button,useMediaQuery,useTheme,
   Fab, Dialog,DialogContent,Divider,DialogTitle,CircularProgress
 } from '@mui/material'
-import {Add,CloudUploadIcon} from '@mui/icons-material';
-// import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import {Add} from '@mui/icons-material';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import useStyles from './styles'
 import Promp from '../LoginPromp'
 

@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getPosts } from '../../redux/actions/post';
 
 //css
-import { Pagination, PaginationItem } from '@material-ui/lab';
+import { Pagination, PaginationItem } from '@mui/material';
 import useStyles from './styles';
 
 

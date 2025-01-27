@@ -8,7 +8,7 @@ export const login = (formData, history) =>async(dispatch) => {
   try {
     const {data} = await api.login(formData);
     dispatch({type: AUTH,data})
-    history.push("/");
+    history("/");
   } catch (error) {
     alert(error.message);
     window.location.reload();
@@ -20,7 +20,7 @@ export const signup = (formData, history) =>async(dispatch) => {
   try {
     const {data} = await api.signup(formData);
     dispatch({type: AUTH,data})
-    history.push("/auth/emailverification");
+    history("/auth/emailverification");
   } catch (error) {
     alert(error.message);
     window.location.reload();
@@ -33,7 +33,7 @@ export const deleteAccount = (id,history) => async(dispatch) => {
     await api.deleteAccount(id);
     localStorage.removeItem('profile');
     localStorage.removeItem('stats');
-    history.push("/");
+    history("/");
     window.location.reload();
   } catch (error) {
     console.log(error);
@@ -64,7 +64,7 @@ export const changePassword = (formData,history) => async(dispatch) => {
     if(response.status === 202){
       dispatch({type : CHANGE_PASSWORD_SUCCESS,SNACK_TYPE:"SUCCESS"});
       dispatch({type : LOGOUT});
-      history.push('/auth');
+      history('/auth');
     }
   } catch (error) {
     dispatch({type: CHANGE_PASSWORD_FAILURE,SNACK_TYPE:"ERROR"})

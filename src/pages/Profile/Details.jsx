@@ -5,7 +5,7 @@ import {useNavigate} from 'react-router-dom'
 import {useDispatch,useSelector} from 'react-redux'
 import { changePasswordRequest } from '../../redux/actions/auth';
 //css
-import { Grid,Typography,Paper,Card,CardContent,Button,Divider,Tooltip
+import { Grid2,Typography,Paper,Card,CardContent,Button,Divider,Tooltip
 ,Dialog,DialogActions,DialogContent,DialogContentText,DialogTitle
 } from '@mui/material'; 
 import useStyle from './styles';
@@ -71,8 +71,8 @@ const Details = ({stats}) => {
   //UI
   return (
     <>
-      <Grid container alignItems="stretch" spacing={3} style={{display:'flex',alignItems:'center'}}>
-        <Grid item xs={12} sm={12} md={6}>
+      <Grid2 container alignItems="stretch" spacing={3} style={{display:'flex',alignItems:'center'}}>
+        <Grid2 item xs={12} sm={12} md={6}>
           <Card className={classes.profileCard} elevation={5}>
             <CardContent>
               <Typography variant='h5'>
@@ -126,9 +126,9 @@ const Details = ({stats}) => {
               </Dialog>
             </CardContent>
           </Card>
-        </Grid>
+        </Grid2>
 
-        <Grid item xs={12} sm={12} md={6}>
+        <Grid2 item xs={12} sm={12} md={6}>
           <Card className={classes.profileCard} elevation={5}>
             <CardContent>
               <Typography variant='h5'>
@@ -151,8 +151,8 @@ const Details = ({stats}) => {
               </Typography>
             </CardContent>
           </Card>
-        </Grid>
-      </Grid>
+        </Grid2>
+      </Grid2>
     </>
   )
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import Snackbar from '@mui/material/Snackbar';
-import MuiAlert from '@material-ui/lab/Alert';
+import Alert from '@mui/material/Alert';
 
 const Notification = ({snackType,snackMessage,snackOpen}) => {
   const [open,setOpen] = React.useState(snackOpen)

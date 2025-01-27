@@ -1,11 +1,11 @@
 import React from 'react'
-import {TextField,Grid} from "@mui/material"
+import {TextField,Grid2} from "@mui/material"
 
 function Input({half,name,handleChange,label,type,autoFocus}) {
 
   return (
     <>
-      <Grid item xs={12} sm={half ? 6 : 12}>
+      <Grid2 item xs={12} sm={half ? 6 : 12}>
         <TextField 
           name={name}
           onChange={handleChange}
@@ -16,7 +16,7 @@ function Input({half,name,handleChange,label,type,autoFocus}) {
           label={label}
           type={type}
         />
-      </Grid>
+      </Grid2>
     </>
   )
 }

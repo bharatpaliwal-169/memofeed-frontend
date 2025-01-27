@@ -10,7 +10,7 @@ const LoadingUI = () => {
     <>
       <Grid2 className={classes.mainContainer} container alignItems="stretch" spacing={3}>
         {Array(6).fill().map((item,index) => (
-          <Grid2 key={index} item xs={12} sm={12} md={6}>
+          <Grid2 key={index} xs={12} sm={12} md={6}>
             <Card>
               <Typography variant="h1" component="h1">
                 <Skeleton />

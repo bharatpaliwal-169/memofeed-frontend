@@ -21,7 +21,7 @@ const ForgotPassword = React.lazy(()=>import("./pages/ForgotPassword"));
 //components
 const Navbar = React.lazy(()=> import("./components/NavbarUI"));
 const Footer = React.lazy(()=> import("./components/Footer"));
-const BTP = React.lazy(()=> import("./components/BTP"));
+// const BTP = React.lazy(()=> import("./components/BTP"));
 
 //__init__
 const App = () => {
@@ -50,21 +50,21 @@ const App = () => {
           <React.Suspense fallback={<Loading />}>
 
             <Routes>
-              <Route path="/" exact component={() => <Navigate to="/posts" />} ></Route>
-              <Route path="/posts" exact component={props => <Home {...props} />}></Route>
-              <Route path="/posts/search" exact component = {props => <Home {...props} />} ></Route>
-              <Route path="/posts/:id" exact component = {props => <PostDetail {...props} />}></Route>
-              <Route path="/auth" exact component={(props) =>  !user ? <Auth {...props} /> : <Navigate to="/posts" {...props} />}></Route>
-              <Route path="/profile" exact component = {props => <Profile {...props} />} ></Route>
-              <Route path="/tags/:name" exact component = {props => <Tags {...props}/>} ></Route>
-              <Route path="/auth/changepassword" exact component ={props=> <ChangePassword {...props} />}></Route>
-              <Route path="/auth/forgotpassword" exact component={props=> <ForgotPassword {...props} />}></Route>
-              <Route path="/auth/emailverification" exact component={props=> <EmailVerification {...props}/>}></Route>
-              <Route path="/auth/verification" exact component={() => (user ? (props=> <Verification {...props} />) : <Navigate to="/posts" />)} ></Route>
-              <Route path="*" component={() =><Navigate to="/posts" />} ></Route>
+              <Route path="/"  element={<Navigate to="/posts" />} ></Route>
+              <Route path="/posts"  element={<Home />}></Route>
+              <Route path="/posts/search"  element = {<Home  />} ></Route>
+              <Route path="/posts/:id"  element = {<PostDetail  />}></Route>
+              <Route path="/auth"  element={!user ? <Auth  /> : <Navigate to="/posts"  />}></Route>
+              <Route path="/profile"  element = { <Profile  />} ></Route>
+              <Route path="/tags/:name"  element = { <Tags />} ></Route>
+              <Route path="/auth/changepassword"  element ={ <ChangePassword  />}></Route>
+              <Route path="/auth/forgotpassword"  element={ <ForgotPassword  />}></Route>
+              <Route path="/auth/emailverification"  element={ <EmailVerification />}></Route>
+              <Route path="/auth/verification"  element={(user ? ( <Verification  />) : <Navigate to="/posts" />)} ></Route>
+              <Route path="*" element={<Navigate to="/posts" />} ></Route>
             </Routes>
 
-            <BTP />
+            {/* <BTP /> */}
             <Footer />
           </React.Suspense>  
         </Container>

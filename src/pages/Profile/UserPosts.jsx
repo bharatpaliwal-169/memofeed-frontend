@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 
-import { Card, Grid, CardContent,CardMedia,ButtonBase, Typography } from '@mui/material'
+import { Card, Grid2, CardContent,CardMedia,ButtonBase, Typography } from '@mui/material'
 import moment from 'moment';
 import useStyle from './styles';
 
@@ -10,14 +10,14 @@ const UserPosts = (props) => {
   const classes = useStyle();
 
   const openPost = (id) => {
-    history.push(`/posts/${id}`);
+    history(`/posts/${id}`);
     console.log(id);
   }
   return (
     <>
-      <Grid container alignItems="stretch" spacing={3}>
+      <Grid2 container alignItems="stretch" spacing={3}>
         {props.posts.map( (post,index) => (
-          <Grid item key={index} xs={12} sm={12} md={3}>
+          <Grid2 item key={index} xs={12} sm={12} md={3}>
                 <Card className={classes.card} raised elevation={6}>
                   <ButtonBase className={classes.cardAction} onClick={(e) => openPost(post._id)}>
                     <CardMedia className={classes.media} 
@@ -45,10 +45,10 @@ const UserPosts = (props) => {
                     </CardContent>
                   </ButtonBase>      
                 </Card>
-          </Grid>
+          </Grid2>
         ))}
 
-      </Grid>
+      </Grid2>
     </>
   )
 }

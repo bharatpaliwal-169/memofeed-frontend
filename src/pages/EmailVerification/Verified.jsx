@@ -9,8 +9,8 @@ import { emailverification } from '../../redux/actions/auth';
 import {Paper,Typography,Button} from '@mui/material'
 import useStyles from './styles'
 
-import ErrorIcon from '@material-ui/icons/Error';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import ErrorIcon from '@mui/icons-material/Error';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 // import Notification from '../../components/Notification';
 
@@ -29,7 +29,7 @@ const Verified = () => {
   }
   
   const handleExplore = () =>{
-    history.push("/")
+    history("/")
   }
   
   const setNewData = () => {

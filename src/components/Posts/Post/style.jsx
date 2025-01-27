@@ -33,7 +33,7 @@ export default makeStyles({
     right: '20px',
     color: 'white',
   },
-  grid: {
+  Grid2: {
     display: 'flex',
   },
   details: {

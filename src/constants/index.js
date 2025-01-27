@@ -10,4 +10,10 @@ export const GlobalConstants = {
   login : "Login/SignUp",
   defaultUser : "Hey! User",
   profile : "Profile",
+  search : "Search",
+  defaultImage : 'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png',
+  cancel : "Cancel",
+  delete : "Delete",
+  deleteAlertMessage : "You cannot undo this action; Kindly be very sure about it.",
+  creator : "Author :"
 }

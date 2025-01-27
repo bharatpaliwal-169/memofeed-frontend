@@ -14,6 +14,7 @@ import useStyles from './styles'
 //components
 import Pagination from '../../components/PaginationUI'
 import Loading from '../../components/Loading'
+import { GlobalConstants } from '../../constants';
 
 const Posts = React.lazy(()=> import('../../components/Posts'));
 const Form = React.lazy(() => import('../../components/Forms'));
@@ -24,7 +25,9 @@ function useQuery(){
 }
 
 const Home= ()=> {
+
   //how data management will look like without REDUX.
+  
   const [search,setSearch] = useState('');
   const [currentId,setCurrentId] = useState(0);
   const [tags,setTags] = useState([]);
@@ -43,14 +46,14 @@ const Home= ()=> {
     }
   }
 
-  const handleAdd = (tag) =>{
-    tag.toLowerCase();
-    setTags([...tags,tag])
-  }
+  // const handleAdd = (tag) =>{
+  //   tag.toLowerCase();
+  //   setTags([...tags,tag])
+  // }
 
-  const handleDelete = (tagToDelete) =>{
-    setTags(tags.filter((tag) => tag !== tagToDelete));
-  }
+  // const handleDelete = (tagToDelete) =>{
+  //   setTags(tags.filter((tag) => tag !== tagToDelete));
+  // }
 
   const searchPost = () => {
     if(!search && !tags){
@@ -63,6 +66,7 @@ const Home= ()=> {
   }
 
   // useEffects
+  
   // GEt all posts 
   useEffect(() => {
     console.log("Home.js : getAllPosts is called.")
@@ -83,7 +87,7 @@ const Home= ()=> {
       <Grow in>
         <Container maxwidth="xl">
           <Grid2 container justifyContent="space-between" alignItems="stretch" spacing={1} 
-          className={classes.gridContainer}>
+            className={classes.gridContainer}>
             <Grid2 item xs={12} sm={6} md={7}>
               <React.Suspense fallback={<Loading />} >
                 <Posts setCurrentId={setCurrentId} />
@@ -112,11 +116,15 @@ const Home= ()=> {
                 /> */}
 
                 <Button onClick={searchPost} className={classes.searchButton} variant="contained" 
-                color="primary">Search</Button>
+                  color="primary">
+                    {GlobalConstants.search}
+                </Button>
               </AppBar>
+              
               <React.Suspense fallback={<Loading/>}>
                 <Form currentId={currentId} setCurrentId={setCurrentId} />
               </React.Suspense>
+            
             </Grid2>
           </Grid2>
 

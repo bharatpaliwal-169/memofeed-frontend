@@ -58,7 +58,7 @@ Import useNavigate instead of useNavigate:
 
 ```import { useNavigate } from 'react-router-dom';```
 
-Update your code: Replace ```history.push()``` or ```history.replace()``` with ```navigate()``` in the new API.
+Update your code: Replace ```history()``` or ```history.replace()``` with ```navigate()``` in the new API.
 
 ### Key Changes for Redux:
 createStore → configureStore:

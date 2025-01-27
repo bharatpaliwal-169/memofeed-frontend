@@ -11,9 +11,10 @@ import Post from '../../components/Posts/Post';
 import Loading from '../../components/Loading'
 
 //css
-import { Paper,Typography, Grid, Button } from '@mui/material';
+import { Paper,Typography, Grid2, Button } from '@mui/material';
 import useStyle from './styles';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 
 const Tags = () => {
@@ -52,13 +53,13 @@ const Tags = () => {
         </Typography>
         
         {isLoading ? <Loading /> : (
-          <Grid container alignItems="stretch" spacing={3}>
+          <Grid2 container alignItems="stretch" spacing={3}>
           {posts?.map((post) => (
-            <Grid key={post._id} item xs={12} sm={12} md={3}>
+            <Grid2 key={post._id} item xs={12} sm={12} md={3}>
               <Post post={post} />
-            </Grid>
+            </Grid2>
           ))}
-        </Grid>
+        </Grid2>
         )}
       </Paper>
     </>

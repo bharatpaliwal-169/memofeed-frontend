@@ -7,7 +7,7 @@ import {useDispatch} from 'react-redux'
 import {signup , login} from '../../redux/actions/auth'
 
 //css
-import {Container,Paper,Grid,TextField,Typography,
+import {Container,Paper,Grid2,TextField,Typography,
   CircularProgress,Button,InputAdornment, IconButton} from "@mui/material"
 import {Visibility,VisibilityOff} from '@mui/icons-material';
 import useStyles from './style'
@@ -60,7 +60,7 @@ const Auth = () =>{
   };
 
   const handleForgotPassword = () => {
-    history.push("/auth/forgotpassword");
+    history("/auth/forgotpassword");
   }
 
   return (
@@ -75,7 +75,7 @@ const Auth = () =>{
           </Typography>
 
           <form onSubmit={handleSubmit} className={classes.form}>
-            <Grid container spacing={2}>
+            <Grid2 container spacing={2}>
               {isSignup && (
                 <>
                   <Input name = "firstName" label="firstName" handleChange={handleChange} autoFocus half required/>
@@ -109,14 +109,14 @@ const Auth = () =>{
               
               {isSignup ? null :
                 (
-                  <Grid item>
+                  <Grid2 item>
                     <Button variant='outlined' color='primary' onClick={handleForgotPassword}>
                       Forgot Password ?
                     </Button>
-                  </Grid>
+                  </Grid2>
                 )
               }
-            </Grid>
+            </Grid2>
             
             <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
               {isSignup ? "Sign Up " : "Login "}
@@ -125,14 +125,14 @@ const Auth = () =>{
               ) : null}
             </Button>
 
-            <Grid container justifyContent="flex-start">
-              <Grid item>
+            <Grid2 container justifyContent="flex-start">
+              <Grid2 item>
                 <Button onClick={switchMode}>
                   { isSignup ? 'Already have an account? Login in' : "Don't have an account? Sign Up" }
                 </Button>
-              </Grid>
+              </Grid2>
               
-            </Grid>
+            </Grid2>
           </form>
         </Paper>
       </Container>

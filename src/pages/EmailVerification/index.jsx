@@ -8,8 +8,9 @@ import { emailVerificationRequest } from '../../redux/actions/auth';
 //css
 import {Paper,Typography,Button} from '@mui/material'
 import useStyles from './styles'
-import ErrorIcon from '@material-ui/icons/Error';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+
+import ErrorIcon from '@mui/icons-material/Error';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 import Notification from '../../components/Notification';
 
@@ -31,7 +32,7 @@ const EmailVerification = () => {
     console.log("email is sent");
   }
   const handleSkip = () => {
-    history.push("/posts");
+    history("/posts");
   }
 
   //snackbar

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTheme, useMediaQuery } from '@mui/material';
 import styled from 'styled-components';
+const show = false
 
 const ButtonContainer = styled.span`
   position: fixed;
@@ -26,7 +27,7 @@ const ButtonContainer = styled.span`
 const BTP = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-  const [showButton, setShowButton] = useState();
+  const [showButton, setShowButton] = useState(false);
 
   useEffect(() => {
     if (!isMobile) {

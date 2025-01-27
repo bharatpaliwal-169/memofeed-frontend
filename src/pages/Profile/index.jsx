@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { deleteAccount } from '../../redux/actions/auth';
 //css
-import {Paper, Typography,Grid,Button,
+import {Paper, Typography,Grid2,Button,
   Dialog,DialogActions,DialogContent,DialogTitle,DialogContentText, Divider
 } from '@mui/material';
 import useStyle from './styles';
@@ -36,13 +36,13 @@ const Profile = () => {
     dispatch(deleteAccount(id,history));
   }
   const handleEmailVerify = () => {
-    history.push("/auth/emailverification");
+    history("/auth/emailverification");
   }
   
   const stats = JSON.parse(localStorage.getItem('stats'));
 
   if(!stats){
-    history.push("/");
+    history("/");
   }
   
   return (
@@ -66,30 +66,30 @@ const Profile = () => {
           <b> Account Actions </b>
         </Typography>
         
-        <Grid container spacing={4} style={{display:'flex',alignItems:'center',margin:'0.5rem'}}>
-          <Grid item xs={12} sm={12} md={6}>
+        <Grid2 container spacing={4} style={{display:'flex',alignItems:'center',margin:'0.5rem'}}>
+          <Grid2 item xs={12} sm={12} md={6}>
             <Typography variant='body1'>
               <li>
                 <b><i>Verify your Email :</i></b>
               </li>
             </Typography>
-          </Grid>
+          </Grid2>
 
-          <Grid item xs={12} sm={12} md={6}>
+          <Grid2 item xs={12} sm={12} md={6}>
             <Button color='primary' variant='outlined' fullWidth onClick={handleEmailVerify} disabled={(user.result.verified || user?.verified)? true:false} >
               {(!user?.result?.verified) ? "Verify my email ID": "Your account is verified"}
             </Button>
-          </Grid>
+          </Grid2>
 
-          <Grid item xs={12} sm={12} md={6}>
+          <Grid2 item xs={12} sm={12} md={6}>
             <Typography variant='body1'>
               <li>
                 <b><i>All your data would be lost forever</i></b>
               </li>
             </Typography>
-          </Grid>
+          </Grid2>
           
-          <Grid item xs={12}  sm={12} md={6}>
+          <Grid2 item xs={12}  sm={12} md={6}>
             <Button color='secondary' variant='outlined' fullWidth onClick={handleClickOpen}>
               Delete My Account
             </Button>
@@ -118,8 +118,8 @@ const Profile = () => {
                 </Button>
               </DialogActions>
             </Dialog>
-          </Grid>
-        </Grid>
+          </Grid2>
+        </Grid2>
       </Paper>
     </>
   )
