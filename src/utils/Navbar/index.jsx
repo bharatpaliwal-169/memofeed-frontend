@@ -1,16 +1,16 @@
 //react
 import React,{useState,useEffect} from 'react';
-import {Link,useHistory,useLocation} from 'react-router-dom';
-import decode from 'jwt-decode';
+import {Link,useNavigate,useLocation} from 'react-router-dom';
+import jwtDecode from 'jwt-decode';
 
 //redux
 import {useDispatch} from 'react-redux'
 import * as actionType from '../../redux/types/actionTypes'
 
 //css
-import {AppBar , Avatar, Button, Typography} from '@material-ui/core';
+import {AppBar , Avatar, Button, Typography} from '@mui/material';
 import useStyles from './styles';
-import { Toolbar } from '@material-ui/core'
+import { Toolbar } from '@mui/material'
 
 
 export default function NavBar() {
@@ -19,7 +19,7 @@ export default function NavBar() {
   const classes = useStyles();
   const dispatch = useDispatch();
   const location = useLocation();
-  const history = useHistory();
+  const history = useNavigate();
 
   const logout = () => {
     dispatch({ type: actionType.LOGOUT });
@@ -30,7 +30,7 @@ export default function NavBar() {
   useEffect(() => {
     const token = user?.token;
     if(token) {
-      const decodedToken = decode(token);
+      const decodedToken = jwtDecode(token);
       if(decodedToken.exp * 1000 < new Date().getTime()){
         logout();
       }

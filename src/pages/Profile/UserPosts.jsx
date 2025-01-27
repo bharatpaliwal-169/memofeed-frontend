@@ -1,12 +1,12 @@
 import React from 'react'
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-import { Card, Grid, CardContent,CardMedia,ButtonBase, Typography } from '@material-ui/core'
+import { Card, Grid, CardContent,CardMedia,ButtonBase, Typography } from '@mui/material'
 import moment from 'moment';
 import useStyle from './styles';
 
 const UserPosts = (props) => {
-  const history = useHistory();
+  const history = useNavigate();
   const classes = useStyle();
 
   const openPost = (id) => {

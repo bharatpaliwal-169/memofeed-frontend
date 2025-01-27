@@ -1,12 +1,12 @@
 import React,{useState,useEffect} from 'react'
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 // redux
 import { useDispatch,useSelector } from 'react-redux';
 import { emailverification } from '../../redux/actions/auth';
 
 // css
-import {Paper,Typography,Button} from '@material-ui/core'
+import {Paper,Typography,Button} from '@mui/material'
 import useStyles from './styles'
 
 import ErrorIcon from '@material-ui/icons/Error';
@@ -18,7 +18,7 @@ const Verified = () => {
   const [snackType,setSnackType] = useState();
   const classes = useStyles();
   const dispatch = useDispatch();
-  const history = useHistory();
+  const history = useNavigate();
   const VERIFICATION_STATUS = useSelector((state) => state.auth);
   const user = JSON.parse(localStorage.getItem('profile'));
   const tokenkey = new URLSearchParams(window.location.search);

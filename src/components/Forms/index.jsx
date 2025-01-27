@@ -1,7 +1,7 @@
 //react
 import React,{useState,useEffect} from 'react';
 // import FileBase from 'react-file-base64'
-import {useHistory,
+import {useNavigate,
   // Link
 } from 'react-router-dom'
 import axios from 'axios';
@@ -12,11 +12,11 @@ import {createPost,updatePost} from '../../redux/actions/post'
 //css
 import {Paper,Typography,TextField,Button,useMediaQuery,useTheme,
   Fab, Dialog,DialogContent,Divider,DialogTitle,CircularProgress
-} from '@material-ui/core'
-import {Add} from '@material-ui/icons'
-import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+} from '@mui/material'
+import {Add,CloudUploadIcon} from '@mui/icons-material';
+// import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import useStyles from './styles'
-import Promp from '../LoginPromp';
+import Promp from '../LoginPromp'
 
 const Form = ({currentId,setCurrentId}) => {
   //css
@@ -34,7 +34,7 @@ const Form = ({currentId,setCurrentId}) => {
   //redux
   const dispatch = useDispatch();
   const post = useSelector((state) => currentId ? state.posts.posts.find((p)=> p._id === currentId) : null);
-  const history = useHistory();
+  const history = useNavigate();
   
   //function handlers
   const handleSubmit = async(e) => {

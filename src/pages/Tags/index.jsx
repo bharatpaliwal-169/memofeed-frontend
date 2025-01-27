@@ -11,7 +11,7 @@ import Post from '../../components/Posts/Post';
 import Loading from '../../components/Loading'
 
 //css
-import { Paper,Typography, Grid, Button } from '@material-ui/core';
+import { Paper,Typography, Grid, Button } from '@mui/material';
 import useStyle from './styles';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 

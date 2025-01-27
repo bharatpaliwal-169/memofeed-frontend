@@ -1,5 +1,8 @@
 import React,{useState,useEffect} from 'react'
-import {Paper,Typography,LinearProgress,useMediaQuery,useTheme} from '@material-ui/core'
+
+import { Paper, Typography, LinearProgress, useMediaQuery, useTheme } from '@mui/material';
+import { GlobalConstants } from '../../constants';
+
 
 const FlashUI = () => {
   const [prog,setProg] = useState(0);
@@ -15,19 +18,22 @@ const FlashUI = () => {
     },100);
     return () => {clearInterval(timer)}
   })
+
+
   return (
     <React.Fragment>
       <Paper style={{textAlign: 'center',display: 'flex',flexDirection: 'column',background:'transparent',
       justifyContent: 'center',padding:'5rem',verticalAlign: 'middle',marginTop: '6rem'}}
       elevation={0}
       >
-        <Typography variant={isMobile ? "h4" : "h1"}  style={{color: '#09779A',
+        <Typography variant={isMobile ? "h4" : "h2"}  style={{color: '#09779A',
         fontWeight: 'bold',textAlign: 'center'}}>
-          Memofeed
+          {GlobalConstants.brandName}
         </Typography>
         <Typography variant="subtitle1"  style={{color: '#488BBF',fontWeight: '600',textAlign: 'center'}}>
-          Give life to your stories/memories
+          {GlobalConstants.brandTagLine2}
         </Typography>
+        
         <LinearProgress variant="determinate" value={prog} style={{width: '100%',marginTop:'2rem'}}></LinearProgress>
       </Paper>
     

@@ -3,7 +3,7 @@ import React,{useState} from 'react';
 
 //redux
 import { useDispatch } from 'react-redux';
-import {useHistory , useLocation} from 'react-router-dom'
+import {useNavigate , useLocation} from 'react-router-dom'
 import {deletePost,likePost} from '../../../redux/actions/post'
 
 //css imports
@@ -11,12 +11,12 @@ import useStyles from './style';
 import { Card, CardActions, CardContent,useMediaQuery,useTheme,
   CardMedia,Button,ButtonBase, Typography,Tooltip,
   Dialog,DialogActions,DialogContent,
-  DialogContentText,DialogTitle } from '@material-ui/core/';
+  DialogContentText,DialogTitle } from '@mui/material/';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import ThumbUpAltOutlined from '@material-ui/icons/ThumbUpAlt';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
-import Chip from '@material-ui/core/Chip';
+import Chip from '@mui/material/Chip';
 import moment from 'moment';
 
 const Post = ({ post, setCurrentId }) => {
@@ -28,7 +28,7 @@ const Post = ({ post, setCurrentId }) => {
     history.push(`/tags/${tag}`);
   }
   const dispatch = useDispatch();
-  const history = useHistory();
+  const history = useNavigate();
   const user = JSON.parse(localStorage.getItem('profile'));
   const userId = user?.result?._id;
   const [likes, setLikes] = useState(post?.likes);

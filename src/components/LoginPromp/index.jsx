@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 //css
-import {Paper,Typography} from '@material-ui/core'
+import {Paper,Typography} from '@mui/material'
 import useStyles from './styles'
 
 import Logo from '../../assets/LoginProm.svg'

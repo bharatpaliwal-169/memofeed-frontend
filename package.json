@@ -1,42 +1,47 @@
 {
-  "name": "v3",
+  "name": "memofeed",
   "private": true,
-  "version": "0.0.0",
+  "version": "4.0.0",
   "type": "module",
   "proxy": [
     "https://memofeed-backend.onrender.com/",
     "http://localhost:5000"
   ],
   "dependencies": {
-    "@material-ui/core": "^4.9.10",
-    "@material-ui/icons": "^4.9.1",
-    "@material-ui/lab": "^4.0.0-alpha.61",
-    "axios": "^1.6.2",
-    "dotenv": "^16.0.1",
-    "jwt-decode": "^3.1.2",
-    "material-ui-chip-input": "^1.1.0",
-    "moment": "^2.27.0",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/icons-material": "^6.4.1",
+    "@mui/lab": "^6.0.0-beta.24",
+    "@mui/material": "^6.4.1",
+    "@mui/styles": "^6.4.1",
+    "@reduxjs/toolkit": "^2.5.1",
+    "axios": "^1.7.9",
+    "dotenv": "^16.4.7",
+    "jwt-decode": "^4.0.0",
+    "moment": "^2.30.1",
+    "npm-check-updates": "^17.1.14",
     "path-browserify": "^1.0.1",
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "react-file-base64": "^1.0.3",
-    "react-loading-skeleton": "^3.1.0",
-    "react-redux": "^7.1.3",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "^3.0.1",
-    "redux": "^4.0.5",
-    "redux-thunk": "^2.3.0",
-    "save": "^2.5.0",
-    "styled-components": "^5.3.5",
-    "web-vitals": "^2.1.4"
+    "react-loading-skeleton": "^3.5.0",
+    "react-redux": "^9.2.0",
+    "react-router-dom": "^7.1.3",
+    "react-scripts": "^5.0.1",
+    "redux": "^5.0.1",
+    "redux-thunk": "^3.1.0",
+    "save": "^2.9.0",
+    "styled-components": "^6.1.14",
+    "web-vitals": "^4.2.4"
   },
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "vite build",
     "preview": "vite preview"
   },
   "devDependencies": {
-    "@vitejs/plugin-react": "^4.0.0",
-    "vite": "^4.3.9"
+    "@vitejs/plugin-react": "^4.3.4",
+    "prettier": "^3.4.2",
+    "vite": "^6.0.11"
   }
 }

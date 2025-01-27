@@ -1,12 +1,11 @@
 //react
-import React,{useEffect} from 'react';
-import { BrowserRouter as Router,Redirect,Route,Switch} from 'react-router-dom';
+import React,{useState,useEffect} from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
 //css
-import {Container} from '@material-ui/core'
+import Container from '@mui/material/Container';
 
-
-import Loading from './utils/FlashUI'
+import Loading from './components/FlashUI'
 
 //pages
 const Home = React.lazy(()=> import("./pages/Home"));
@@ -22,47 +21,49 @@ const ForgotPassword = React.lazy(()=>import("./pages/ForgotPassword"));
 //components
 const Navbar = React.lazy(()=> import("./components/NavbarUI"));
 const Footer = React.lazy(()=> import("./components/Footer"));
-const BTP = React.lazy(()=> import("./utils/BTP"));
+const BTP = React.lazy(()=> import("./components/BTP"));
 
 //__init__
 const App = () => {
-  const [load,setLoad] = React.useState(true);
+  const [load,setLoad] = useState(true);
+  
+  //flash screening...
   useEffect(() => {
-    const timer = setTimeout(() => setLoad(false),3600);
+    const timer = setTimeout(() => setLoad(false),2000);
     return () => {
       clearInterval(timer);
     }  
   }, []);
   
+
   const user = JSON.parse(localStorage.getItem('profile'));
   if(load){
     return <Loading />
   }
+  
   return (
     <>
       <Router>
         <Container maxwidth="xl">
-          <React.Suspense fallback={<h1>MemoFeed</h1>}>
-            <Navbar />
-          </React.Suspense>
-
+          <Navbar />
+          
           <React.Suspense fallback={<Loading />}>
-            <Switch>
-              <Route path="/" exact component={() => <Redirect to="/posts" />} ></Route>
+
+            <Routes>
+              <Route path="/" exact component={() => <Navigate to="/posts" />} ></Route>
               <Route path="/posts" exact component={props => <Home {...props} />}></Route>
               <Route path="/posts/search" exact component = {props => <Home {...props} />} ></Route>
               <Route path="/posts/:id" exact component = {props => <PostDetail {...props} />}></Route>
-              {/* <Route path="/auth" exact component={() => (!user ? (props=> <Auth {...props} />) : <Redirect to="/posts" />)}></Route> */}
-              <Route path="/auth" exact component={(props) =>  !user ? <Auth {...props} /> : <Redirect to="/posts" {...props} />}></Route>
+              <Route path="/auth" exact component={(props) =>  !user ? <Auth {...props} /> : <Navigate to="/posts" {...props} />}></Route>
               <Route path="/profile" exact component = {props => <Profile {...props} />} ></Route>
               <Route path="/tags/:name" exact component = {props => <Tags {...props}/>} ></Route>
               <Route path="/auth/changepassword" exact component ={props=> <ChangePassword {...props} />}></Route>
               <Route path="/auth/forgotpassword" exact component={props=> <ForgotPassword {...props} />}></Route>
-              {/* <Route path="/auth/emailverification" exact component={() => (user ? <EmailVerification /> : <Redirect to="/posts" />)}></Route> */}
               <Route path="/auth/emailverification" exact component={props=> <EmailVerification {...props}/>}></Route>
-              <Route path="/auth/verification" exact component={() => (user ? (props=> <Verification {...props} />) : <Redirect to="/posts" />)} ></Route>
-              <Route path="*" component={() =><Redirect to="/posts" />} ></Route>
-            </Switch>
+              <Route path="/auth/verification" exact component={() => (user ? (props=> <Verification {...props} />) : <Navigate to="/posts" />)} ></Route>
+              <Route path="*" component={() =><Navigate to="/posts" />} ></Route>
+            </Routes>
+
             <BTP />
             <Footer />
           </React.Suspense>  

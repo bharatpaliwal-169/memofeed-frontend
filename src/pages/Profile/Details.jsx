@@ -1,13 +1,13 @@
 //react
 import React,{useEffect, useState} from 'react'
-import {useHistory} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 //redux
 import {useDispatch,useSelector} from 'react-redux'
 import { changePasswordRequest } from '../../redux/actions/auth';
 //css
 import { Grid,Typography,Paper,Card,CardContent,Button,Divider,Tooltip
 ,Dialog,DialogActions,DialogContent,DialogContentText,DialogTitle
-} from '@material-ui/core'; 
+} from '@mui/material'; 
 import useStyle from './styles';
 //components
 import Notification from '../../components/Notification';
@@ -18,7 +18,7 @@ const Details = ({stats}) => {
   const classes = useStyle();
 
 
-  const history = useHistory();
+  const history = useNavigate();
   const dispatch = useDispatch();
   const EMAIL_STATUS = useSelector((state) => state.auth)
 

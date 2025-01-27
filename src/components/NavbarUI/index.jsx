@@ -1,25 +1,26 @@
 //react
 import React,{useState,useEffect} from 'react'
-import {Link,useHistory,useLocation} from 'react-router-dom';
-import decode from 'jwt-decode';
+import {Link,useNavigate,useLocation} from 'react-router-dom';
+import {jwtDecode} from 'jwt-decode';
 
 //redux
 import {useDispatch} from 'react-redux'
 import * as actionType from '../../redux/types/actionTypes'
 
 //css
-import { AppBar,Toolbar,CssBaseline,
+import { AppBar,Toolbar,
   Typography,useMediaQuery,useTheme,
   Button,Avatar,Chip,Tooltip
-} from "@material-ui/core";
+} from '@mui/material';
 
-// import DrawerUI from "./DrawerUI";
-import useStyles from "./styles"
 import Loading from '../Loading'
+import useStyles from "./styles"
+import { GlobalConstants } from '../../constants';
 
 const DrawerUI = React.lazy(()=> import('./DrawerUI'));
 
 const NavbarUI = () => {
+
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
   const classes = useStyles();
 
@@ -27,40 +28,42 @@ const NavbarUI = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const dispatch = useDispatch();
   const location = useLocation();
-  const history = useHistory();
+  const history = useNavigate();
 
   const handleAuth = () => {
     console.log('handleAuth');
-    history.push('/auth');
+    history('/auth');
   }
   const logout = () => {
     dispatch({ type: actionType.LOGOUT });
-    history.push('/auth');
+    history('/auth');
     setUser(null);
   };
 
   useEffect(() => {
     const token = user?.token;
     if(token) {
-      const decodedToken = decode(token);
+      const decodedToken = jwtDecode(token);
       if(decodedToken.exp * 1000 < new Date().getTime()){
         logout();
       }
     }
     setUser(JSON.parse(localStorage.getItem('profile')));
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location])
 
   return (
     <>
       <AppBar className={classes.appBar} position="static" color="inherit">
-        <CssBaseline />
+        
         <Toolbar>
+          {/* branding */}
           <Typography component={Link} to="/" className={classes.heading} 
             variant="h3" >
-            Memofeed
+            {GlobalConstants.brandName}
           </Typography>
+          
+          
           {isMobile ? (
             <React.Suspense fallback={<Loading />}>
               <DrawerUI />
@@ -86,11 +89,13 @@ const NavbarUI = () => {
 
                   
                   <Button className={classes.logout} variant="contained" color="secondary" onClick={logout}>
-                    Logout
+                    {GlobalConstants.logout}
                   </Button>
                 </div>
               ) : (
-                <Button onClick={handleAuth} variant="contained" color="primary">Login/Sign-up</Button>
+                <Button onClick={handleAuth} variant="contained" color="primary">
+                  {GlobalConstants.login}
+                </Button>
               )}
             </div>
           )}

@@ -1,16 +1,16 @@
 import React from 'react'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
-import {Grid,Card,Typography} from '@material-ui/core'
+import {Grid2,Card,Typography} from '@mui/material'
 import useStyles from './styles'
 
 const LoadingUI = () => {
   const classes = useStyles();
   return (
     <>
-      <Grid className={classes.mainContainer} container alignItems="stretch" spacing={3}>
+      <Grid2 className={classes.mainContainer} container alignItems="stretch" spacing={3}>
         {Array(6).fill().map((item,index) => (
-          <Grid key={index} item xs={12} sm={12} md={6}>
+          <Grid2 key={index} item xs={12} sm={12} md={6}>
             <Card>
               <Typography variant="h1" component="h1">
                 <Skeleton />
@@ -22,9 +22,9 @@ const LoadingUI = () => {
                 <Skeleton />
               </Typography>
             </Card>
-          </Grid>
+          </Grid2>
         ))}
-      </Grid>
+      </Grid2>
     </>
   )
 }

@@ -1,12 +1,12 @@
 import React,{useState,useEffect} from 'react'
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 //redux
 import { useDispatch,useSelector } from 'react-redux';
 import { emailVerificationRequest } from '../../redux/actions/auth';
 
 //css
-import {Paper,Typography,Button} from '@material-ui/core'
+import {Paper,Typography,Button} from '@mui/material'
 import useStyles from './styles'
 import ErrorIcon from '@material-ui/icons/Error';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
@@ -16,7 +16,7 @@ import Notification from '../../components/Notification';
 const EmailVerification = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const history = useHistory();
+  const history = useNavigate();
 
   const EMAIL_STATUS = useSelector((state) => state.auth);
   const user = JSON.parse(localStorage.getItem('profile'));

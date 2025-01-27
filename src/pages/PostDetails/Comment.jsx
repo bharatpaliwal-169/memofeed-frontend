@@ -6,7 +6,7 @@ import {commentPost} from '../../redux/actions/post'
 
 
 //css
-import {Typography,TextField,Button} from '@material-ui/core'
+import {Typography,TextField,Button} from '@mui/material'
 import useStyles from './styles'
 
 //components

@@ -1,12 +1,12 @@
 import React,{useState,useEffect} from 'react'
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 //redux
 import { useDispatch,useSelector } from 'react-redux';
 import { forgotPasswordRequest } from '../../redux/actions/auth';
 
 //css
-import {Paper,Typography,Button,TextField} from '@material-ui/core'
+import {Paper,Typography,Button,TextField} from '@mui/material'
 import useStyles from './styles'
 
 import Notification from '../../components/Notification';
@@ -14,7 +14,7 @@ import Notification from '../../components/Notification';
 const ForgotPassword = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const history = useHistory();
+  const history = useNavigate();
 
   const EMAIL_STATUS = useSelector((state) => state.auth);
   

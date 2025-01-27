@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import {useTheme,useMediaQuery} from '@material-ui/core'
-
+import { useTheme, useMediaQuery } from '@mui/material';
 import styled from 'styled-components';
+
 const ButtonContainer = styled.span`
   position: fixed;
   bottom: 2rem;
@@ -17,24 +17,23 @@ const ButtonContainer = styled.span`
   background: #049AE1;
   border-radius: 2rem;
   transition: opacity 0.4s, color ease-in-out 0.2s, background ease-in-out 0.2s;
-  display: ${({ isScrollButtonVisible }) =>
-    isScrollButtonVisible ? 'flex' : 'none'};
+  display: ${({ show }) => (show ? 'flex' : 'none')};
   &:hover {
     opacity: 1;
   }
 `;
 
-
 const BTP = () => {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  const [showButton, setShowButton] = useState(false);
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const [showButton, setShowButton] = useState();
+
   useEffect(() => {
-    if(!isMobile){
+    if (!isMobile) {
       const checkScrollHeight = () => {
-        if ( !showButton && window.pageYOffset > 400) {
+        if (!showButton && window.scrollY > 400) {
           setShowButton(true);
-        } else if ( (showButton && window.pageYOffset <= 400 )) {
+        } else if (showButton && window.scrollY <= 400) {
           setShowButton(false);
         }
       };
@@ -43,15 +42,14 @@ const BTP = () => {
         window.removeEventListener('scroll', checkScrollHeight);
       };
     }
-  }, [showButton,isMobile]);
+  }, [showButton, isMobile]);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
-
-    <ButtonContainer isScrollButtonVisible={showButton} onClick={scrollToTop}>
+    <ButtonContainer show={showButton} onClick={scrollToTop}>
       <svg
         width={24}
         height={24}
@@ -61,7 +59,7 @@ const BTP = () => {
         strokeWidth={2}
         strokeLinecap="round"
         strokeLinejoin="round"
-        >
+      >
         <path d="M12 19V5M5 12l7-7 7 7" />
       </svg>
     </ButtonContainer>

@@ -3,7 +3,7 @@ import React from 'react';
 //redux
 import {useSelector} from 'react-redux';
 //css
-import {Grid} from '@material-ui/core'
+import {Grid} from '@mui/material'
 import useStyles from './styles'
 
 import Post from './Post';

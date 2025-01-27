@@ -1,6 +1,6 @@
 import React,{ Suspense , useState} from 'react'
-import {Fab,Modal} from "@material-ui/core"
-import {Add} from '@material-ui/icons'
+import {Fab,Modal} from "@mui/material"
+import {Add} from '@mui/icons-material'
 import useStyles from './styles'
 import Loading from '../FlashUI'
 // import Form from '../../components/Forms';

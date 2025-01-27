@@ -1,21 +1,20 @@
 //react
 import React,{useState,useEffect} from 'react';
-import {useHistory,useLocation} from 'react-router-dom';
+import { useNavigate,useLocation } from 'react-router-dom';
 
 //redux
-import {useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { getPosts,getPostsBySearch,getStatsForUser } from '../../redux/actions/post'
 
 //css
-import { Container,Button,Grow,Grid,Paper, AppBar,TextField,
-} from '@material-ui/core';
+import { Container,Button,Grow,Grid2,Paper, AppBar,TextField} from '@mui/material';
 import useStyles from './styles'
-import ChipInput from 'material-ui-chip-input';
+// import ChipInput from 'material-ui-chip-input';
 
 //components
-
 import Pagination from '../../components/PaginationUI'
 import Loading from '../../components/Loading'
+
 const Posts = React.lazy(()=> import('../../components/Posts'));
 const Form = React.lazy(() => import('../../components/Forms'));
 
@@ -33,7 +32,7 @@ const Home= ()=> {
   const classes = useStyles();
   const dispatch = useDispatch();
   const query = useQuery(); 
-  const history = useHistory();
+  const history = useNavigate();
   const page = query.get('page') || 1;
   const searchQuery = query.get('searchQuery');
 
@@ -55,11 +54,11 @@ const Home= ()=> {
 
   const searchPost = () => {
     if(!search && !tags){
-      history.push("/");
+      history("/");
     }
     else if(search.trim() || tags){
       dispatch(getPostsBySearch({search , tags : tags.join(',')}));
-      history.push(`/posts/search?searchQuery=${search || 'none'}&tags=${tags.join(',')}`);
+      history(`/posts/search?searchQuery=${search || 'none'}&tags=${tags.join(',')}`);
     }
   }
 
@@ -83,15 +82,15 @@ const Home= ()=> {
     <>
       <Grow in>
         <Container maxwidth="xl">
-          <Grid container justifyContent="space-between" alignItems="stretch" spacing={1} 
+          <Grid2 container justifyContent="space-between" alignItems="stretch" spacing={1} 
           className={classes.gridContainer}>
-            <Grid item xs={12} sm={6} md={7}>
+            <Grid2 item xs={12} sm={6} md={7}>
               <React.Suspense fallback={<Loading />} >
                 <Posts setCurrentId={setCurrentId} />
               </React.Suspense>
-            </Grid>
+            </Grid2>
 
-            <Grid item xs={12} sm={6} md={4}>
+            <Grid2 item xs={12} sm={6} md={4}>
               <AppBar className={classes.appBarSearch} position="static" color="inherit">
                 <TextField 
                   onKeyDown={handleKeyPress} 
@@ -103,14 +102,14 @@ const Home= ()=> {
                   onChange={(e) => setSearch(e.target.value)} 
                 />
                 
-                <ChipInput
+                {/* <ChipInput
                   style={{ margin: '10px 0' }}
                   value={tags}
                   onAdd={(chip) => handleAdd(chip)}
                   onDelete={(chip) => handleDelete(chip)}
                   label="Search Tags"
                   variant="outlined"
-                />
+                /> */}
 
                 <Button onClick={searchPost} className={classes.searchButton} variant="contained" 
                 color="primary">Search</Button>
@@ -118,8 +117,8 @@ const Home= ()=> {
               <React.Suspense fallback={<Loading/>}>
                 <Form currentId={currentId} setCurrentId={setCurrentId} />
               </React.Suspense>
-            </Grid>
-          </Grid>
+            </Grid2>
+          </Grid2>
 
           {(!searchQuery && !tags.length) && (
             <Paper className={classes.pagination} elevation={0}>

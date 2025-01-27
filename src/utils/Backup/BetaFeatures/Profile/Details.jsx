@@ -1,5 +1,5 @@
 // import React from 'react'
-// import { Grid,Typography, Card,CardContent,Button,Divider,Tooltip} from '@material-ui/core';
+// import { Grid,Typography, Card,CardContent,Button,Divider,Tooltip} from '@mui/material';
 // import useStyle from './styles';
 
 // const Details = ({stats}) => {

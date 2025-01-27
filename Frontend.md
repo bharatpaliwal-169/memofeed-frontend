@@ -22,13 +22,53 @@ useEffect(() => {
 }, []);
 ```
 
-In react-router-dom v6 useHistory() is replaced by useNavigate().
+In react-router-dom v6 useNavigate() is replaced by useNavigate().
 
 ```
-import { useHistory } from 'react-router-dom';
-const navigate = useHistory();
+import { useNavigate } from 'react-router-dom';
+const navigate = useNavigate();
 navigate('/');
 ```
 
 React router dom migrated to v5 from v6. v6 have a lot of complexity and is not really going with the requirements of project.
+
+
+
+
+-------------------------------------------------------------------------------
+
+
+# Migration to React ^19.0 and Material UI ^ 6.0
+
+### Memofeed v4.0.0 - Will be migrated to latest version of react and material ui aka mui.
+
+
+### Key Changes for React Router DOM:
+Switch → Routes:
+Use Routes instead of Switch. It automatically picks the first matching route.
+
+Redirect → Navigate:
+Use the Navigate component for redirection.
+
+
+React Rendering:
+The integration with Provider remains the same.
+
+Import useNavigate instead of useNavigate:
+
+```import { useNavigate } from 'react-router-dom';```
+
+Update your code: Replace ```history.push()``` or ```history.replace()``` with ```navigate()``` in the new API.
+
+### Key Changes for Redux:
+createStore → configureStore:
+Use configureStore for better defaults and easier setup.
+
+Middleware Setup:
+Middleware is automatically included by configureStore (like redux-thunk), but you can customize it as shown above.
+
+
+
+### Key Changes for Material UI --> MUI
+@mui/material @mui/icons-material @emotion/react @emotion/styled
 

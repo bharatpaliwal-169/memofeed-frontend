@@ -1,17 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 //react
 import React,{useEffect} from 'react'
-import {useParams,useHistory} from 'react-router-dom';
+import {useParams,useNavigate} from 'react-router-dom';
 
 //redux
 import {useDispatch,useSelector} from 'react-redux';
 import {getPost,getPostsBySearch} from '../../redux/actions/post'
 
 //css
-import {Card,Paper,Typography,Divider,Grid, CardContent,Tooltip} from '@material-ui/core'
+import {Card,Paper,Typography,Divider,Grid, CardContent,Tooltip} from '@mui/material'
 import moment from 'moment';
 import useStyles from './styles'
-import Chip from '@material-ui/core/Chip';
+import Chip from '@mui/material/Chip';
 import ThumbUpAltSharpIcon from '@material-ui/icons/ThumbUpAltSharp';
 import PeopleAltSharpIcon from '@material-ui/icons/PeopleAltSharp';
 import CreateTwoToneIcon from '@material-ui/icons/CreateTwoTone';
@@ -25,7 +25,7 @@ const PostDetails = () => {
   // get data from redux state.
   const { post,posts,isLoading } = useSelector((state)=> state.posts);
   const dispatch = useDispatch();
-  const history = useHistory();
+  const history = useNavigate();
   const classes = useStyles();
   // to use value from url params eg : http/ ... / {..} <- these are params
   const {id} = useParams();

@@ -24,8 +24,6 @@ const Paginate = ({ page }) => {
       dispatch(getPosts(page));
     }
   }, [dispatch, page]);
-
-  // console.log(NumberOfPages);
   
   return (
     <Pagination

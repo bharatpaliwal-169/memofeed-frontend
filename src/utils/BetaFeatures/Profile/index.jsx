@@ -1,13 +1,13 @@
 //react
 import React,{useState} from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 //redux
 import { useDispatch } from 'react-redux';
 import { deleteAccount } from '../../../redux/actions/auth';
 //css
 import {Paper, Typography,Grid,Button,
   Dialog,DialogActions,DialogContent,DialogTitle,DialogContentText, Divider
-} from '@material-ui/core';
+} from '@mui/material';
 import useStyle from './styles';
 
 //components
@@ -18,7 +18,7 @@ import UserPosts from './UserPosts';
 const Profile = () => {
   const user = JSON.parse(localStorage.getItem('profile'));
   const id = user.result._id;
-  const history = useHistory();
+  const history = useNavigate();
   const dispatch = useDispatch();
   const classes = useStyle();
   const [open, setOpen] = useState(false);

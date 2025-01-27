@@ -1,5 +1,5 @@
 import React from 'react'
-import Snackbar from '@material-ui/core/Snackbar';
+import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 
 const Notification = ({snackType,snackMessage,snackOpen}) => {

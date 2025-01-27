@@ -1,5 +1,5 @@
 import React from 'react'
-import {TextField,Grid} from "@material-ui/core"
+import {TextField,Grid} from "@mui/material"
 
 function Input({half,name,handleChange,label,type,autoFocus}) {
 

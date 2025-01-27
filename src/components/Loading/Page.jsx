@@ -1,7 +1,7 @@
 import React from 'react'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
-import {Paper,Typography} from '@material-ui/core'
+import {Paper,Typography} from '@mui/material'
 import useStyles from './styles'
 
 const DetailUI = () => {

@@ -1,16 +1,17 @@
 import React from 'react'
-import {Typography} from '@material-ui/core'
+import {Typography,Link} from '@mui/material'
+import { GlobalConstants } from '../../constants';
 
 const Footer = () => {
   return (
     <>
       <Typography variant="body1" style={{textAlign: 'center',marginTop: '2rem'}}>
-        Made with ❤️ by 
-        <a style={{color:"darkblue",textDecoration:"underline",paddingLeft:"0.25rem"}} 
-          href="https://github.com/bharatpaliwal-169" target="_blank" rel='noopener nofollow noreferrer preconnect'
+        {GlobalConstants.footerContent}
+        <Link underline="hover" href={GlobalConstants.githubLink} style={{paddingLeft : "0.5rem"}}
+          target="_blank" rel='noopener nofollow noreferrer preconnect'
         >
-          Bharat
-        </a>
+          {GlobalConstants.author}
+        </Link>
       </Typography>
     </>
   )

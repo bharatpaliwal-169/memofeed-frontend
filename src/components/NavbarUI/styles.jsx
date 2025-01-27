@@ -1,5 +1,5 @@
-import { makeStyles } from '@material-ui/core/styles';
-import { deepPurple } from '@material-ui/core/colors';
+import { makeStyles } from '@mui/styles';
+import { deepPurple } from '@mui/material/colors';
 
 export default makeStyles((theme) => ({
   navlinks: {
@@ -61,7 +61,8 @@ export default makeStyles((theme) => ({
     fontSize: "20px",
   },
   icon:{
-      color: "#000"
+      color: "#000",
+      margin : "1rem",
   },
   purple: {
     color: theme.palette.getContrastText(deepPurple[500]),
@@ -69,8 +70,11 @@ export default makeStyles((theme) => ({
     textTransform: "uppercase",
   },
   List: {
+    display : "flex",
+    flexDirection : "column",
     alignItems: "center",
     justifyContent: "center",
+    padding : "0.5rem",
   },
   logout:{
     marginTop:'0.25rem',

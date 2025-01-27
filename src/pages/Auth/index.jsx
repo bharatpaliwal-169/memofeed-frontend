@@ -1,6 +1,6 @@
 //react
 import React,{useState} from 'react'
-import {useHistory} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 
 //redux
 import {useDispatch} from 'react-redux'
@@ -8,8 +8,8 @@ import {signup , login} from '../../redux/actions/auth'
 
 //css
 import {Container,Paper,Grid,TextField,Typography,
-  CircularProgress,Button,InputAdornment, IconButton} from "@material-ui/core"
-import {Visibility,VisibilityOff} from '@material-ui/icons';
+  CircularProgress,Button,InputAdornment, IconButton} from "@mui/material"
+import {Visibility,VisibilityOff} from '@mui/icons-material';
 import useStyles from './style'
 //components
 import Input from './input'
@@ -31,7 +31,7 @@ const Auth = () =>{
   
   //support
   const classes = useStyles();
-  const history = useHistory();
+  const history = useNavigate();
   const dispatch = useDispatch();
   const handleClickShowPassword = () => setShowPassword(!showPassword);
   const handleMouseDownPassword = () => setShowPassword(!showPassword);

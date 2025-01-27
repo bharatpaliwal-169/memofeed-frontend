@@ -1,12 +1,12 @@
 import React,{useState} from 'react'
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 //redux
 import { useDispatch } from 'react-redux';
 import { changePassword } from '../../redux/actions/auth';
 //css
-import {Paper,Typography,Button,TextField,InputAdornment, IconButton} from '@material-ui/core'
-import {Visibility,VisibilityOff} from '@material-ui/icons';
+import {Paper,Typography,Button,TextField,InputAdornment, IconButton} from '@mui/material'
+import {Visibility,VisibilityOff} from '@mui/icons-material';
 import useStyles from './styles'
 
 
@@ -16,7 +16,7 @@ const ChangePassword = () => {
   const tokenkey = new URLSearchParams(window.location.search);
 
   const dispatch = useDispatch();
-  const history = useHistory();
+  const history = useNavigate();
 
   const [formData,setformData] = useState({
     password : '', confirmPassword : '',token: ''
