@@ -32,7 +32,7 @@ const EmailVerification = () => {
     console.log("email is sent");
   }
   const handleSkip = () => {
-    history("/posts");
+    history("/feed");
   }
 
   //snackbar

@@ -7,13 +7,14 @@ export default makeStyles((theme) => ({
     display: "flex",
   },
   appBar: {
-    borderRadius: 10,
-    margin: '1.75rem 0',
+    borderRadius: 5,
+    margin: '',
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: '1rem 2rem',
+    padding: '1rem',
+    // border : "2px solid green"
   },
   heading: {
     cursor : 'pointer',
@@ -22,10 +23,12 @@ export default makeStyles((theme) => ({
     fontWeight: 'bold',
   },
   toolbar: {
-    display: 'flex',
-    justifyContent: 'flex-end',
-    width: '400px',
-    marginLeft: '23rem',
+    // display: 'flex',
+    // justifyContent: 'flex-end',
+    // height: '',
+    // width: '',
+    // // marginLeft: '23rem',
+    border : "2px solid green"
   },
   profile: {
     display: 'flex',
@@ -68,6 +71,8 @@ export default makeStyles((theme) => ({
     color: theme.palette.getContrastText(deepPurple[500]),
     backgroundColor: "#0461AE",
     textTransform: "uppercase",
+    height: "3.5rem",
+    width: "3.5rem",
   },
   List: {
     display : "flex",
@@ -78,5 +83,10 @@ export default makeStyles((theme) => ({
   },
   logout:{
     marginTop:'0.25rem',
-  }
+  },
+
+  searchBox:{
+    paddingLeft: '2rem',
+  },
+
 }));

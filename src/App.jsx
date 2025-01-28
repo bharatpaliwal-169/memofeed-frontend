@@ -3,7 +3,6 @@ import React,{useState,useEffect} from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
 //css
-import Container from '@mui/material/Container';
 
 import Loading from './components/FlashUI'
 
@@ -12,11 +11,12 @@ const Home = React.lazy(()=> import("./pages/Home"));
 const Auth = React.lazy(()=> import("./pages/Auth"));
 const Profile = React.lazy(()=> import("./pages/Profile"));
 const PostDetail = React.lazy(()=> import("./pages/PostDetails"));
-const Tags = React.lazy(()=> import("./pages/Tags"));
+const Topics = React.lazy(()=> import("./pages/Topics"));
 const EmailVerification = React.lazy(()=> import("./pages/EmailVerification"));
 const Verification = React.lazy(()=>import("./pages/EmailVerification/Verified"));
 const ChangePassword = React.lazy(()=>import("./pages/ChangePassword"));
 const ForgotPassword = React.lazy(()=>import("./pages/ForgotPassword"));
+const NotFound = React.lazy(() => import("./pages/NotFound"));
 
 //components
 const Navbar = React.lazy(()=> import("./components/NavbarUI"));
@@ -44,30 +44,31 @@ const App = () => {
   return (
     <>
       <Router>
-        <Container maxwidth="xl">
+        {/* <Container maxwidth="xl"> */}
           <Navbar />
           
           <React.Suspense fallback={<Loading />}>
 
             <Routes>
-              <Route path="/"  element={<Navigate to="/posts" />} ></Route>
-              <Route path="/posts"  element={<Home />}></Route>
-              <Route path="/posts/search"  element = {<Home  />} ></Route>
-              <Route path="/posts/:id"  element = {<PostDetail  />}></Route>
-              <Route path="/auth"  element={!user ? <Auth  /> : <Navigate to="/posts"  />}></Route>
+              <Route path="/"  element={<Navigate to="/feed" />} ></Route>
+              <Route path="/feed"  element={<Home />}></Route>
+              <Route path="/feed/search"  element = {<Home  />} ></Route>
+              <Route path="/feed/:id"  element = {<PostDetail  />}></Route>
+              <Route path="/auth"  element={!user ? <Auth  /> : <Navigate to="/feed"  />}></Route>
               <Route path="/profile"  element = { <Profile  />} ></Route>
-              <Route path="/tags/:name"  element = { <Tags />} ></Route>
+              <Route path="/topics/:name"  element = { <Topics />} ></Route>
               <Route path="/auth/changepassword"  element ={ <ChangePassword  />}></Route>
               <Route path="/auth/forgotpassword"  element={ <ForgotPassword  />}></Route>
               <Route path="/auth/emailverification"  element={ <EmailVerification />}></Route>
-              <Route path="/auth/verification"  element={(user ? ( <Verification  />) : <Navigate to="/posts" />)} ></Route>
-              <Route path="*" element={<Navigate to="/posts" />} ></Route>
+              <Route path="/auth/verification"  element={(user ? ( <Verification  />) : <Navigate to="/feed" />)} ></Route>
+              <Route path="/not-found"  element={<NotFound  />}></Route>
+              <Route path="*" element={<Navigate to="/not-found" />} ></Route>
             </Routes>
 
             {/* <BTP /> */}
             <Footer />
           </React.Suspense>  
-        </Container>
+        {/* </Container> */}
       </Router>
     </>
   );

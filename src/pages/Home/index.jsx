@@ -28,7 +28,7 @@ const Home= ()=> {
 
   //how data management will look like without REDUX.
   
-  const [search,setSearch] = useState('');
+  // const [search,setSearch] = useState('');
   const [currentId,setCurrentId] = useState(0);
   const [tags,setTags] = useState([]);
 
@@ -40,11 +40,11 @@ const Home= ()=> {
   const searchQuery = query.get('searchQuery');
 
 
-  const handleKeyPress = (e) =>{
-    if(e.keyCode === 13){ 
-      searchPost();
-    }
-  }
+  // const handleKeyPress = (e) =>{
+  //   if(e.keyCode === 13){ 
+  //     searchPost();
+  //   }
+  // }
 
   // const handleAdd = (tag) =>{
   //   tag.toLowerCase();
@@ -55,15 +55,15 @@ const Home= ()=> {
   //   setTags(tags.filter((tag) => tag !== tagToDelete));
   // }
 
-  const searchPost = () => {
-    if(!search && !tags){
-      history("/");
-    }
-    else if(search.trim() || tags){
-      dispatch(getPostsBySearch({search , tags : tags.join(',')}));
-      history(`/posts/search?searchQuery=${search || 'none'}&tags=${tags.join(',')}`);
-    }
-  }
+  // const searchPost = () => {
+  //   if(!search && !tags){
+  //     history("/");
+  //   }
+  //   else if(search.trim() || tags){
+  //     dispatch(getPostsBySearch({search , tags : tags.join(',')}));
+  //     history(`/feed/search?searchQuery=${search || 'none'}&tags=${tags.join(',')}`);
+  //   }
+  // }
 
   // useEffects
   
@@ -84,9 +84,9 @@ const Home= ()=> {
   
   return (
     <>
-      {/* <Grow in> */}
+      <Grow in>
         {/* main body */}
-        <Container maxwidth="xl" style={{border : "2px solid pink"}} >
+        <Container maxwidth="xl" >
           {/* main feed box  */}
           <Grid2 container justifyContent="space-between" alignItems="stretch" spacing={1} className={classes.gridContainer} sx={{ padding: 0 }}>
             
@@ -144,9 +144,8 @@ const Home= ()=> {
               <Pagination page={page} />
             </Paper>
           )}
-
         </Container>
-      {/* </Grow> */}
+      </Grow>
       
     </>
   )

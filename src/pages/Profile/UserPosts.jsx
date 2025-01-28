@@ -10,7 +10,7 @@ const UserPosts = (props) => {
   const classes = useStyle();
 
   const openPost = (id) => {
-    history(`/posts/${id}`);
+    history(`/feed/${id}`);
     console.log(id);
   }
   return (

@@ -1,9 +1,9 @@
 import axios from 'axios';
-// const DEV_URL = 'http://localhost:5000/'; 
-const PROD_URL = "https://memofeed-backend.onrender.com/";
+const DEV_URL = 'http://localhost:5000/'; 
+// const PROD_URL = "https://memofeed-backend.onrender.com/";
 const API = axios.create({
-  baseURL : PROD_URL
-  // baseURL : DEV_URL
+  // baseURL : PROD_URL
+  baseURL : DEV_URL
 });
 API.interceptors.request.use((req)=>{
   if(localStorage.getItem('profile')){
@@ -12,16 +12,16 @@ API.interceptors.request.use((req)=>{
   return req;
 });
 
-//posts
-export const fetchPost = (id) => API.get(`/posts/${id}`);
-export const fetchPosts = (page) => API.get(`/posts?page=${page}`);
-export const fetchPostsBySearch = (searchQuery) => API.get(`/posts/search?searchQuery=${searchQuery.search || 'none'}&tags=${searchQuery.tags}`);
-export const CreatePost = (newPost) => API.post('/posts', newPost);
-export const likePost = (id) => API.patch(`/posts/${id}/likePost`);
-export const UpdatePost = (id, updatedPost) => API.patch(`/posts/${id}`, updatedPost);
-export const DeletePost = (id) => API.delete(`/posts/${id}`);
-export const comment = (value, id) => API.post(`/posts/${id}/commentPost`, { value });
-export const getStatsForUser = (id) => API.get(`/posts/stats/${id}`);
+//feed
+export const fetchPost = (id) => API.get(`/feed/${id}`);
+export const fetchPosts = (page) => API.get(`/feed?page=${page}`);
+export const fetchPostsBySearch = (searchQuery) => API.get(`/feed/search?searchQuery=${searchQuery.search || 'none'}&tags=${searchQuery.tags}`);
+export const CreatePost = (newPost) => API.post('/feed', newPost);
+export const likePost = (id) => API.patch(`/feed/${id}/likePost`);
+export const UpdatePost = (id, updatedPost) => API.patch(`/feed/${id}`, updatedPost);
+export const DeletePost = (id) => API.delete(`/feed/${id}`);
+export const comment = (value, id) => API.post(`/feed/${id}/commentPost`, { value });
+export const getStatsForUser = (id) => API.get(`/feed/stats/${id}`);
 //auth
 export const login = (formData) => API.post('/auth/login', formData);
 export const signup = (formData) => API.post('/auth/signup', formData);

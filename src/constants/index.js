@@ -15,5 +15,10 @@ export const GlobalConstants = {
   cancel : "Cancel",
   delete : "Delete",
   deleteAlertMessage : "You cannot undo this action; Kindly be very sure about it.",
-  creator : "Author :"
+  creator : "Author :",
+  openSettings : "Open Settings",
+  notFound : "404 NOT FOUND !!",
+  notFoundDesp: "Something you are looking for does not exist.",
+  backToHome: "Back To Home",
+  
 }

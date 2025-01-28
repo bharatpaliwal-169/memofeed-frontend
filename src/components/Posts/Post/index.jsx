@@ -65,7 +65,7 @@ const Post = ({ post, setCurrentId }) => {
 
 
   const openPost = () => {
-    history(`/posts/${post._id}`);
+    history(`/feed/${post._id}`);
   }
 
   //confirm dialog box

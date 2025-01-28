@@ -54,7 +54,7 @@ const PostDetails = () => {
   }
   
   // details page
-  const openPost = (_id) => history(`/posts/${_id}`);
+  const openPost = (_id) => history(`/feed/${_id}`);
   
   // recommedations
   const recommendedPosts = posts.filter(({ _id,likes }) => _id !== post._id && likes.length > 5);

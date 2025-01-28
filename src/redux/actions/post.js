@@ -43,7 +43,7 @@ export const createPost = (post,history)=>  async (dispatch) => {
     dispatch({type:START_LOADING});
     const {data} = await api.CreatePost(post);
     //renavigate
-    history(`/posts/${data._id}`);
+    history(`/feed/${data._id}`);
     dispatch({type: CREATE,payload: data});
     dispatch({type : END_LOADING});
   } catch (error) {

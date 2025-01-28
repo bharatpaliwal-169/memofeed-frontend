@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getPostsBySearch } from '../../redux/actions/post';
 
 //components
-import Post from '../../components/Posts/Post';
+import Post from '../../components/feed/Post';
 import Loading from '../../components/Loading'
 
 //css
@@ -36,7 +36,7 @@ const Tags = () => {
         Try other tags ......
       </Typography>
 
-      <Button variant='text' component={Link} to="/posts" >
+      <Button variant='text' component={Link} to="/feed" >
         <ArrowBackIcon />
         <Typography variant="body">
           Go Back
