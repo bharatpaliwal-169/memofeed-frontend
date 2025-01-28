@@ -84,48 +84,59 @@ const Home= ()=> {
   
   return (
     <>
-      <Grow in>
-        <Container maxwidth="xl">
-          <Grid2 container justifyContent="space-between" alignItems="stretch" spacing={1} 
-            className={classes.gridContainer}>
-            <Grid2 item xs={12} sm={6} md={7}>
+      {/* <Grow in> */}
+        {/* main body */}
+        <Container maxwidth="xl" style={{border : "2px solid pink"}} >
+          {/* main feed box  */}
+          <Grid2 container justifyContent="space-between" alignItems="stretch" spacing={1} className={classes.gridContainer} sx={{ padding: 0 }}>
+            
+            {/* FEED */}
+            {/* <Grid2 item xs={12} sm={6} md={6} lg={4} xl={3}> */}
+              
               <React.Suspense fallback={<Loading />} >
                 <Posts setCurrentId={setCurrentId} />
               </React.Suspense>
-            </Grid2>
+            
+            {/* </Grid2> */}
 
-            <Grid2 item xs={12} sm={6} md={4}>
-              <AppBar className={classes.appBarSearch} position="static" color="inherit">
-                <TextField 
-                  onKeyDown={handleKeyPress} 
-                  name="search" 
-                  variant="outlined" 
-                  label="Search Memories" 
-                  fullWidth 
-                  value={search} 
-                  onChange={(e) => setSearch(e.target.value)} 
-                />
-                
-                {/* <ChipInput
-                  style={{ margin: '10px 0' }}
-                  value={tags}
-                  onAdd={(chip) => handleAdd(chip)}
-                  onDelete={(chip) => handleDelete(chip)}
-                  label="Search Tags"
-                  variant="outlined"
-                /> */}
+            
 
-                <Button onClick={searchPost} className={classes.searchButton} variant="contained" 
-                  color="primary">
-                    {GlobalConstants.search}
-                </Button>
-              </AppBar>
-              
+            {/* SEARCH COMPONENT */}
+              {/* <Grid2 item xs={12} sm={6} md={4}>
+                <AppBar className={classes.appBarSearch} position="static" color="inherit">
+                  
+                  <TextField 
+                    onKeyDown={handleKeyPress} 
+                    name="search" 
+                    variant="outlined" 
+                    label="Search Memories" 
+                    fullWidth 
+                    value={search} 
+                    onChange={(e) => setSearch(e.target.value)} 
+                  />
+                  
+                  <ChipInput
+                    style={{ margin: '10px 0' }}
+                    value={tags}
+                    onAdd={(chip) => handleAdd(chip)}
+                    onDelete={(chip) => handleDelete(chip)}
+                    label="Search Tags"
+                    variant="outlined"
+                  />
+
+                  <Button onClick={searchPost} className={classes.searchButton} variant="contained" 
+                    color="primary">
+                      {GlobalConstants.search}
+                  </Button>
+                  </AppBar>
+                </Grid2> */}
+
+
+              {/* ADD POST COMPONENT */}
               <React.Suspense fallback={<Loading/>}>
                 <Form currentId={currentId} setCurrentId={setCurrentId} />
               </React.Suspense>
-            
-            </Grid2>
+
           </Grid2>
 
           {(!searchQuery && !tags.length) && (
@@ -135,7 +146,7 @@ const Home= ()=> {
           )}
 
         </Container>
-      </Grow>
+      {/* </Grow> */}
       
     </>
   )

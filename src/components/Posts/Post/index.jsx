@@ -85,13 +85,13 @@ const Post = ({ post, setCurrentId }) => {
     <>
     <Card className={classes.card} raised elevation={6}>
       <ButtonBase className={classes.cardAction} onClick={openPost}>
-        <CardMedia className={classes.media} 
+        <CardMedia className={classes.media}
           image={post.selectedFile || GlobalConstants.defaultImage } 
-          title={post.title} 
+          title={post.title} height={240} width={160}
         />
         
         <div className={classes.overlay}>
-          <Typography variant="h6">
+          <Typography  variant="h6">
             {post.name}
           </Typography>
           <Typography variant="caption"> {moment(post.createdAt).fromNow()} </Typography>

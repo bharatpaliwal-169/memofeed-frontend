@@ -2,10 +2,10 @@ import { makeStyles } from '@mui/styles';
 
 export default makeStyles((theme) => ({
   appBarSearch: {
-    borderRadius: 4,
+    borderRadius: 2,
     marginBottom: '1rem',
     display: 'flex',
-    padding: '16px',
+    padding: '1rem',
   },
   pagination: {
     background : 'transparent',
@@ -13,7 +13,7 @@ export default makeStyles((theme) => ({
     paddingLeft: '1rem',
   },
   gridContainer: {
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       flexDirection: 'column-reverse',
     },
   },

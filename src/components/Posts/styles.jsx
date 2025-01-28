@@ -4,6 +4,7 @@ export default makeStyles((theme) => ({
   mainContainer: {
     display: 'flex',
     alignItems: 'center',
+    border : '2px solid green',
   },
   smMargin: {
     margin: theme.spacing(2),
@@ -15,7 +16,7 @@ export default makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    padding: '2rem',
+    padding: '1rem',
     borderRadius: '1rem',
   },
 }));

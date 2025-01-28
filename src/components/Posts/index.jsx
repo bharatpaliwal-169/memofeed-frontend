@@ -3,7 +3,7 @@ import React from 'react';
 //redux
 import {useSelector} from 'react-redux';
 //css
-import {Grid2} from '@mui/material'
+import {Grid2,Box} from '@mui/material'
 import useStyles from './styles'
 
 import Post from './Post';
@@ -16,19 +16,25 @@ const Posts = ({setCurrentId}) => {
   if(!posts.length && !isLoading) {
     return (
       <>
-        <Loading></Loading>
+        <Loading />
       </>
     )
   }
   return (
-    isLoading ? <Loading /> : (
-      <Grid2 className={classes.mainContainer} container alignItems="stretch" spacing={3}>
-        {posts.map((post,index) => (
-          <Grid2 key={index} item xs={12} sm={12} md={6} >
-            <Post post={post} setCurrentId={setCurrentId} />
-          </Grid2>
-        ))}
-      </Grid2>
+      isLoading ? <Loading /> : (
+      <Box sx={{ flexGrow: 1 }}>
+        <Grid2 className={classes.mainContainer} container justifyContent="center" alignItems="stretch" spacing={3} sx={{ padding: 1 }} >
+          
+          {posts.map((post,index) => (
+            
+            <Grid2 key={index} item xs={12} sm={12} md={4} lg={4} xl={3} >
+              <Post post={post} setCurrentId={setCurrentId} />
+            </Grid2>
+          
+          ))}
+        
+        </Grid2>
+      </Box>
     )
   );
 } 

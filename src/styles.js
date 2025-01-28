@@ -2,12 +2,14 @@ import { makeStyles } from '@mui/styles';
 
 export default makeStyles((theme) => ({
   appBar: {
-    borderRadius: '1rem',
-    margin: '2rem 0',
+    borderRadius: '0.25rem',
+    margin: '1.25rem 0',
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
+    // border : "2px solid blue",
+    // padding : "2rem",
   },
   heading: {
     color: 'rgba(0,183,255, 1)',
