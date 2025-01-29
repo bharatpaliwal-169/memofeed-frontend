@@ -22,5 +22,8 @@ export const GlobalConstants = {
   backToHome: "Back To Home",
   confirmLogout: "Do you want to logout ?",
   cancel : "Cancel",
+  posts : "Posts",
+  likes : "Likes",
+  
   
 }

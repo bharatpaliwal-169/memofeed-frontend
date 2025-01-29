@@ -19,6 +19,7 @@ const ChangePassword = React.lazy(()=>import("./pages/ChangePassword"));
 const ForgotPassword = React.lazy(()=>import("./pages/ForgotPassword"));
 const NotFound = React.lazy(() => import("./pages/NotFound"));
 
+const TestComponent = React.lazy(()=> import("./pages/Test"));
 //components
 const Navbar = React.lazy(()=> import("./components/NavbarUI"));
 const Footer = React.lazy(()=> import("./components/Footer"));
@@ -64,6 +65,7 @@ const App = () => {
               <Route path="/auth/verification"  element={(user ? ( <Verification  />) : <Navigate to="/feed" />)} ></Route>
               <Route path="/not-found"  element={<NotFound  />}></Route>
               <Route path="/logout"  element={<Logout />}></Route>
+              <Route path="/test"  element={<TestComponent />}></Route>
               
               <Route path="*" element={<Navigate to="/not-found" />} ></Route>
             </Routes>
