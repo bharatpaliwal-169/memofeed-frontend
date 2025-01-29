@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 //css
 
 import Loading from './components/FlashUI'
+import Logout from './pages/Logout';
 
 //pages
 const Home = React.lazy(()=> import("./pages/Home"));
@@ -62,6 +63,8 @@ const App = () => {
               <Route path="/auth/emailverification"  element={ <EmailVerification />}></Route>
               <Route path="/auth/verification"  element={(user ? ( <Verification  />) : <Navigate to="/feed" />)} ></Route>
               <Route path="/not-found"  element={<NotFound  />}></Route>
+              <Route path="/logout"  element={<Logout />}></Route>
+              
               <Route path="*" element={<Navigate to="/not-found" />} ></Route>
             </Routes>
 

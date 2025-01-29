@@ -20,5 +20,7 @@ export const GlobalConstants = {
   notFound : "404 NOT FOUND !!",
   notFoundDesp: "Something you are looking for does not exist.",
   backToHome: "Back To Home",
+  confirmLogout: "Do you want to logout ?",
+  cancel : "Cancel",
   
 }
