@@ -29,6 +29,7 @@ const TestComponent = () => {
             <Avatar
               alt={user?.result?.name} src={user?.result?.imageUrl}
               sx={{ width: 80, height: 80,padding:'1rem', border: "3px solid white",fontWeight:'bold',backgroundColor:'#3E78B6' }}
+              style={{ border: user?.result?.verified ? '2px solid green' : ''}}
             >
               {user?.result?.name?.charAt(0)}
             </Avatar>

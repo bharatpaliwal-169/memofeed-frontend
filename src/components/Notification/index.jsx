@@ -1,12 +1,12 @@
-import React from 'react'
+import React,{useState} from 'react'
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 
 const Notification = ({snackType,snackMessage,snackOpen}) => {
-  const [open,setOpen] = React.useState(snackOpen)
-  const Alert = (props) =>{
-    return <MuiAlert elevation={6} variant="filled" {...props} />;
-  }
+  const [open,setOpen] = useState(snackOpen)
+  // const Alert = (props) =>{
+  //   return <Alert elevation={6} variant="filled" {...props} />;
+  // }
   const handleClose = () =>{
     setOpen(false);
   }

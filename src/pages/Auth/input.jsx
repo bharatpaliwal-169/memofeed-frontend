@@ -1,11 +1,11 @@
 import React from 'react'
 import {TextField,Grid2} from "@mui/material"
 
-function Input({half,name,handleChange,label,type,autoFocus}) {
-
+const Input = ({name,handleChange,label,type,autoFocus}) => {
   return (
     <>
-      <Grid2 item xs={12} sm={half ? 6 : 12}>
+      <Grid2 item xs={12} sm={12} >
+        
         <TextField 
           name={name}
           onChange={handleChange}
@@ -15,7 +15,9 @@ function Input({half,name,handleChange,label,type,autoFocus}) {
           autoFocus={autoFocus}
           label={label}
           type={type}
+          style={{margin:'0.5rem'}}
         />
+      
       </Grid2>
     </>
   )

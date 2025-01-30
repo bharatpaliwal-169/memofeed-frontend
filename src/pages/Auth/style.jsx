@@ -5,9 +5,10 @@ export default makeStyles((theme) => ({
     marginTop: theme.spacing(5),
     marginBottom: theme.spacing(5),
     display: 'flex',
-    flexDirection: 'column',
+    flexDirection: 'row',
     alignItems: 'center',
-    padding: theme.spacing(5),
+    justifyContent:'center',
+    padding: theme.spacing(1),
   },
   root: {
     '& .MuiTextField-root': {
@@ -23,7 +24,7 @@ export default makeStyles((theme) => ({
     marginTop: theme.spacing(3),
   },
   submit: {
-    margin: theme.spacing(4, 0, 2),
+    margin: "0.5rem",
   },
   googleButton: {
     marginBottom: theme.spacing(2),
@@ -31,6 +32,12 @@ export default makeStyles((theme) => ({
   media:{
     width:'100%',
     maxHeight:"15rem",
+    objectPosition:'center',
+    objectFit:"contain"
+  },
+  bgCover:{
+    width:'100%',
+    maxHeight:"100%",
     objectPosition:'center',
     objectFit:"contain"
   }

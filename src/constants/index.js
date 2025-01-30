@@ -24,6 +24,14 @@ export const GlobalConstants = {
   cancel : "Cancel",
   posts : "Posts",
   likes : "Likes",
-  
+  alreadyHaveAccount : 'Already have an account? Login in',
+  newAccount: "Don't have an account? Sign Up",
+  SignUp : "Sign Up",
+  Login : "Login",
+  forgotPassword: "Forgot Password",
+  minPassRequired : "* Keep your password at least 6 characters long.",
+  Password : "Password",
+  forgotPasswordDesp : "No Worries, We will help you recover your account.",
+  confirm: "Confirm",
   
 }

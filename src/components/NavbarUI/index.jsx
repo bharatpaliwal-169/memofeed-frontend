@@ -146,7 +146,9 @@ const NavbarUI = () => {
                   <Box component="div" sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                     <Tooltip title={GlobalConstants.openSettings}>
                       <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                        <Avatar className={classes.purple} alt={user?.result?.name} src={user?.result?.imageUrl}>
+                        <Avatar className={classes.purple} alt={user?.result?.name} src={user?.result?.imageUrl}
+                          style={{ border: user?.result?.verified ? '2px solid green' : ''}}
+                        >
                           {user?.result?.name?.charAt(0)}
                         </Avatar>
                       </IconButton>
