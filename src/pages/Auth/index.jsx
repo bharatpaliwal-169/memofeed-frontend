@@ -69,19 +69,19 @@ const Auth = () =>{
 
   return (
     <>
-      <Container component="main" maxwidth="xl" style={{border:'2px solid green'}}>
+      <Container component="main" maxwidth="xl">
         {/* <Typography variant={"h2"}  style={{color: '#09779A',fontWeight: 'bold',textAlign: 'center'}}>
           {GlobalConstants.brandName}
         </Typography> */}
-        <Paper className={classes.paper} elevation={2}>
+        <Box className={classes.paper}>
 
           <Box component='section' sx={{display: { xs: "none", sm: "block" },flexGrow:1,width:'50%'}} 
-            style={{border: '2px solid blue'}}
           >
             <img src={authBgCover} alt="AuthCover" className={classes.bgCover} />
           </Box>
 
-          <Box component='section' sx = {{flexGrow:1,width:'50%'}} style={{alignItems:'center',textAlign:'center',padding:'1rem',border:'2px solid green'}}>
+          {/* SIGNIN FORM */}
+          <Box component='section' sx = {{flexGrow:1,width:'50%'}} style={{alignItems:'center',textAlign:'center',padding:'1rem'}}>
             {/* <img src={authLogo} alt="Authentication" className={classes.media} /> */}
 
             <Typography variant="h3" style={{letterSpacing:'1px',fontWeight:'bold',color:'#09779A',margin:'1.25rem 0 1.25rem 0'}}>
@@ -160,33 +160,24 @@ const Auth = () =>{
                   ) : null}
                 </Button>
                 
-                
+                <Button variant='outlined' color='primary' onClick={switchMode} fullWidth style={{margin:"0.5rem"}}>
+                  { isSignup ? GlobalConstants.alreadyHaveAccount : GlobalConstants.newAccount }
+                </Button>
+
+                {isSignup ? null :
+                  (
+                    
+                    <Button color='primary' onClick={handleForgotPassword} style={{margin:"0.5rem"}}>
+                      {GlobalConstants.forgotPassword} ?
+                    </Button>
+                    
+                  )
+                }
               </Box>
-              
-              
-
-              <Grid2 container justifyContent="flex-start" style={{margin:"0.5rem"}}>
-                <Grid2 item>
-                  <Button variant='outlined' color='primary' onClick={switchMode}>
-                    { isSignup ? GlobalConstants.alreadyHaveAccount : GlobalConstants.newAccount }
-                  </Button>
-
-                  {isSignup ? null :
-                    (
-                      
-                      <Button variant='outlined' color='primary' onClick={handleForgotPassword} style={{margin:"0.5rem"}}>
-                        {GlobalConstants.forgotPassword} ?
-                      </Button>
-                      
-                    )
-                  }
-                </Grid2>
-                
-              </Grid2>
             </form>
         </Box>
         
-        </Paper>
+        </Box>
       </Container>
     </>
   )
