@@ -48,9 +48,9 @@ const PostDetails = () => {
 
   if (!post) return null;
 
-  // tags page
-  const handleChipClick = (tag) => {
-    history(`/tags/${tag}`);
+  // topics page
+  const handleChipClick = (topic) => {
+    history(`/topics/${topic}`);
   }
   
   // details page

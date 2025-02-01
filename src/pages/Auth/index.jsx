@@ -7,16 +7,14 @@ import {useDispatch} from 'react-redux'
 import {signup , login} from '../../redux/actions/auth'
 
 //css
-import {Container,Paper,Grid2,TextField,Typography,FormControl,OutlinedInput,InputLabel,
-  CircularProgress,Button,InputAdornment, IconButton,
-  Box} from "@mui/material"
+import {Container,Typography,FormControl,OutlinedInput,InputLabel,
+  CircularProgress,Button,InputAdornment, IconButton,Box} from "@mui/material"
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import useStyles from './style'
 
 //components
 import Input from './input'
-// import authLogo from '../../assets/Auth.svg';
 import authBgCover from '../../assets/AuthBgCover.svg';
 import { GlobalConstants } from '../../constants'
 
@@ -27,27 +25,28 @@ const Auth = () =>{
     firstName: '',lastName: '',email: '',password: ''
   };
   
-  // const [success, setSuccess] = useState(false);
   const [isSignup,setIsSignup] = useState(false);
   const [formData,setformData] = useState(initialState);
   const [showPassword, setShowPassword] = useState(false);
   const [loading,setLoading] = useState(false);
-  
   //support
   const classes = useStyles();
   const history = useNavigate();
   const dispatch = useDispatch();
+  
   const handleClickShowPassword = () => setShowPassword(!showPassword);
   const handleMouseDownPassword = () => setShowPassword(!showPassword);
   
   //functions
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if(formData.password.length < 6 && isSignup){
-      alert('password must be at least 6 characters');
+      alert("password is too small")
       return;
     }
     setLoading(true);
+    
     if(isSignup) {
       dispatch(signup(formData,history));
     } else{
@@ -66,23 +65,16 @@ const Auth = () =>{
   const handleForgotPassword = () => {
     history("/auth/forgotpassword");
   }
-
   return (
     <>
       <Container component="main" maxwidth="xl">
-        {/* <Typography variant={"h2"}  style={{color: '#09779A',fontWeight: 'bold',textAlign: 'center'}}>
-          {GlobalConstants.brandName}
-        </Typography> */}
         <Box className={classes.paper}>
-
-          <Box component='section' sx={{display: { xs: "none", sm: "block" },flexGrow:1,width:'50%'}} 
-          >
+          <Box component='section' sx={{display: { xs: "none", sm: "block" },flexGrow:1,width:'50%'}}>
             <img src={authBgCover} alt="AuthCover" className={classes.bgCover} />
           </Box>
 
           {/* SIGNIN FORM */}
           <Box component='section' sx = {{flexGrow:1,width:'50%'}} style={{alignItems:'center',textAlign:'center',padding:'1rem'}}>
-            {/* <img src={authLogo} alt="Authentication" className={classes.media} /> */}
 
             <Typography variant="h3" style={{letterSpacing:'1px',fontWeight:'bold',color:'#09779A',margin:'1.25rem 0 1.25rem 0'}}>
               {isSignup ? GlobalConstants.SignUp : GlobalConstants.Login}
@@ -103,23 +95,6 @@ const Auth = () =>{
                   handleChange={handleChange} 
                   required
                 />
-                
-                {/* <TextField name = "password" label="password" variant="outlined" type={showPassword ? "text" : "password"} 
-                  onChange={handleChange} fullWidth required  autoComplete='false'
-                  slotProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <IconButton
-                          aria-label="toggle password visibility"
-                          onClick={handleClickShowPassword}
-                          onMouseDown={handleMouseDownPassword}
-                          >
-                          {showPassword ? <VisibilityIcon />:<VisibilityOffIcon/>}
-                        </IconButton>
-                      </InputAdornment>
-                    )
-                  }}
-                /> */}
                 
                 <FormControl variant="outlined" fullWidth style={{margin:'0.5rem'}}>
                   <InputLabel htmlFor="outlined-password">{GlobalConstants.Password}</InputLabel>
@@ -175,8 +150,7 @@ const Auth = () =>{
                 }
               </Box>
             </form>
-        </Box>
-        
+          </Box>
         </Box>
       </Container>
     </>

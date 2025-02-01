@@ -28,8 +28,8 @@ const Post = ({ post, setCurrentId }) => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const location = useLocation();
 
-  const handleChipClick = (tag) => {
-    history(`/tags/${tag}`);
+  const handleChipClick = (topic) => {
+    history(`/topics/${topic}`);
   }
 
   const dispatch = useDispatch();
@@ -60,7 +60,7 @@ const Post = ({ post, setCurrentId }) => {
         );
     }
 
-    return <><ThumbUpAltOutlined fontSize="small" />&nbsp;Like</>;
+    return <><ThumbUpAltOutlined fontSize="small" />&nbsp;{GlobalConstants.like}</>;
   };
 
 
@@ -113,7 +113,7 @@ const Post = ({ post, setCurrentId }) => {
           )}
         </div>
         
-        {location.pathname.startsWith('/tags') ? (
+        {location.pathname.startsWith('/topics') ? (
           <></>
         ) : (
         <div className={classes.Chipdetails}>

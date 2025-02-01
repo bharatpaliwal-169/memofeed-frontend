@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getPostsBySearch } from '../../redux/actions/post';
 
 //components
-import Post from '../../components/feed/Post';
+import Post from '../../components/Posts/Post';
 import Loading from '../../components/Loading'
 
 //css

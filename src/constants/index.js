@@ -33,5 +33,6 @@ export const GlobalConstants = {
   Password : "Password",
   forgotPasswordDesp : "No Worries, We will help you recover your account.",
   confirm: "Confirm",
-  
+  like:"Like",
+  RESET_AUTH : "RESET_AUTH"
 }

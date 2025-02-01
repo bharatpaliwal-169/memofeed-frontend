@@ -30,10 +30,6 @@ const navigate = useNavigate();
 navigate('/');
 ```
 
-React router dom migrated to v5 from v6. v6 have a lot of complexity and is not really going with the requirements of project.
-
-
-
 
 -------------------------------------------------------------------------------
 
@@ -71,4 +67,12 @@ Middleware is automatically included by configureStore (like redux-thunk), but y
 
 ### Key Changes for Material UI --> MUI
 @mui/material @mui/icons-material @emotion/react @emotion/styled
+
+
+
+# ERROR HANDELING NEED HUGE IMPROVEMENT 
+1) if something goes south there is no fallback actions defined!!
+2) Centralised Notification system is needed.
+3) Tracking user activity and logging user actions.
+
 
