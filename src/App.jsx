@@ -46,34 +46,28 @@ const App = () => {
   return (
     <>
       <Router>
-        {/* <Container maxwidth="xl"> */}
-          <Navbar />
-          
-          <React.Suspense fallback={<Loading />}>
-
-            <Routes>
-              <Route path="/"  element={<Navigate to="/feed" />} ></Route>
-              <Route path="/feed"  element={<Home />}></Route>
-              <Route path="/feed/search"  element = {<Home  />} ></Route>
-              <Route path="/feed/:id"  element = {<PostDetail  />}></Route>
-              <Route path="/auth"  element={!user ? <Auth  /> : <Navigate to="/feed"  />}></Route>
-              <Route path="/profile"  element = { <Profile  />} ></Route>
-              <Route path="/topics/:name"  element = { <Topics />} ></Route>
-              <Route path="/auth/changepassword"  element ={ <ChangePassword  />}></Route>
-              <Route path="/auth/forgotpassword"  element={ <ForgotPassword  />}></Route>
-              <Route path="/auth/emailverification"  element={ <EmailVerification />}></Route>
-              <Route path="/auth/verification"  element={(user ? ( <Verification  />) : <Navigate to="/feed" />)} ></Route>
-              <Route path="/not-found"  element={<NotFound  />}></Route>
-              <Route path="/logout"  element={<Logout />}></Route>
-              <Route path="/test"  element={<TestComponent />}></Route>
-              
-              <Route path="*" element={<Navigate to="/not-found" />} ></Route>
-            </Routes>
-
-            {/* <BTP /> */}
-            <Footer />
-          </React.Suspense>  
-        {/* </Container> */}
+        <Navbar />
+        <React.Suspense fallback={<Loading />}>
+          <Routes>
+            <Route path="/"  element={<Navigate to="/feed" />} ></Route>
+            <Route path="/feed"  element={<Home />}></Route>
+            <Route path="/feed/search"  element = {<Home  />} ></Route>
+            <Route path="/feed/:id"  element = {<PostDetail  />}></Route>
+            <Route path="/auth"  element={!user ? <Auth  /> : <Navigate to="/feed"  />}></Route>
+            <Route path="/profile"  element = { <Profile  />} ></Route>
+            <Route path="/topics/:name"  element = { <Topics />} ></Route>
+            <Route path="/auth/changepassword"  element ={ <ChangePassword  />}></Route>
+            <Route path="/auth/forgotpassword"  element={ <ForgotPassword  />}></Route>
+            <Route path="/auth/emailverification"  element={ <EmailVerification />}></Route>
+            <Route path="/auth/verification"  element={(user ? ( <Verification  />) : <Navigate to="/feed" />)} ></Route>
+            <Route path="/not-found"  element={<NotFound  />}></Route>
+            <Route path="/logout"  element={<Logout />}></Route>
+            <Route path="/test"  element={<TestComponent />}></Route>
+            
+            <Route path="*" element={<Navigate to="/not-found" />} ></Route>
+          </Routes>
+          <Footer />
+        </React.Suspense> 
       </Router>
     </>
   );

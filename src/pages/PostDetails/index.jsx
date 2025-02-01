@@ -8,13 +8,14 @@ import {useDispatch,useSelector} from 'react-redux';
 import {getPost,getPostsBySearch} from '../../redux/actions/post'
 
 //css
-import {Card,Paper,Typography,Divider,Grid2, CardContent,Tooltip} from '@mui/material'
+import {Card,Paper,Typography,Divider,Grid2, CardContent,Tooltip, Container, Box} from '@mui/material'
 import moment from 'moment';
 import Chip from '@mui/material/Chip';
 
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import PeopleIcon from '@mui/icons-material/People';
 import CreateIcon from '@mui/icons-material/Create';
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import useStyles from './styles'
 
 
@@ -61,9 +62,9 @@ const PostDetails = () => {
 
   //UI
   return (
-    <>
+    <Container maxWidth="xl">
       {isLoading ? <Loading /> : (
-        <Paper className={classes.mainPaper} elevation={4}>
+        <Paper className={classes.mainPaper} elevation={2}>
           
           <Typography variant="h3" className={classes.title}>
             {post.title}
@@ -72,17 +73,36 @@ const PostDetails = () => {
           <Divider style={{margin : '0.5rem'}} />
 
           <Typography gutterBottom variant="body1"style={{marginTop:'0.5rem'}} color="textSecondary" component="h6">
-              {post.tags.map((tag,index) => 
-              <>
-                <Chip key={index} label={tag} spacing={1} style={{margin:'0.25rem'}} onClick={(e) => handleChipClick(tag)} 
-                      clickable variant="outlined" color="primary" />
-              </>
-              )}
+            {post.tags.map((tag,index) => 
+            <>
+              <Chip key={index} label={tag} spacing={1} style={{margin:'0.25rem'}} onClick={(e) => handleChipClick(tag)} 
+                clickable variant="outlined" color="primary"
+              />
+            </>
+            )}
           </Typography>
 
-          <Grid2 container spacing={3} alignItems="flex-end" style={{marginTop:'2rem',marginBottom:'2rem'}}>
-            <Grid2 item md={2}></Grid2>
-            
+          
+        
+          <Box component='section' style={{display:'flex',alignItems:'center',justifyContent:'center',width:'50%',maxHeight:'50%'}}>
+            <img className={classes.media} 
+              src={post.selectedFile || GlobalConstants.defaultImageCover} 
+              alt={post.title} 
+            />
+          </Box>
+
+          <Typography variant="body2">
+            {GlobalConstants.creator} <span style={{color:'#488BBF',fontWeight:'bold'}}> {post.name} </span>
+          </Typography>
+          <Typography variant="subtitle1">{moment(post.createdAt).fromNow()}</Typography>
+          
+          <Box sx={{flexGrow:1}}>
+            <Typography variant="body1" component="p" className={classes.content} >
+              {post.message}
+            </Typography>
+          </Box>
+
+          <Grid2 container spacing={3} alignItems="flex-start" style={{marginTop:'2rem',marginBottom:'2rem'}}>
             <Grid2 item xs={12} md={3}>
               <Card elevation={0} style={{alignItems:'center'}}>
                 <CardContent>
@@ -134,25 +154,6 @@ const PostDetails = () => {
               </Card>
             </Grid2>
           </Grid2>
-        
-          <Grid2 container spacing={3} alignItems="stretch">
-            <Grid2 item md={3}></Grid2>
-            <Grid2 item xs={12} sm={12} md={6}>
-              <img className={classes.media} src={post.selectedFile || 'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'} alt={post.title} />
-            </Grid2>
-            <Grid2 item md={3}></Grid2>
-          </Grid2>
-
-          <Typography variant="body2">
-            {GlobalConstants.creator} <span style={{color:'#488BBF',fontWeight:'bold'}}> {post.name} </span>
-          </Typography>
-          <Typography variant="subtitle1">{moment(post.createdAt).fromNow()}</Typography>
-          
-          <Typography gutterBottom variant="body1" component="p" className={classes.content} >
-            {post.message}
-          </Typography>
-
-          <Divider />
 
           <Grid2 container spacing={4}>
             <Grid2 item md={1}></Grid2>
@@ -166,49 +167,55 @@ const PostDetails = () => {
           {!!recommendedPosts.length && (
             <>
               <Typography variant="h4" style={{fontWeight: 'bold', color : '#09779A',marginTop:'2.5rem'}}>
-                You might also like:
+                {GlobalConstants.recommendationHeading}
               </Typography>
+
               <Divider style={{margin : '1rem'}} />
-                <Grid2 container spacing={3} alignItems="stretch">
-                  {recommendedPosts.map(({ title, name, likes, message, _id}) => (
-                    <Grid2 item xs={12} sm={12} md={3} key={_id}>
-                      <Card elevation={3} style={{margin:'1rem',borderRadius:'1rem',cursor: 'pointer',padding:'1rem' }} 
-                      key={_id} onClick={() => openPost(_id)}>
-                          
-                          <Typography gutterBottom variant="h5" style={{ color: '#09779A',textTransform: 'capitalize'}}>
-                            <span style={{fontWeight:'bold'}}>{title.length > 10 ? title.substring(0, 10)+'....' : title}</span>
-                          </Typography>
-                          
-                          <Typography gutterBottom variant="body1" style={{marginTop: '0.5rem', marginBottom:'0.5rem'}}>
-                            <span>{message.length > 60 ? message.substring(0, 60)+'....' : message}</span>
-                          </Typography>
-                          
-                          <Typography gutterBottom variant="subtitle2" >
-                          <span style={{fontWeight:'bold'}}> Creator</span> : 
-                          <span style={{ color: '#09779A',textTransform: 'capitalize'}}>
-                            {name}
-                          </span>
-                          </Typography>
-                          
-                          <Typography gutterBottom variant="subtitle1">
-                            Likes: {likes.length} 
-                          </Typography>
-                      </Card>
-                    </Grid2>
+              
+              <Box style={{display:'flex',flexWrap:'wrap',alignItems:"stretch",justifyContent:'start',margin:'1rem',gap:'1rem'}} >
+
+                {recommendedPosts.map(({ title, name, likes, message, _id}) => (
+                  
+                  <>
                     
-                  ))}
-                </Grid2>
+                    <Card component='div' elevation={2} style={{width:'30%',borderRadius:'0.5rem',cursor: 'pointer',padding:'1rem' }} 
+                      key={_id} onClick={() => openPost(_id)}
+                    >
+                        
+                        <Typography gutterBottom variant="h6" style={{ color: '#09779A',textTransform: 'capitalize'}}>
+                          <span style={{fontWeight:'bold'}}>{title.length > 25 ? title.substring(0, 25)+'....' : title}</span>
+                        </Typography>
+                        
+                        <Typography gutterBottom variant="body2" style={{marginTop: '0.5rem', marginBottom:'0.5rem'}}>
+                          <span>{message.length > 90 ? message.substring(0, 90)+'....' : message}</span>
+                        </Typography>
+                        <Box component='div' style={{display:'flex',flexDirection:'row',gap:'1rem' }}>
+                          <Typography variant="subtitle2" >
+                            <span style={{fontWeight:'bold'}}> {GlobalConstants.creator}</span>: 
+                            <span style={{ color: '#09779A',textTransform: 'capitalize',marginLeft:'0.25rem'}}>
+                              {name}
+                            </span>
+                          </Typography>
+                          {/* <Typography variant="subtitle2">
+                            <ThumbUpIcon style={{fontSize:'1.25rem',paddingTop:'0.5rem'}} /> {likes.length} 
+                          </Typography> */}
+                        </Box>
+                    </Card>
+                  </>
+                  
+                ))}
+              </Box>
             </>
           )}
 
 
-          <Typography variant="body2">
+          {/* <Typography variant="body2">
             {GlobalConstants.creator} <span style={{color:'#488BBF',fontWeight:'bold'}}> {post.name} </span>
           </Typography>
-          <Typography variant="subtitle1">{moment(post.createdAt).fromNow()}</Typography>
+          <Typography variant="subtitle1">{moment(post.createdAt).fromNow()}</Typography> */}
         </Paper>
       )}
-    </>
+    </Container>
   )
 }
 

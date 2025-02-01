@@ -46,13 +46,13 @@ const ForgotPassword = () => {
   
   if(showSnack){
     if(snackType){
-      const snackMessage = snackType === "SUCCESS" ? "We have sent you an email, Please Check your inbox." : "Oh uoh! Something went wrong, Please try again later.";
+      const snackMessage = snackType === "SUCCESS" ? GlobalConstants.mailSentSuccessMessage : GlobalConstants.mailSentFailureMessage;
       return (
         <>
           <Notification snackType={snackType} snackOpen={true} snackMessage={snackMessage}/>
           <Paper className={classes.mainPaper}>
             <Typography variant='body1' className={classes.bodyData}>
-              {snackType==="SUCCESS"? "Check your inbox." : "Please try again."}
+              {snackType==="SUCCESS"? GlobalConstants.checkInbox : GlobalConstants.tryAgain}
             </Typography>
           </Paper>
         </>
@@ -71,9 +71,6 @@ const ForgotPassword = () => {
           <Typography variant='body1' className={classes.bodyData}>
             {GlobalConstants.forgotPasswordDesp}
           </Typography>
-          {/* <Typography variant='body1' className={classes.bodyData}>
-            Please enter your email id here.
-          </Typography> */}
 
           <Box sx={{padding: '1rem'}}>
             <TextField name = "email" label="Email Address" placeholder='enter your email address' variant="outlined" 

@@ -74,5 +74,5 @@ Middleware is automatically included by configureStore (like redux-thunk), but y
 1) if something goes south there is no fallback actions defined!!
 2) Centralised Notification system is needed.
 3) Tracking user activity and logging user actions.
-
+4) feed/[post-title]
 

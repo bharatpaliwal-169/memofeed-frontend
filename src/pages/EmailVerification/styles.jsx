@@ -2,19 +2,19 @@ import { makeStyles } from '@mui/styles';
 
 export default makeStyles((theme) => ({
   mainPaper :{
-    marginTop: '1.5rem',
-    marginBottom: '1.5rem',
+    margin: '1rem',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     padding: '1rem',
-    borderRadius:'0.5rem',
+    borderRadius:'1rem',
   },
   title:{
     textTransform : 'capitalize',
     fontWeight : 'bold',
     color : '#09779A',
-    marginTop:'1.5rem'
+    margin:'1rem'
+    
   },
   form: {
     width: '100%', 
@@ -24,11 +24,12 @@ export default makeStyles((theme) => ({
     textAlign:"center"
   },
   submit: {
-    margin: theme.spacing(4, 0, 2),
+    margin: theme.spacing(4, 0, 2, 2),
   },
   bodyData:{
-    padding: '1rem',
-    fontWeight: '700'
+    padding: '0.5rem',
+    fontWeight: '700',
+    fontSize : '1.5rem'
   },
   bodyIcon:{
     padding : '1rem',

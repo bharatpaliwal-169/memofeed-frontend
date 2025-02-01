@@ -34,5 +34,20 @@ export const GlobalConstants = {
   forgotPasswordDesp : "No Worries, We will help you recover your account.",
   confirm: "Confirm",
   like:"Like",
-  RESET_AUTH : "RESET_AUTH"
+  RESET_AUTH : "RESET_AUTH",
+  SUCCESS : "SUCCESS",
+  emailVerification : "Email Verification",
+  checkInbox : "Check your inbox.",
+  tryAgain : "Please try again.",
+  mailSentSuccessMessage : "We have sent you an email, Please Check your inbox.",
+  mailSentFailureMessage : "Oh uoh! Something went wrong, Please try again later.",
+  verifyBodyDesp : "Please click \"Confirm\" and check your inbox.",
+  skipNow : "Skip for now",
+  exploreNow : "Explore Memofeed",
+  changePassword : "Change Password",
+  changePasswordDesp : "* New password must have length between 6-20 characters. Consider making a strong password.",
+  recommendationHeading : "You might also like:",
+  creator: "Creator",
+  defaultImageCover : 'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png',
+  
 }

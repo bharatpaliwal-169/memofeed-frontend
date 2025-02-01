@@ -6,15 +6,16 @@ import { useDispatch,useSelector } from 'react-redux';
 import { emailVerificationRequest } from '../../redux/actions/auth';
 
 //css
-import {Paper,Typography,Button} from '@mui/material'
-import useStyles from './styles'
-
+import {Paper,Typography,Button, Box, Container} from '@mui/material'
 import ErrorIcon from '@mui/icons-material/Error';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import useStyles from './styles'
 
 import Notification from '../../components/Notification';
+import { GlobalConstants } from '../../constants';
 
 const EmailVerification = () => {
+
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useNavigate();
@@ -26,15 +27,14 @@ const EmailVerification = () => {
     const formData = {
       email : user?.result?.email
     }
-    console.log(formData);
+    // console.log(formData);
     e.preventDefault();
     dispatch(emailVerificationRequest(formData,history));
-    console.log("email is sent");
+    // console.log("email is sent");
   }
   const handleSkip = () => {
     history("/feed");
   }
-
   //snackbar
   const [snackType,setSnackType] = useState()
   const [showSnack,setShowSnack] = useState(false)
@@ -42,56 +42,54 @@ const EmailVerification = () => {
   
   // check status of email
   useEffect(() => {
-    console.info(EMAIL_STATUS);
     setSnackType(EMAIL_STATUS?.authData?.SNACK_TYPE)
     setShowSnack(true)
   }, [EMAIL_STATUS,snackType])
   
   if(showSnack){
     if(snackType){
-      const snackMessage = snackType === "SUCCESS" ? "We have sent you an email, Please Check your inbox." : "Oh uoh! Something went wrong, Please try again later.";
+      const snackMessage = snackType === "SUCCESS" ? GlobalConstants.mailSentSuccessMessage : GlobalConstants.mailSentFailureMessage;
       return (
         <>
           <Notification snackType={snackType} snackOpen={true} snackMessage={snackMessage}/>
           <Paper className={classes.mainPaper}>
             <Typography variant='h3' className={classes.title}>
-              Email Verification 
+              {GlobalConstants.emailVerification} 
             </Typography>
 
-            <Typography variant='h1' component="div">
+            <Typography variant='h2' component="div">
               {snackType==="SUCCESS" ? <CheckCircleIcon className={classes.bodyIcon} /> : <ErrorIcon className={classes.bodyIcon} color='secondary' />} 
             </Typography>
             
-            <Typography variant='body1' className={classes.bodyData}>
-              {snackType==="SUCCESS"? "Check your inbox." : "Please try again."}
+            <Typography variant='body2' className={classes.bodyData}>
+              {snackType==="SUCCESS"? GlobalConstants.checkInbox : GlobalConstants.tryAgain}
             </Typography>
+
+            <Button variant='outlined' color='success' onClick={handleSkip}> {GlobalConstants.exploreNow} </Button>
           </Paper>
         </>
       )
     }
   }
   return (
-    <>
+    <Container maxWidth="xl">
       <Paper className={classes.mainPaper}>
-        <Typography variant='h2' className={classes.title}>
-          Email Verification 
+        <Typography variant='h3' className={classes.title}>
+          {GlobalConstants.emailVerification} 
         </Typography>
         <form onSubmit={handleSubmit} className={classes.form}>
-          <Typography variant='body1' className={classes.bodyData}>
-            Please click "Confirm" and check your inbox.
+          <Typography variant='body2' className={classes.bodyData}>
+            {GlobalConstants.verifyBodyDesp}
           </Typography>
-          <Typography variant='body1' className={classes.bodyData}>
-            *You will be given a "verified" badge.
-          </Typography>
-          <Button width="50%" variant="default" className={classes.submit} onClick={handleSkip}>
-            Skip for now
+          <Button width="50%" variant="outlined" className={classes.submit} onClick={handleSkip}>
+            {GlobalConstants.skipNow}
           </Button>
-          <Button type="submit" width="50%" variant="outlined" color="primary" className={classes.submit}>
-            Confirm
+          <Button type="submit" width="50%" variant="contained" color="primary" className={classes.submit}>
+            {GlobalConstants.confirm}
           </Button>
         </form>
       </Paper>
-    </>
+    </Container>
   )
 }
 

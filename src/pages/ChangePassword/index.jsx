@@ -6,8 +6,10 @@ import { useDispatch } from 'react-redux';
 import { changePassword } from '../../redux/actions/auth';
 //css
 import {Paper,Typography,Button,TextField,InputAdornment, IconButton} from '@mui/material'
-import {Visibility,VisibilityOff} from '@mui/icons-material';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import useStyles from './styles'
+import { GlobalConstants } from '../../constants';
 
 
 const ChangePassword = () => {
@@ -45,17 +47,17 @@ const ChangePassword = () => {
     <>
       <Paper className={classes.mainPaper}>
         <Typography variant='h3' className={classes.title}>
-          Change Password
+          {GlobalConstants.changePassword}
         </Typography>
 
         <form onSubmit={handleSubmit} className={classes.form}>
           <Typography variant='body1' className={classes.bodyData}>
-            * New password must have length between 6-20 characters. Please make a strong password.
+            {GlobalConstants.changePasswordDesp}
           </Typography>
           
           <TextField name = "password" placeholder='enter new password' variant="outlined" type={showPassword ? "text" : "password"} 
               onChange={handleChange} fullWidth required  style={{padding:'0.5rem'}}
-              InputProps={{ // <-- This is where the toggle button is added.
+              slotProps={{ // <-- This is where the toggle button is added.
                 endAdornment: (
                   <InputAdornment position="end">
                     <IconButton
@@ -63,7 +65,7 @@ const ChangePassword = () => {
                       onClick={handleClickShowPassword}
                       onMouseDown={handleMouseDownPassword}
                     >
-                      {showPassword ? <Visibility /> : <VisibilityOff />}
+                      {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
                     </IconButton>
                   </InputAdornment>
                 )
@@ -72,7 +74,7 @@ const ChangePassword = () => {
 
           <TextField name = "confirmPassword" placeholder='re-enter new password' variant="outlined" type={showPassword ? "text" : "password"} 
               onChange={handleChange} fullWidth required  style={{padding:'0.5rem'}}
-              InputProps={{ // <-- This is where the toggle button is added.
+              slotProps={{ // <-- This is where the toggle button is added.
                 endAdornment: (
                   <InputAdornment position="end">
                     <IconButton
@@ -80,7 +82,7 @@ const ChangePassword = () => {
                       onClick={handleClickShowPassword}
                       onMouseDown={handleMouseDownPassword}
                     >
-                      {showPassword ? <Visibility /> : <VisibilityOff />}
+                      {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
                     </IconButton>
                   </InputAdornment>
                 )
@@ -88,7 +90,7 @@ const ChangePassword = () => {
           />
 
           <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
-            Confirm
+            {GlobalConstants.confirm}
           </Button>
         </form>
       </Paper>
