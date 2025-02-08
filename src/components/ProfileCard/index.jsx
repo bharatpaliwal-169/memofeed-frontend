@@ -5,15 +5,17 @@ import LoginPromp from '../LoginPromp';
 
 
 const ProfileCard = () => {
-  const stats = JSON.parse(localStorage.getItem('stats'));
-  const user = JSON.parse(localStorage.getItem('profile'));
+  
   const bgCover = "/images/bg-cover.jpg";
+  const user = JSON.parse(localStorage.getItem('profile'));
+  const stats = JSON.parse(localStorage.getItem('stats'));
 
   if(!user){
     return(
       <LoginPromp />
     )
   }
+  
   return (
     <>
       <Box sx={{display: "flex", justifyContent: "center", mt: 5 }}>
@@ -56,15 +58,18 @@ const ProfileCard = () => {
                   <Typography fontWeight="bold">{user.followers}</Typography>
                   <Typography variant="caption" color="text.secondary">Followers</Typography>
                 </Box> */}
-
-                <Box textAlign="center">
-                  <Typography fontWeight="bold">{stats?.totalPosts}</Typography>
-                  <Typography variant="caption" color="text.secondary">{GlobalConstants.posts}</Typography>
-                </Box>
-                <Box textAlign="center">
-                  <Typography fontWeight="bold">{stats?.totalLikes}</Typography>
-                  <Typography variant="caption" color="text.secondary">{GlobalConstants.likes}</Typography>
-                </Box>
+                {!!stats?.totalPosts && (
+                  <Box textAlign="center">
+                    <Typography fontWeight="bold">{stats?.totalPosts}</Typography>
+                    <Typography variant="caption" color="text.secondary">{GlobalConstants.posts}</Typography>
+                  </Box>
+                )}
+                {!!stats?.totalLikes && (
+                  <Box textAlign="center">
+                    <Typography fontWeight="bold">{stats?.totalLikes}</Typography>
+                    <Typography variant="caption" color="text.secondary">{GlobalConstants.likes}</Typography>
+                  </Box>
+                )}
               </Box>
             </CardContent>
         </Card>

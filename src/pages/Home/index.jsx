@@ -13,10 +13,11 @@ import useStyles from './styles'
 //components
 import Pagination from '../../components/PaginationUI'
 import Loading from '../../components/Loading'
+import ProfileCard from '../../components/ProfileCard'
 
 const Posts = React.lazy(()=> import('../../components/Posts'));
 const Form = React.lazy(() => import('../../components/Forms'));
-const ProfileCard = React.lazy(() => import('../../components/ProfileCard'));
+
 
 function useQuery(){
   return new URLSearchParams(useLocation().search);
@@ -33,8 +34,7 @@ const Home= ()=> {
   const history = useNavigate();
   const page = query.get('page') || 1;
   const searchQuery = query.get('searchQuery');
-
-
+  
   // useEffects
   // GEt all posts 
   useEffect(() => {
@@ -60,9 +60,7 @@ const Home= ()=> {
           <Grid2 container className={classes.gridContainer} >
             
             <Grid2 item size={{xs:12,sm:6,md:3,lg:3,xl:2}}>
-              <React.Suspense fallback={<Loading />} >
-                <ProfileCard />
-              </React.Suspense>
+              <ProfileCard />
               
               {/* ADD POST COMPONENT */}
               {/* <React.Suspense fallback={<Loading/>}>

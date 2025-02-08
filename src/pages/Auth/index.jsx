@@ -1,5 +1,5 @@
 //react
-import React,{useEffect, useState} from 'react'
+import React,{useState} from 'react'
 import {useNavigate} from 'react-router-dom'
 
 //redux
@@ -25,14 +25,20 @@ const Auth = () =>{
   const initialState = {
     firstName: '',lastName: '',email: '',password: ''
   };
-  const strengthLabels = ['weak','medium','good','strong','best'];
+
+  const initialPasswordMetrics = {
+    progress:0,
+    strength:"",
+    strengthColor:""
+  }
+  const strengthLabels = ["Very Weak", "Weak", "Fair", "Good", "Strong","Strong","Strong","Strong"];
+  const strengthColorLabels = ["error","warning","warning","success","success","primary","primary","primary","primary"];
+
   const [isSignup,setIsSignup] = useState(false);
   const [formData,setformData] = useState(initialState);
   const [showPassword, setShowPassword] = useState(false);
   const [loading,setLoading] = useState(false);
-  const [strength,setStrength] = useState("");
-  const [progress,setProgress] = useState(0)
-
+  const [passwordMetric,setPasswordMetric] = useState(initialPasswordMetrics);
   //support
   const classes = useStyles();
   const history = useNavigate();
@@ -61,8 +67,15 @@ const Auth = () =>{
   const handleChange = (e) => {
     setformData({ ...formData, [e.target.name]: e.target.value });
     if(e.target.name = "password"){
-      setStrength(getStrength(e.target.value));
-      console.log(strength);
+      let score = getStrength(e.target.value);
+      console.log(score);
+      if(score >= 5) score = 5;
+      const strengthScore = strengthLabels[score];
+      const strengthColorLabel = strengthColorLabels[score];
+      setPasswordMetric({ ...passwordMetric, strength: strengthScore,strengthColor:strengthColorLabel,progress:((score/5)*100)});
+      
+      console.log("passwordMetrics : " + passwordMetric.progress + passwordMetric.strength + passwordMetric.strengthColor);
+      
     }
   }
   
@@ -75,18 +88,15 @@ const Auth = () =>{
   }
 
   const getStrength = (password) =>{
-    let indicator = 0;
-    if(/[a-z]/.test(password)) indicator++;
-    if(/[A-Z]/.test(password)) indicator++;
-    if(/\d/.test(password)) indicator++;
-    if(/[^a-zA-Z0-9]/.test(password)) indicator++;
-    if(password.length >=10) indicator++;
-    return strengthLabels[indicator];
+    let score = 0;
+    if (password.length >= 8) score += 1;  // Minimum length
+    if (/[A-Z]/.test(password)) score += 1;  // Uppercase letter
+    if (/[a-z]/.test(password)) score += 1;  // Lowercase letter
+    if (/\d/.test(password)) score += 1;  // Number
+    if (/[\W_]/.test(password)) score += 1;  // Special character
+    return score;
   }
-  useEffect(()=> {
-    console.log(progress);
-    setProgress(20 * Number(strengthLabels.indexOf[strength]));
-  },[progress])
+
   return (
     <>
       <Container component="main" maxwidth="xl">
@@ -140,19 +150,26 @@ const Auth = () =>{
                       </InputAdornment>
                     }
                     label="Password"
-                  />
-                  {isSignup ? (
-                    // <Typography variant='caption' style={{padding:'0.75rem'}}>
-                    //   {GlobalConstants.minPassRequired}
-                    // </Typography>
-                    
-                    <LinearProgress variant="determinate" color='success' value={progress} style={{width: '100%',marginTop:'2rem'}} />
-                  ) : null}
+                    />
+
+                    {formData.password && (
+                      <Box sx={{flexGrow:1}} style={{margin:'1rem'}}>
+                        <LinearProgress
+                          variant="determinate"
+                          value={passwordMetric.progress}
+                          color={passwordMetric.strengthColor}
+                          sx={{ height: 8, borderRadius: 5 }}
+                        />
+                        <Typography variant="body2" sx={{ mt: 1, textAlign: "center" }}>
+                          Password Strength: {passwordMetric.strength}
+                        </Typography>
+                      </Box>
+                    )}
                 </FormControl>
 
                 
                 
-                <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
+                <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit} disabled={passwordMetric.strength!="Good"}>
                   {isSignup ? GlobalConstants.SignUp : GlobalConstants.Login}
                   {loading ? (
                     <CircularProgress size={20} style={{color:'#fff'}} />
