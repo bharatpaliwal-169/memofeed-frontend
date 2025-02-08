@@ -13,7 +13,6 @@ import Loading from '../../components/Loading'
 //css
 import { Paper,Typography, Grid2, Button } from '@mui/material';
 import useStyle from './styles';
-
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 
@@ -46,7 +45,7 @@ const Tags = () => {
   }
   return (
     <>
-      <Paper className={classes.mainPage} elevation={5}>
+      <Paper className={classes.mainPage} elevation={2}>
 
         <Typography variant="h2" className={classes.heading} style={{margin:'2rem'}}> 
           #{name} 

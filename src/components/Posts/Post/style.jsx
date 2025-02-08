@@ -1,62 +1,68 @@
 import { makeStyles } from '@mui/styles';
 
 export default makeStyles({
+  card: {
+    position: 'relative',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    borderRadius: '0.25rem',
+    height: '100%',
+  },
+  
   media: {
-    height: 0,
     paddingTop: '56.25%',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
     backgroundBlendMode: 'darken',
   },
+
   border: {
     border: 'solid',
   },
+  
   fullHeightCard: {
     height: '100%',
   },
-  card: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    borderRadius: '15px',
-    height: '100%',
-    position: 'relative',
-  },
+  
   overlay: {
     position: 'absolute',
-    top: '20px',
-    left: '20px',
+    top: '1.25rem',
+    left: '1.25rem',
     color: 'white',
   },
+
   overlay2: {
     position: 'absolute',
-    top: '20px',
-    right: '20px',
+    top: '1.25rem',
+    right: '1.25rem',
     color: 'white',
   },
-  Grid2: {
-    display: 'flex',
-  },
+  
   details: {
     display: 'flex',
     justifyContent: 'space-between',
     margin: '20px',
   },
+  
   title: {
-    padding: '0 16px',
+    padding: '0 1rem',
     textTransform: 'capitalize',
     color : '#09779A',
-    fontWeight : '600',
+    fontWeight : '700',
   },
+  
   cardActions: {
-    padding: '0 16px 8px 16px',
+    padding: '0 1rem 0.5rem 1rem',
     display: 'flex',
     justifyContent: 'space-between',
   },
+  
   cardAction: {
     display: 'block',
     textAlign: 'initial',
   },
+  
   Chipdetails :{
-    padding:'.5rem',
+    padding:'0.75rem',
   },
 });

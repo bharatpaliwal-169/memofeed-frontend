@@ -1,30 +1,36 @@
 import React from 'react'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
-import {Grid2,Card,Typography} from '@mui/material'
+import {Box,Card,Typography} from '@mui/material'
 import useStyles from './styles'
 
 const LoadingUI = () => {
   const classes = useStyles();
   return (
     <>
-      <Grid2 className={classes.mainContainer} container alignItems="stretch" spacing={3}>
+            <Box 
+        style={{display: 'flex',flexDirection:'column',alignItems:'stretch',justfyContent:'space-between'}}>
         {Array(6).fill().map((item,index) => (
-          <Grid2 key={index} xs={12} sm={12} md={6}>
-            <Card>
+          
+            <Card component='div' 
+              style={{width:'100%',margin:'0.5rem'}} 
+              elevation={2} key={index}
+            >
               <Typography variant="h1" component="h1">
                 <Skeleton />
               </Typography>
+
               <Typography variant="body1" component="h6" style={{paddingLeft: '1.5rem'}}>
                 <Skeleton count={6} width="90%" />
               </Typography>
+              
               <Typography variant="h5" component="h5">
                 <Skeleton />
               </Typography>
             </Card>
-          </Grid2>
+          
         ))}
-      </Grid2>
+      </Box>
     </>
   )
 }

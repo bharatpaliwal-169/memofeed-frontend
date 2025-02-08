@@ -2,11 +2,11 @@ import { makeStyles } from '@mui/styles';
 
 export default makeStyles((theme) => ({
   paper:{
-    padding: theme.spacing(4),
-    textAlign:'center',
+    padding: '1rem',
+    // textAlign:'center',
     alignItems:'center',
     justifyContent:'center',
-    borderRadius: '1rem',
+    borderRadius: '0.5rem',
     marginTop: '1rem'
   },
   media:{

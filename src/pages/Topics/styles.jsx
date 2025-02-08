@@ -6,12 +6,14 @@ export default makeStyles(() => ({
     flexDirection: 'column',
     alignItems: 'center',
     padding: '2rem',
-    borderRadius: '1rem',
+    borderRadius: '0.5rem',
+    marginTop : '2rem'
   },
   heading: {
     color: '#09779A',
     textDecoration: 'none',
     fontWeight: 'bold',
-    textTransform : 'capitalize'
+    textTransform : 'capitalize',
+    letterSpacing: '2px'
   },
 }));

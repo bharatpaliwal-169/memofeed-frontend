@@ -1,5 +1,5 @@
 //react
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import {useNavigate} from 'react-router-dom'
 
 //redux
@@ -8,7 +8,8 @@ import {signup , login} from '../../redux/actions/auth'
 
 //css
 import {Container,Typography,FormControl,OutlinedInput,InputLabel,
-  CircularProgress,Button,InputAdornment, IconButton,Box} from "@mui/material"
+  CircularProgress,Button,InputAdornment, IconButton,Box,
+  LinearProgress} from "@mui/material"
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import useStyles from './style'
@@ -24,11 +25,14 @@ const Auth = () =>{
   const initialState = {
     firstName: '',lastName: '',email: '',password: ''
   };
-  
+  const strengthLabels = ['weak','medium','good','strong','best'];
   const [isSignup,setIsSignup] = useState(false);
   const [formData,setformData] = useState(initialState);
   const [showPassword, setShowPassword] = useState(false);
   const [loading,setLoading] = useState(false);
+  const [strength,setStrength] = useState("");
+  const [progress,setProgress] = useState(0)
+
   //support
   const classes = useStyles();
   const history = useNavigate();
@@ -56,6 +60,10 @@ const Auth = () =>{
 
   const handleChange = (e) => {
     setformData({ ...formData, [e.target.name]: e.target.value });
+    if(e.target.name = "password"){
+      setStrength(getStrength(e.target.value));
+      console.log(strength);
+    }
   }
   
   const switchMode = () => {
@@ -65,6 +73,20 @@ const Auth = () =>{
   const handleForgotPassword = () => {
     history("/auth/forgotpassword");
   }
+
+  const getStrength = (password) =>{
+    let indicator = 0;
+    if(/[a-z]/.test(password)) indicator++;
+    if(/[A-Z]/.test(password)) indicator++;
+    if(/\d/.test(password)) indicator++;
+    if(/[^a-zA-Z0-9]/.test(password)) indicator++;
+    if(password.length >=10) indicator++;
+    return strengthLabels[indicator];
+  }
+  useEffect(()=> {
+    console.log(progress);
+    setProgress(20 * Number(strengthLabels.indexOf[strength]));
+  },[progress])
   return (
     <>
       <Container component="main" maxwidth="xl">
@@ -119,14 +141,16 @@ const Auth = () =>{
                     }
                     label="Password"
                   />
+                  {isSignup ? (
+                    // <Typography variant='caption' style={{padding:'0.75rem'}}>
+                    //   {GlobalConstants.minPassRequired}
+                    // </Typography>
+                    
+                    <LinearProgress variant="determinate" color='success' value={progress} style={{width: '100%',marginTop:'2rem'}} />
+                  ) : null}
                 </FormControl>
 
                 
-                {isSignup ? (
-                  <Typography variant='caption' style={{padding:'0.75rem'}}>
-                    {GlobalConstants.minPassRequired}
-                  </Typography>
-                ) : null}
                 
                 <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
                   {isSignup ? GlobalConstants.SignUp : GlobalConstants.Login}

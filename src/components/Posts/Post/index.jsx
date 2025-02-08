@@ -83,39 +83,45 @@ const Post = ({ post, setCurrentId }) => {
 
   return (
     <>
-    <Card className={classes.card} raised elevation={6}>
+    <Card className={classes.card} raised elevation={2}>
+      
+      {/* BG COVER IMAGE */}
       <ButtonBase className={classes.cardAction} onClick={openPost}>
         <CardMedia className={classes.media}
           image={post.selectedFile || GlobalConstants.defaultImage } 
-          title={post.title} height={240} width={160}
+          title={post.title} height={260} width={180}
         />
         
+
         <div className={classes.overlay}>
-          <Typography  variant="h6">
+          <Typography variant="h6">
             {post.name}
           </Typography>
           <Typography variant="caption"> {moment(post.createdAt).fromNow()} </Typography>
         </div>
       </ButtonBase>
-        <div className={classes.overlay2}>
-          { user?.result?._id === post?.creator && (
-            <Button style={{ color: 'white' }} size="small" onClick={() =>{
-              setCurrentId(post._id);
-            }}>
-              {isMobile ? (
-                <Tooltip title="Open Add post button" aria-label="add">
-                  <EditIcon fontSize="small" />
-                </Tooltip>
-              ) : 
-              <EditIcon fontSize="small" />
-              }
-            </Button>
-          )}
-        </div>
-        
-        {location.pathname.startsWith('/topics') ? (
-          <></>
-        ) : (
+      
+      {/* DISPLAY EDIT BTN */}
+      <div className={classes.overlay2}>
+        { user?.result?._id === post?.creator && (
+          <Button style={{ color: 'white' }} size="small" onClick={() =>{
+            setCurrentId(post._id);
+          }}>
+            {isMobile ? (
+              <Tooltip title="Open Add post button" aria-label="add">
+                <EditIcon fontSize="small" />
+              </Tooltip>
+            ) : 
+            <EditIcon fontSize="small" />
+            }
+          </Button>
+        )}
+      </div>
+
+      {/* TOPICS   */}
+      {location.pathname.startsWith('/topics') ? (
+        <></>
+      ) : (
         <div className={classes.Chipdetails}>
           {post.tags.slice(0,3).map((tag,index) =>
 
@@ -123,29 +129,27 @@ const Post = ({ post, setCurrentId }) => {
             spacing={1} style={{margin:'0.1rem'}} color="primary" variant="outlined" />
           )}
         </div>
-        )}
+      )}
 
+      {/* CARD CONTENT */}
       <ButtonBase className={classes.cardAction} onClick={openPost}>
         <Typography className={classes.title} gutterBottom variant="h5" component="h5">
-          {post.title.length > 20 ? post.title.substring(0, 15)+"..." : post.title}
+          {post.title.length > 30 ? post.title.substring(0, 25)+"..." : post.title}
         </Typography>
         
         <CardContent className={classes.contentBody}>
           <Typography variant="body1" color="textSecondary" component="p">
-            {post.message.length > 65 ? post.message.substring(0,65)+" ....." : post.message}
+            {post.message.length > 60 ? post.message.substring(0,60)+" ....." : post.message}
           </Typography>
         </CardContent>
       </ButtonBase>      
     
+      {/* CARD ACTION BOTTOM */}
       <CardActions className={classes.cardActions}>
-        
         <Tooltip title= 'Hey! login to like this post' aria-label='Login' disableHoverListener={user ? true : false}>
           <span>
-          <Button size="small" color="primary" disabled={!user?.result} 
-            // onClick={()=> dispatch(likePost(post._id))}
-            onClick={handleLike}
-            >
-              <Likes></Likes>
+          <Button size="small" color="primary" disabled={!user?.result} onClick={handleLike}>
+            <Likes></Likes>
           </Button>
           </span>
         </Tooltip>
@@ -154,7 +158,7 @@ const Post = ({ post, setCurrentId }) => {
           <Button size="small" color="secondary" 
           onClick={handleClickOpen}
           >
-            <DeleteIcon fontSize="medium" />
+            <DeleteIcon fontSize="small" />
           </Button>
         )}
 

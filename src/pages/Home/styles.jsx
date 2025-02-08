@@ -13,6 +13,10 @@ export default makeStyles((theme) => ({
     paddingLeft: '1rem',
   },
   gridContainer: {
+    display:'flex',
+    flexDirection:'row',
+    justifyContent:"center",
+    alignItems:"stretch",
     [theme.breakpoints.down('sm')]: {
       flexDirection: 'column-reverse',
     },
