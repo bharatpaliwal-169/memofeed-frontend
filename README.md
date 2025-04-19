@@ -61,3 +61,28 @@ MemoFeed is a pwa that provides users with a plateform where they can share thei
   <p>Checkout Frontend.md for more techinical details.</p>
 </details>
 
+
+
+https://medium.com/@dugar_rishab/how-to-use-google-oauth-with-mern-stack-a988947e64f4
+
+
+
+Colons can be used to align columns.
+
+| Features        | Status           | Remarks  |
+| ------------- |:-------------:| -----:|
+| Google O Auth     | `development`      |   More simpler to handle auth with google oauth |
+| User Activity logs.     | `pending`      |   NA |
+| Notifications    | `pending`      |   NA |
+| Security and long signin with cookies.     | `pending`      |   NA |
+
+
+## NOTE README - Table component 
+There must be at least 3 dashes separating each header cell.
+The outer pipes (|) are optional, and you don't need to make the 
+raw Markdown line up prettily. You can also use inline Markdown.
+
+Markdown | Less | Pretty
+--- | --- | ---
+*Still* | `renders` | **nicely**
+1 | 2 | 3
