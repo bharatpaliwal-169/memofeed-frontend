@@ -26,9 +26,6 @@ export default makeStyles((theme) => ({
   submit: {
     margin: "0.5rem",
   },
-  googleButton: {
-    marginBottom: theme.spacing(2),
-  },
   media:{
     width:'100%',
     maxHeight:"15rem",
@@ -40,5 +37,19 @@ export default makeStyles((theme) => ({
     maxHeight:"100%",
     objectPosition:'center',
     objectFit:"contain"
-  }
+  },
+  googleButton:{
+    // background: "#4285F4",
+    color: '#4285F4',
+    padding: "0.5rem 3rem",
+    fontSize: "1rem",
+    fontWeight: "bold",
+    cursor: "pointer",
+    // border: "1px solid #666",
+    alignItems:'center',
+    justifyContent:'center',
+    textAlign:'center'
+  },
+  
+
 }));

@@ -4,14 +4,18 @@ import {useNavigate} from 'react-router-dom'
 
 //redux
 import {useDispatch} from 'react-redux'
-import {signup , login} from '../../redux/actions/auth'
+import {signup , login,googleAuthentication} from '../../redux/actions/auth'
+
+//o-auth-client
+import {GoogleLogin, useGoogleLogin} from "@react-oauth/google";
 
 //css
 import {Container,Typography,FormControl,OutlinedInput,InputLabel,
-  CircularProgress,Button,InputAdornment, IconButton,Box,
+  CircularProgress,Button,InputAdornment, IconButton,Box,Divider,
   LinearProgress} from "@mui/material"
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import GoogleIcon from '@mui/icons-material/Google';
 import useStyles from './style'
 
 //components
@@ -26,19 +30,19 @@ const Auth = () =>{
     firstName: '',lastName: '',email: '',password: ''
   };
 
-  const initialPasswordMetrics = {
-    progress:0,
-    strength:"",
-    strengthColor:""
-  }
-  const strengthLabels = ["Very Weak", "Weak", "Fair", "Good", "Strong","Strong","Strong","Strong"];
-  const strengthColorLabels = ["error","warning","warning","success","success","primary","primary","primary","primary"];
+  // const initialPasswordMetrics = {
+  //   progress:0,
+  //   strength:"",
+  //   strengthColor:""
+  // }
+  // const strengthLabels = ["Very Weak", "Weak", "Fair", "Good", "Strong","Strong","Strong","Strong"];
+  // const strengthColorLabels = ["error","warning","warning","success","success","primary","primary","primary","primary"];
 
   const [isSignup,setIsSignup] = useState(false);
   const [formData,setformData] = useState(initialState);
   const [showPassword, setShowPassword] = useState(false);
   const [loading,setLoading] = useState(false);
-  const [passwordMetric,setPasswordMetric] = useState(initialPasswordMetrics);
+  // const [passwordMetric,setPasswordMetric] = useState(initialPasswordMetrics);
   //support
   const classes = useStyles();
   const history = useNavigate();
@@ -66,17 +70,17 @@ const Auth = () =>{
 
   const handleChange = (e) => {
     setformData({ ...formData, [e.target.name]: e.target.value });
-    if(e.target.name = "password"){
-      let score = getStrength(e.target.value);
-      console.log(score);
-      if(score >= 5) score = 5;
-      const strengthScore = strengthLabels[score];
-      const strengthColorLabel = strengthColorLabels[score];
-      setPasswordMetric({ ...passwordMetric, strength: strengthScore,strengthColor:strengthColorLabel,progress:((score/5)*100)});
+    // if(e.target.name = "password"){
+    //   let score = getStrength(e.target.value);
+    //   console.log(score);
+    //   if(score >= 5) score = 5;
+    //   const strengthScore = strengthLabels[score];
+    //   const strengthColorLabel = strengthColorLabels[score];
+    //   setPasswordMetric({ ...passwordMetric, strength: strengthScore,strengthColor:strengthColorLabel,progress:((score/5)*100)});
       
-      console.log("passwordMetrics : " + passwordMetric.progress + passwordMetric.strength + passwordMetric.strengthColor);
+    //   console.log("passwordMetrics : " + passwordMetric.progress + passwordMetric.strength + passwordMetric.strengthColor);
       
-    }
+    // }
   }
   
   const switchMode = () => {
@@ -87,16 +91,35 @@ const Auth = () =>{
     history("/auth/forgotpassword");
   }
 
-  const getStrength = (password) =>{
-    let score = 0;
-    if (password.length >= 8) score += 1;  // Minimum length
-    if (/[A-Z]/.test(password)) score += 1;  // Uppercase letter
-    if (/[a-z]/.test(password)) score += 1;  // Lowercase letter
-    if (/\d/.test(password)) score += 1;  // Number
-    if (/[\W_]/.test(password)) score += 1;  // Special character
-    return score;
+  // const getStrength = (password) =>{
+  //   let score = 0;
+  //   if (password.length >= 8) score += 1;  // Minimum length
+  //   if (/[A-Z]/.test(password)) score += 1;  // Uppercase letter
+  //   if (/[a-z]/.test(password)) score += 1;  // Lowercase letter
+  //   if (/\d/.test(password)) score += 1;  // Number
+  //   if (/[\W_]/.test(password)) score += 1;  // Special character
+  //   return score;
+  // }
+
+  const handleGoogleSuccess = (credential) => {
+    try{
+      dispatch(googleAuthentication(credential,history))
+    }catch(error){
+      console.error("Google Failure: " , error);
+    }
   }
 
+  const handleGoogleFailure = () => {
+    console.log("Auth with Google Failed at this moment")
+  }
+
+  // const handleGoogleClick = () => {
+  //   useGoogleLogin({
+  //     onSuccess: credential=> handleGoogleSuccess(credential),
+  //     onError: () => handleGoogleFailure()
+  //   })
+  // }
+  
   return (
     <>
       <Container component="main" maxwidth="xl">
@@ -112,6 +135,26 @@ const Auth = () =>{
               {isSignup ? GlobalConstants.SignUp : GlobalConstants.Login}
             </Typography>
 
+            <Box component='div' sx = {{flexGrow:1}} style={{alignItems:'center',textAlign:'center',padding:'1rem'}}>
+              
+              {/* <GoogleLogin onSuccess={handleGoogleSuccess} onError={handleGoogleFailure} 
+                size="large" width={100} text='continue_with' theme='outline'
+              /> */}
+
+              {/* <Button className={classes.googleButton} startIcon={<GoogleIcon />} onClick={() => handleGoogleClick()}  >
+                Continue with Google
+              </Button> */}
+              <Box component='div' className={classes.googleButton}>
+                <GoogleLogin onSuccess={handleGoogleSuccess} onError={handleGoogleFailure} 
+                  size="large" width={900} text='continue_with' theme='outline'
+                />
+              </Box>
+
+              <Divider sx={{ color: 'gray', fontSize: '0.9rem', fontWeight: 500,margin:"1rem 1rem" }}>
+                OR
+              </Divider>
+            </Box>
+            
             <form onSubmit={handleSubmit} className={classes.form}>
               <Box sx={{flexGrow:1}}>
                 {isSignup && (
@@ -152,7 +195,7 @@ const Auth = () =>{
                     label="Password"
                     />
 
-                    {formData.password && (
+                    {/* {formData.password && (
                       <Box sx={{flexGrow:1}} style={{margin:'1rem'}}>
                         <LinearProgress
                           variant="determinate"
@@ -164,12 +207,14 @@ const Auth = () =>{
                           Password Strength: {passwordMetric.strength}
                         </Typography>
                       </Box>
-                    )}
+                    )} */}
                 </FormControl>
 
                 
                 
-                <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit} disabled={passwordMetric.strength!="Good"}>
+                <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit} 
+                  // disabled={passwordMetric.strength!="Good"}
+                >
                   {isSignup ? GlobalConstants.SignUp : GlobalConstants.Login}
                   {loading ? (
                     <CircularProgress size={20} style={{color:'#fff'}} />

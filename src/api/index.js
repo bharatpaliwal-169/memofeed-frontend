@@ -32,3 +32,4 @@ export const changePassword = (formData,token) => API.post(`/auth/changepassword
 // export const forgotPassword = () => API.get('/auth/forgotpassword');
 export const emailVerificationRequest = (formData) => API.post('/auth/verifyEmail',formData);
 export const emailVerification = (token) => API.get(`/auth/verification/?token=${token}`);
+export const googleAuthentication = (credential) => API.post(`/auth/google`,credential) ;

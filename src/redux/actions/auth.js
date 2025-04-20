@@ -2,8 +2,6 @@ import * as api from '../../api'
 import {AUTH, CHANGE_PASSWORD_REQUEST,CHANGE_PASSWORD_REQUEST_FAILURE,
   LOGOUT,CHANGE_PASSWORD_SUCCESS,CHANGE_PASSWORD_FAILURE, FORGOT_PASSWORD_REQUEST,
   FORGOT_PASSWORD_REQUEST_FAILURE, EMAIL_VERIFICATION_REQUEST,EMAIL_VERIFICATION_REQUEST_FAILURE, EMAIL_VERIFICATION_SUCCESS, EMAIL_VERIFICATION_FAILURE,
-  SHOW_NOTIFICATION,
-  RESET_AUTH_STATE,
 } from '../types/actionTypes';
 
 export const login = (formData, history) =>async(dispatch) => {
@@ -15,13 +13,22 @@ export const login = (formData, history) =>async(dispatch) => {
     alert("Login Failed!! Try again");
     window.location.reload();
     console.log("FAILED LOGIN : TRIGGER NOTIFY & RESET");
-    
-    // dispatch({type:SHOW_NOTIFICATION,payload: {message: error.message, type:"ERROR"}});
-    // dispatch({type:RESET_AUTH_STATE});
     console.log(error);
   }
 }
 
+export const googleAuthentication = (credential,history) => async(dispatch) =>{
+  try {
+    const {data} = await api.googleAuthentication(credential);
+    dispatch({type: AUTH,data})
+    console.log(data);    
+    history("/");
+  } catch (error) {
+    window.location.reload();
+    console.log("FAILED Google Login");
+    console.log(error);
+  }
+}
 export const signup = (formData, history) =>async(dispatch) => {
   try {
     const {data} = await api.signup(formData);

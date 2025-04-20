@@ -14,6 +14,7 @@
     "@mui/lab": "^6.0.0-beta.24",
     "@mui/material": "^6.4.1",
     "@mui/styles": "^6.4.1",
+    "@react-oauth/google": "^0.12.1",
     "@reduxjs/toolkit": "^2.5.1",
     "axios": "^1.7.9",
     "dotenv": "^16.4.7",
